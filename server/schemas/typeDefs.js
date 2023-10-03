@@ -29,10 +29,18 @@ const typeDefs = `
     organizationName: String!
   }
 
+  input addUserInput {
+    username: String!
+    email: String!
+    password: String!
+    isAdmin: Boolean!
+    image: String
+  }
+
   input saveOrganizationInput {
     organizationId: ID!
-    description: String!
     name: String!
+    description: String!
     image: String
     link: String
   }
@@ -51,7 +59,7 @@ const typeDefs = `
   }
 
   type Mutation {
-    addUser(username: String!, email: String!, password: String!): Auth
+    addUser(input: addUserInput!): Auth
     login(email: String!, password: String!): Auth
     saveOrganization(input: saveOrganizationInput!): User
     removeOrganization(organizationId: ID!): User
