@@ -12,7 +12,7 @@ const typeDefs = `
   }
 
   type Organization {
-    _Id: ID!
+    _id: ID!
     userId: String!
     name: String!
     description: String!
@@ -69,8 +69,8 @@ const typeDefs = `
   }
 
   type Query {
-    getSingleUser: User
-    getSingleOrganization: Organization
+    getSingleUser(_id: ID!): User
+    getSingleOrganization(organizationId: ID!): Organization
     getOrganizations: [Organization]!
     getSingleOrder(orderId: String!): Order
     getOrdersByUserId(userId: String!): [Order]
