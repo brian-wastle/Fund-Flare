@@ -9,8 +9,8 @@ export default {
       colors: {
         'primary': '#2cffb2',
         'secondary': '#2fe4ff',
-        'light-1': '#111111',
-        'light-2': '#161616',
+        'light-1': '#cccccc',
+        'light-2': '#f1f1f1',
         'text-light': '#dfdfdf',
       },
       fontFamily: {

@@ -5,6 +5,7 @@ import './index.css'
 import App from './App.jsx'
 import HomePage from './pages/HomePage'
 import SignupPage from './pages/SignupPage'
+import LoginPage from './pages/LoginPage'
 import ProfilePage from './pages/ProfilePage'
 import OrganizationPage from './pages/OrganizationPage'
 import DonatePage from './pages/DonatePage'
@@ -15,7 +16,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
-    errorElement: <h1 className='display-2'>Wrong page!</h1>,
+    errorElement: <h1 className='text-3xl text-red-500 p-16'>Wrong page!</h1>,
     children: [
       {
         index: true,
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: '/signup',
         element: <SignupPage />,
+      },
+      {
+        path: '/login',
+        element: <LoginPage />,
       },
       {
         path: '/profile/:userId',
