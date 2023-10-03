@@ -12,7 +12,7 @@ const typeDefs = `
   }
 
   type Organization {
-    _Id: ID!
+    _id: ID!
     userId: String!
     name: String!
     description: String!
@@ -39,7 +39,7 @@ const typeDefs = `
   }
 
   input saveOrganizationInput {
-    organizationId: ID!
+    _id: String!
     name: String!
     description: String!
     image: String
@@ -70,7 +70,7 @@ const typeDefs = `
 
   type Query {
     getSingleUser: User
-    getSingleOrganization: Organization
+    getSingleOrganization(organizationId: String!): Organization
     getOrganizations: [Organization]!
     getSingleOrder(orderId: String!): Order
     getOrdersByUserId(userId: String!): [Order]
