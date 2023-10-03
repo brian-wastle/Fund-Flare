@@ -73,7 +73,7 @@ const typeDefs = `
     saveOrganization(input: saveOrganizationInput!): User
     removeOrganization(organizationId: ID!): User
     updateUser(input: addUserInput!): User
-    addOrder(input: addOrderInput!): O
+    addOrder(input: addOrderInput!): Order
   }
 `;
 
