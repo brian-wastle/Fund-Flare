@@ -1,16 +1,19 @@
-// see SignupForm.js for comments
 import { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 
 import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client';
-import { LOGIN_USER } from '../utils/mutations';
+import { ADD_USER } from '../utils/mutations';
 
-const LoginForm = () => {
-  const [userFormData, setUserFormData] = useState({ email: '', password: '' });
+
+const SignupForm = () => {
+  // set initial form state
+  const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
+  // set state for form validation
   const [validated] = useState(false);
+  // set state for alert
   const [showAlert, setShowAlert] = useState(false);
-  const [login, { error, data }] = useMutation(LOGIN_USER);
+  const [addUser, { error, data }] = useMutation(ADD_USER);
 
 
   const handleInputChange = (event) => {
@@ -29,14 +32,13 @@ const LoginForm = () => {
     }
 
     try {
-      const {data} = await login({
+      const { data } = await addUser({
         variables: { ...userFormData },
       });
-console.log(data);
-      const { token, user } = data.login;
-      console.log(user);
-      console.log(token);
-      Auth.login(token);
+
+      Auth.login(data.addUser.token);
+
+
     } catch (err) {
       console.error(err);
       setShowAlert(true);
@@ -51,15 +53,31 @@ console.log(data);
 
   return (
     <>
+      {/* This is needed for the validation functionality above */}
       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+        {/* show alert if server response is bad */}
         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
-          Something went wrong with your login credentials!
+          Something went wrong with your signup!
         </Alert>
+
+        <Form.Group className='mb-3'>
+          <Form.Label htmlFor='username'>Organization Name</Form.Label>
+          <Form.Control
+            type='text'
+            placeholder='Your organization'
+            name='username'
+            onChange={handleInputChange}
+            value={userFormData.username}
+            required
+          />
+          <Form.Control.Feedback type='invalid'>Organization Name is required!</Form.Control.Feedback>
+        </Form.Group>
+
         <Form.Group className='mb-3'>
           <Form.Label htmlFor='email'>Email</Form.Label>
           <Form.Control
-            type='text'
-            placeholder='Your email'
+            type='email'
+            placeholder='Your email address'
             name='email'
             onChange={handleInputChange}
             value={userFormData.email}
@@ -81,7 +99,7 @@ console.log(data);
           <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
         </Form.Group>
         <Button
-          disabled={!(userFormData.email && userFormData.password)}
+          disabled={!(userFormData.username && userFormData.email && userFormData.password)}
           type='submit'
           variant='success'>
           Submit
@@ -91,4 +109,4 @@ console.log(data);
   );
 };
 
-export default LoginForm;
+export default SignupForm;
