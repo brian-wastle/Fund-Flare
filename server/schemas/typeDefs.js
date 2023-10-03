@@ -24,8 +24,8 @@ const typeDefs = `
     _id: ID!
     orderId: String!
     userId: String!
-    orderTotal: Number!
-    orderDate: Date!
+    orderTotal: Int!
+    orderDate: String!
     paymentStatus: String!
     organizationName: String!
   }
@@ -57,8 +57,8 @@ const typeDefs = `
   input addOrderInput {
     orderId: String!
     userId: String!
-    orderTotal: Number!
-    orderDate: Date!
+    orderTotal: Int!
+    orderDate: String!
     paymentStatus: String!
     organizationName: String!
   }

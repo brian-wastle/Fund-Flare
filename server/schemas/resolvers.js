@@ -12,7 +12,7 @@ const resolvers = {
       getSingleOrganization: async (parent, {name}) => {
           return Organization.findOne({ _id: name })
       },
-      organizations: async () => {
+      getOrganizations: async () => {
         return Organization.find().sort({ createdAt: -1 });
       },
       getOrdersByUserId: async () => {

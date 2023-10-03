@@ -25,8 +25,16 @@ const userSchema = new Schema(
       type: Boolean,
       required: true,
     },
-    savedOrganizations: [Organization],
-    orderHistory: [Order],
+    savedOrganizations: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Organization', 
+      },
+    ],
+    orderHistory: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Order', 
+    },],
     image: {type: String} 
   },
   // set this to use virtual below
@@ -52,7 +60,6 @@ userSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
 
-// when we query a user, we'll also get another field called `bookCount` with the number of saved books we have
 userSchema.virtual('organizationCount').get(function () {
   return this.savedOrganizations.length;
 });
