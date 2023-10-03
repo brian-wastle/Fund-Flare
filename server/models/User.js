@@ -2,6 +2,7 @@ const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
 const Organization = require('./Organization');
+const Order = require('./Order');
 
 const userSchema = new Schema(
   {
@@ -25,6 +26,8 @@ const userSchema = new Schema(
       required: true,
     },
     savedOrganizations: [Organization],
+    orderHistory: [Order],
+    image: {type: String} 
   },
   // set this to use virtual below
   {

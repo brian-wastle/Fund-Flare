@@ -5,10 +5,10 @@ const typeDefs = `
     email: String!
     password: String!
     isAdmin: Boolean!
-    organizationCount: Int!
     savedOrganizations: [Organization]!
     orderHistory: [Order]
     image: String
+    organizationCount: Int!
   }
 
   type Organization {
@@ -24,7 +24,7 @@ const typeDefs = `
     orderId: String!
     userId: String!
     orderTotal: Number!
-    orderDate: DateTime!
+    orderDate: Date!
     paymentStatus: String!
     organizationName: String!
   }

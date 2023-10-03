@@ -1,21 +1,32 @@
 const { Schema, model } = require('mongoose');
 
 const orderSchema = new Schema({
-  name: {
+  // this will come from Stripe
+  orderId: {
       type: String,
       required: true,
     },
-  
-  description: {
+  userId: {
     type: String,
     required: true,
   },
-  image: {
-    type: String,
+  orderTotal: {
+    type: Number,
+    required: true,
   },
-  link: {
-    type: String,
+  orderDate: {
+    type: Date,
+    default: Date.now,
+    get: (timestamp) => dateFormat(timestamp),
   },
+  paymentStatus: {
+    type: String,
+    required: true,
+  },
+  organizationName: {
+    type: String,
+    required: true,
+  }
 });
 
 const Order = model('Order', orderSchema);
