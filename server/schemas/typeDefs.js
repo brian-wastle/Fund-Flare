@@ -45,6 +45,15 @@ const typeDefs = `
     link: String
   }
 
+  input addOrderInput {
+    orderId: String!
+    userId: String!
+    orderTotal: Number!
+    orderDate: Date!
+    paymentStatus: String!
+    organizationName: String!
+  }
+
   type Auth {
     token: ID!
     user: User
@@ -54,7 +63,7 @@ const typeDefs = `
     getSingleUser: User
     getSingleOrganization: Organization
     getOrganizations: [Organization]!
-    getOrderById(orderId: String!): Order
+    getSingleOrder(orderId: String!): Order
     getOrdersByUserId(userId: String!): [Order]
   }
 
@@ -63,6 +72,8 @@ const typeDefs = `
     login(email: String!, password: String!): Auth
     saveOrganization(input: saveOrganizationInput!): User
     removeOrganization(organizationId: ID!): User
+    updateUser(input: addUserInput!): User
+    addOrder(input: addOrderInput!): O
   }
 `;
 
