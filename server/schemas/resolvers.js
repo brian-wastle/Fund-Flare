@@ -1,11 +1,17 @@
-const { User } = require('../models');
+const { User, Organization } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
 
 const resolvers = {
     Query: {
-      me: async (parent, args, context) => {
+      getSingleUser: async (parent, args, context) => {
         if (context.user) {
-          return User.findOne({ _id: context.user._id }).populate('savedBooks');
+          return User.findOne({ _id: context.user._id }).populate('savedOrganizations');
+        }
+        throw AuthenticationError;
+      },
+      getSingleOrganization: async (parent, args, context) => {
+        if (context.user) {
+          return Organization.findOne({ _id: context.user._id })
         }
         throw AuthenticationError;
       },
