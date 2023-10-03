@@ -3,8 +3,13 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './index.css'
 
 import App from './App.jsx'
-import SearchBooks from './pages/SearchBooks'
-import SavedBooks from './pages/SavedBooks'
+import HomePage from './pages/HomePage'
+import SignupPage from './pages/SignupPage'
+import ProfilePage from './pages/ProfilePage'
+import OrganizationPage from './pages/OrganizationPage'
+import DonatePage from './pages/DonatePage'
+import SearchPage from './pages/SearchPage'
+import ForMePage from './pages/ForMePage'
 
 const router = createBrowserRouter([
   {
@@ -14,12 +19,33 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <SearchBooks />
-      }, {
-        path: '/saved',
-        element: <SavedBooks />
-      }
-    ]
+        element: <HomePage />,
+      },
+      {
+        path: '/signup',
+        element: <SignupPage />,
+      },
+      {
+        path: '/profile/:userId',
+        element: <ProfilePage />,
+      },
+      {
+        path: '/organization/:organizationId',
+        element: <OrganizationPage />,
+      },
+      {
+        path: '/donate/:organizationId',
+        element: <DonatePage />,
+      },
+      {
+        path: '/search',
+        element: <SearchPage />,
+      },
+      {
+        path: '/tags',
+        element: <ForMePage />,
+      },
+    ],
   }
 ])
 
