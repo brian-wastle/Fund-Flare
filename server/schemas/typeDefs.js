@@ -1,29 +1,57 @@
 const typeDefs = `
   type User {
-    _id: ID
+    _id: ID!
     username: String!
     email: String!
     password: String!
-    bookCount: Int!
-    savedBooks: [Book]!
+    isAdmin: Boolean!
+    savedOrganizations: [Organization]!
+    orderHistory: [Order]
+    image: String
+    organizationCount: Int!
   }
 
-  type Book {
-    bookId: String!
-    authors: [String]
+  type Organization {
+    _Id: ID!
+    name: String!
     description: String!
     image: String
     link: String
-    title: String!
   }
 
-  input saveBookInput {
-    authors: [String!], 
-    description: String!, 
-    title: String!, 
-    bookId: String!, 
-    image: String, 
+  type Order {
+    _id: ID!
+    orderId: String!
+    userId: String!
+    orderTotal: Number!
+    orderDate: Date!
+    paymentStatus: String!
+    organizationName: String!
+  }
+
+  input addUserInput {
+    username: String!
+    email: String!
+    password: String!
+    isAdmin: Boolean!
+    image: String
+  }
+
+  input saveOrganizationInput {
+    organizationId: ID!
+    name: String!
+    description: String!
+    image: String
     link: String
+  }
+
+  input addOrderInput {
+    orderId: String!
+    userId: String!
+    orderTotal: Number!
+    orderDate: Date!
+    paymentStatus: String!
+    organizationName: String!
   }
 
   type Auth {
@@ -32,14 +60,20 @@ const typeDefs = `
   }
 
   type Query {
-    me: User
+    getSingleUser: User
+    getSingleOrganization: Organization
+    getOrganizations: [Organization]!
+    getSingleOrder(orderId: String!): Order
+    getOrdersByUserId(userId: String!): [Order]
   }
 
   type Mutation {
-    addUser(username: String!, email: String!, password: String!): Auth
+    addUser(input: addUserInput!): Auth
     login(email: String!, password: String!): Auth
-    saveBook(input: saveBookInput!): User
-    removeBook(bookId: String!): User
+    saveOrganization(input: saveOrganizationInput!): User
+    removeOrganization(organizationId: ID!): User
+    updateUser(input: addUserInput!): User
+    addOrder(input: addOrderInput!): O
   }
 `;
 

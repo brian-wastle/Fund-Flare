@@ -1,14 +1,32 @@
-const { User } = require('../models');
+const { User, Organization, Order } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
 
 const resolvers = {
     Query: {
-      me: async (parent, args, context) => {
+      getSingleUser: async (parent, args, context) => {
         if (context.user) {
-          return User.findOne({ _id: context.user._id }).populate('savedBooks');
+          return User.findOne({ _id: context.user._id }).populate('savedOrganizations', 'orderHistory');
         }
         throw AuthenticationError;
       },
+      getSingleOrganization: async (parent, {name}) => {
+          return Organization.findOne({ _id: name })
+      },
+      organizations: async () => {
+        return Organization.find().sort({ createdAt: -1 });
+      },
+      getOrdersByUserId: async () => {
+        if (context.user) {
+          return Order.find({userId: context.user._id })
+        }
+        throw AuthenticationError;
+      },
+      getSingleOrder: async (parent, {orderId}) => {
+        if (context.user) {
+          return Order.findOne({orderId: orderId})
+        }
+        throw AuthenticationError;
+      }
     },
   
     Mutation: {
@@ -29,16 +47,16 @@ const resolvers = {
   
         return { token, user };
       },
-      addUser: async (parent, { username, email, password }) => {
-        const user = await User.create({ username, email, password });
+      addUser: async (parent, { input }) => {
+        const user = await User.create({ input });
         const token = signToken(user);
         return { token, user };
       },
-      saveBook: async (parent, { input }, context) => {
+      saveOrganization: async (parent, { input }, context) => {
         if (context.user) {
           const updatedUser = await User.findOneAndUpdate(
             { _id: context.user._id },
-            { $addToSet: { savedBooks: input } },
+            { $addToSet: { savedOrganizations: input } },
             { new: true, runValidators: true }
           );
   
@@ -46,11 +64,11 @@ const resolvers = {
         }
         throw AuthenticationError;
       },
-      removeBook: async (parent, { bookId }, context) => {
+      removeOrganization: async (parent, { organizationId }, context) => {
         if (context.user) {
           const updatedUser = await User.findOneAndUpdate(
             { _id: context.user._id },
-            { $pull: { savedBooks: { bookId: bookId } } },
+            { $pull: { savedOrganizations: { _id: organizationId } } },
             { new: true, runValidators: true }
           );
   
@@ -58,7 +76,18 @@ const resolvers = {
         }
         throw AuthenticationError;
       },
-      
+      updateUser: async (parent, { input }, context) => {
+        if (context.user) {
+          const updatedUser = await User.findOneAndUpdate(
+            { _id: context.user._id },
+            { $set: input },
+            { new: true, runValidators: true }
+          );
+  
+          return updatedUser;
+        }
+        throw AuthenticationError;
+      },
     },
   };
   
