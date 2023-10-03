@@ -88,6 +88,22 @@ const resolvers = {
         }
         throw AuthenticationError;
       },
+      addOrganization: async (parent, {input}, context) => {
+        if (context.user) {
+          const organization = await Organization.create({ input });
+
+          return organization
+        }
+        throw AuthenticationError;
+      },
+      addOrder: async (parent, {input}, context) => {
+        if (context.user) {
+          const order = await Order.create({ input });
+
+          return order
+        }
+        throw AuthenticationError;
+      }
     },
   };
   

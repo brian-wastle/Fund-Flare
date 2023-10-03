@@ -13,6 +13,7 @@ const typeDefs = `
 
   type Organization {
     _Id: ID!
+    userId: String!
     name: String!
     description: String!
     image: String
@@ -39,6 +40,14 @@ const typeDefs = `
 
   input saveOrganizationInput {
     organizationId: ID!
+    name: String!
+    description: String!
+    image: String
+    link: String
+  }
+
+  input addOrganizationInput {
+    userId: String!
     name: String!
     description: String!
     image: String
@@ -73,7 +82,8 @@ const typeDefs = `
     saveOrganization(input: saveOrganizationInput!): User
     removeOrganization(organizationId: ID!): User
     updateUser(input: addUserInput!): User
-    addOrder(input: addOrderInput!): O
+    addOrganization(input: addOrganizationInput!): Organization
+    addOrder(input: addOrderInput!): Order
   }
 `;
 
