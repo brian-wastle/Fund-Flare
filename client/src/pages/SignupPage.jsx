@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { motion } from "framer-motion"
 import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client';
@@ -21,11 +20,11 @@ const SignupForm = () => {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setUserFormData({ 
-      ...userFormData, 
+    setUserFormData({
+      ...userFormData,
       [name]: value,
-      isAdmin: isOrg, 
-      image:null,
+      isAdmin: isOrg,
+      image: null,
     });
   };
   console.log(userFormData);
@@ -34,7 +33,7 @@ const SignupForm = () => {
 
     try {
       const { data } = await addUser({
-        variables: { input: {...userFormData} },
+        variables: { input: { ...userFormData } },
       });
 
       Auth.login(data.addUser.token);
@@ -70,20 +69,12 @@ const SignupForm = () => {
             />
           </label>
 
-          <form onSubmit={handleFormSubmit}>
+          <form onSubmit={handleFormSubmit} className='form login-form flex flex-col justify-center items-center'>
 
             <input
-              type='text'
-              placeholder='Your organization'
-              name='username'
-              onChange={handleInputChange}
-              value={userFormData.username}
-              required
-            />
-
-            <input
+              className='font-secondary form-input text-center p-2 m-2 focus:outline-none rounded-lg bg-light-1'
               type='email'
-              placeholder='Your email address'
+              placeholder='email'
               name='email'
               onChange={handleInputChange}
               value={userFormData.email}
@@ -91,8 +82,9 @@ const SignupForm = () => {
             />
 
             <input
+              className='font-secondary form-input text-center p-2 m-2 focus:outline-none rounded-lg bg-light-1'
               type='password'
-              placeholder='Your password'
+              placeholder='password'
               name='password'
               onChange={handleInputChange}
               value={userFormData.password}
@@ -100,6 +92,7 @@ const SignupForm = () => {
             />
 
             <button
+              className='font-secondary py-2 px-6 m-2 rounded-lg bg-secondary hover:bg-primary text-light-1 transition-all disabled:bg-black'
               disabled={!(userFormData.username && userFormData.email && userFormData.password)}
               type='submit'
               variant='success'>
