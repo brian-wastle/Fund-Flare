@@ -11,6 +11,11 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
+    getAllUsers: async (parent, args) => {
+
+        return User.find().populate('savedOrganizations', 'orderHistory');
+
+    },
     getSingleOrganization: async (parent, { organizationId }) => {
       return Organization.findOne({ _id: organizationId })
     },

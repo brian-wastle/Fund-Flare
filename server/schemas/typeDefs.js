@@ -65,6 +65,7 @@ const typeDefs = `
 
   type Query {
     getSingleUser: User
+    getAllUsers: [User]
     getSingleOrganization(organizationId: String!): Organization
     getOrganizations: [Organization]!
     getSingleOrder(orderId: String!): Order
