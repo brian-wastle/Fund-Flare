@@ -12,9 +12,13 @@ const ProfilePage = () => {
     <>
     {/* conditional rendering based on whether profile is an admin or a user */}
       {token ? (
-        <div></div>
+        <div>
+
+        </div>
       ) : (
-        <div></div>
+        <div>
+
+        </div>
       )}
 
     </>
