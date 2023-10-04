@@ -71,7 +71,7 @@ const typeDefs = `
     getSingleOrganization(organizationId: String!): Organization
     getOrganizations: [Organization]!
     getSingleOrder(orderId: String!): Order
-    getOrdersByUserId(userId: String!): [Order]
+    getOrdersByUserId: [Order]
   }
 
   type Mutation {
