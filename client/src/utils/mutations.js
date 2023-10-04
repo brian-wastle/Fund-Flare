@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const ADD_USER = gql`
-  mutation addUser($username: String!, $email: String!, $password: String!, $isAdmin: Boolean) {
-    addUser(username: $username, email: $email, password: $password, isAdmin: $isAdmin) {
+  mutation addUser($input: addUserInput!) {
+    addUser(input: $input) {
       token
       user {
         _id
@@ -31,7 +31,9 @@ export const SAVE_ORGANIZATION = gql`
       _id
       username
       savedOrganizations {
+        _id
         name
+        description
       }
     }
   }
@@ -51,7 +53,7 @@ export const REMOVE_ORGANIZATION = gql`
 
 export const UPDATE_USER = gql`
   mutation updateUser($input: addUserInput!) {
-    updateUser(input: $input) {
+    updateUser(addUserInput: $addUserInput) {
       _id
       username
       email
@@ -61,6 +63,7 @@ export const UPDATE_USER = gql`
         description
       }
       orderHistory {
+        _id
         orderId
       }
       image
@@ -70,8 +73,8 @@ export const UPDATE_USER = gql`
 `;
 
 export const ADD_ORGANIZATION = gql`
-  mutation addOrganization($input: addOrganizationInput!) {
-    addOrganization(input: $input) {
+  mutation addOrganization($addOrganizationInput: addOrganizationInput!) {
+    addOrganization(addOrganizationInput: $addOrganizationInput) {
       _id
       userId
       name
@@ -84,7 +87,7 @@ export const ADD_ORGANIZATION = gql`
 
 export const ADD_ORDER = gql`
   mutation addOrder($addOrderInput: addOrderInput!) {
-    addOrder(input: $addOrderInput) {
+    addOrder(addOrderInput: $addOrderInput) {
       _id
       orderId
       userId

@@ -21,15 +21,20 @@ const SignupForm = () => {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setUserFormData({ ...userFormData, [name]: value });
+    setUserFormData({ 
+      ...userFormData, 
+      [name]: value,
+      isAdmin: isOrg, 
+      image:null,
+    });
   };
-
+  console.log(userFormData);
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
     try {
       const { data } = await addUser({
-        variables: { ...userFormData },
+        variables: { input: {...userFormData} },
       });
 
       Auth.login(data.addUser.token);

@@ -5,10 +5,10 @@ const typeDefs = `
     email: String!
     password: String!
     isAdmin: Boolean!
-    savedOrganizations: [Organization]!
+    savedOrganizations: [Organization]
     orderHistory: [Order]
     image: String
-    organizationCount: Int!
+    organizationCount: Int
   }
 
   type Organization {
@@ -68,10 +68,11 @@ const typeDefs = `
 
   type Query {
     getSingleUser: User
+    getAllUsers: [User]
     getSingleOrganization(organizationId: String!): Organization
     getOrganizations: [Organization]!
     getSingleOrder(orderId: String!): Order
-    getOrdersByUserId(userId: String!): [Order]
+    getOrdersByUserId: [Order]
   }
 
   type Mutation {

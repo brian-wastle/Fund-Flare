@@ -9,21 +9,27 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
+    getAllUsers: async (parent, args) => {
+
+        return User.find().populate('savedOrganizations', 'orderHistory');
+
+    },
     getSingleOrganization: async (parent, { organizationId }) => {
       return Organization.findOne({ _id: organizationId })
     },
     getOrganizations: async () => {
       return Organization.find().sort({ createdAt: -1 });
     },
-    getOrdersByUserId: async () => {
+    getOrdersByUserId: async (parent, args, context) => {
       if (context.user) {
         return Order.find({ userId: context.user._id })
       }
       throw AuthenticationError;
     },
-    getSingleOrder: async (parent, { orderId }) => {
+    getSingleOrder: async (parent, { orderId }, context) => {
       if (context.user) {
-        return Order.findOne({ orderId: orderId })
+        console.log(orderId);
+        return Order.findOne({ _id: orderId })
       }
       throw AuthenticationError;
     }
