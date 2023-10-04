@@ -5,7 +5,7 @@ const orderSchema = new Schema({
   // this will come from Stripe
   orderId: {
       type: String,
-      required: true,
+      default: '',
     },
   userId: {
     type: String,
