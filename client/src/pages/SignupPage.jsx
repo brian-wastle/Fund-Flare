@@ -9,8 +9,6 @@ import { ADD_USER } from '../utils/mutations';
 const SignupForm = () => {
   // set initial form state
   const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
-  // set state for form validation
-  const [validated] = useState(false);
   // set state for alert
   const [showAlert, setShowAlert] = useState(false);
   const [addUser, { error, data }] = useMutation(ADD_USER);
@@ -72,7 +70,7 @@ const SignupForm = () => {
             />
           </label>
 
-          <form noValidate validated={validated} onSubmit={handleFormSubmit}>
+          <form onSubmit={handleFormSubmit}>
 
             <input
               type='text'
@@ -109,10 +107,6 @@ const SignupForm = () => {
             </button>
 
           </form>
-
-          <Link to="/login"><h1
-            className='text-lg text-gray-400 text-center pt-2'
-          >Already have an account?</h1></Link>
 
         </div>
 
