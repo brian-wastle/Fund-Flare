@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
@@ -54,12 +54,12 @@ const SignupForm = () => {
   return (
     <>
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, transition: { ease: "easeOut", duration: 0.2 } }}
+        exit={{ opacity: 0, transition: { ease: "easeIn", duration: 0.2 } }}
       >
 
-        <div className='md:container 2xl:w-1/4 xl:w-1/3 lg:w-1/2 md:w-2/3 p-8 my-40 mx-auto bg-light-2 drop-shadow-sm md:rounded-md'>
+        <div className='md:container 2xl:w-1/4 xl:w-1/3 lg:w-1/2 md:w-2/3 p-8 my-8 mx-auto bg-light-2 drop-shadow-sm md:rounded-md'>
           <label>
             Are you an organization?
             <input
@@ -71,25 +71,25 @@ const SignupForm = () => {
 
           <form onSubmit={handleFormSubmit} className='form login-form flex flex-col justify-center items-center'>
 
-            { isOrg == true ? 
+            {isOrg == true ?
               <input
-              className='font-secondary form-input text-center p-2 m-2 focus:outline-none rounded-lg bg-light-1'
-              type='text'
-              placeholder='Your organization'
-              name='username'
-              onChange={handleInputChange}
-              value={userFormData.username}
-              required
+                className='font-secondary form-input text-center p-2 m-2 focus:outline-none rounded-lg bg-light-1'
+                type='text'
+                placeholder='Your organization'
+                name='username'
+                onChange={handleInputChange}
+                value={userFormData.username}
+                required
               />
-            :
+              :
               <input
-              className='font-secondary form-input text-center p-2 m-2 focus:outline-none rounded-lg bg-light-1'
-              type='text'
-              placeholder='Your name'
-              name='username'
-              onChange={handleInputChange}
-              value={userFormData.username}
-              required
+                className='font-secondary form-input text-center p-2 m-2 focus:outline-none rounded-lg bg-light-1'
+                type='text'
+                placeholder='Your name'
+                name='username'
+                onChange={handleInputChange}
+                value={userFormData.username}
+                required
               />
             }
 
@@ -114,7 +114,7 @@ const SignupForm = () => {
             />
 
             <button
-              className='font-secondary py-2 px-6 m-2 rounded-lg bg-secondary hover:bg-primary text-light-1 transition-all disabled:bg-black'
+              className='font-secondary py-2 px-6 m-2 rounded-lg bg-primary hover:bg-secondary text-light-1 transition-all disabled:hidden'
               disabled={!(userFormData.username && userFormData.email && userFormData.password)}
               type='submit'
               variant='success'>
