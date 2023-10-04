@@ -105,10 +105,6 @@ const SignupForm = () => {
 
           </form>
 
-          <Link to="/login"><h1
-            className='text-lg text-gray-400 text-center pt-2'
-          >Already have an account?</h1></Link>
-
         </div>
 
       </motion.div>

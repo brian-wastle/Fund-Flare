@@ -44,13 +44,7 @@ const LoginForm = () => {
 
   return (
     <>
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-
-        <div className='md:container 2xl:w-1/2 xl:w-3/4 p-8 m-8 mx-auto bg-light-2 drop-shadow-sm md:rounded-lg'>
+        <div className='md:container 2xl:w-1/2 xl:w-3/4 p-8 my-40 mx-auto bg-light-2 drop-shadow-2xl md:rounded-lg'>
 
           <form noValidate validated={validated} onSubmit={handleFormSubmit}>
 
@@ -81,13 +75,11 @@ const LoginForm = () => {
 
           </form>
 
-          <Link to="/signup"><h1
+          <Link to="/signup" onClick={() => setIsOpen(false)}><h1
             className='text-lg text-gray-400 text-center pt-2'
           >Don't have an account?</h1></Link>
 
         </div>
-
-      </motion.div>
     </>
   );
 };
