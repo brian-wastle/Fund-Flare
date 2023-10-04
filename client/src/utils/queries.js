@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const GET_SINGLE_USER = gql`
-  query getSingleUser($_id: ID!) {
-    getSingleUser(_id: $_id) {
+  query getSingleUser {
+    getSingleUser {
       _id
       username
       email
@@ -16,7 +16,6 @@ export const GET_SINGLE_USER = gql`
         link
       }
       orderHistory {
-        _id
         orderId
         userId
         orderTotal
