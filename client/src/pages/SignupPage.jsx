@@ -9,8 +9,6 @@ import { ADD_USER } from '../utils/mutations';
 const SignupForm = () => {
   // set initial form state
   const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
-  // set state for form validation
-  const [validated] = useState(false);
   // set state for alert
   const [showAlert, setShowAlert] = useState(false);
   const [addUser, { error, data }] = useMutation(ADD_USER);
@@ -23,15 +21,20 @@ const SignupForm = () => {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setUserFormData({ ...userFormData, [name]: value });
+    setUserFormData({ 
+      ...userFormData, 
+      [name]: value,
+      isAdmin: isOrg, 
+      image:null,
+    });
   };
-
+  console.log(userFormData);
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
     try {
       const { data } = await addUser({
-        variables: { ...userFormData },
+        variables: { input: {...userFormData} },
       });
 
       Auth.login(data.addUser.token);
@@ -67,7 +70,7 @@ const SignupForm = () => {
             />
           </label>
 
-          <form noValidate validated={validated} onSubmit={handleFormSubmit}>
+          <form onSubmit={handleFormSubmit}>
 
             <input
               type='text'
@@ -104,10 +107,6 @@ const SignupForm = () => {
             </button>
 
           </form>
-
-          <Link to="/login"><h1
-            className='text-lg text-gray-400 text-center pt-2'
-          >Already have an account?</h1></Link>
 
         </div>
 
