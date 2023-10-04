@@ -1,0 +1,72 @@
+[
+  {
+    "username": "User1",
+    "email": "user1@example.com",
+    "password": "password1!",
+    "isAdmin": true,
+    "savedOrganizations": [],
+    "orderHistory": [],
+    "image": null,
+    "organizationCount": 0
+  },
+  {
+    "username": "User2",
+    "email": "user2@example.com",
+    "password": "password1!",
+    "isAdmin": true,
+    "savedOrganizations": [],
+    "orderHistory": [],
+    "image": null,
+    "organizationCount": 0
+  },
+  {
+    "username": "User3",
+    "email": "user3@example.com",
+    "password": "password1!",
+    "isAdmin": true,
+    "savedOrganizations": [],
+    "orderHistory": [],
+    "image": null,
+    "organizationCount": 0
+  },
+  {
+    "username": "User4",
+    "email": "user4@example.com",
+    "password": "password1!",
+    "isAdmin": true,
+    "savedOrganizations": [],
+    "orderHistory": [],
+    "image": null,
+    "organizationCount": 0
+  },
+  {
+    "username": "User5",
+    "email": "user5@example.com",
+    "password": "password1!",
+    "isAdmin": true,
+    "savedOrganizations": [],
+    "orderHistory": [],
+    "image": null,
+    "organizationCount": 0
+  },
+  {
+    "username": "User6",
+    "email": "user6@example.com",
+    "password": "password1!",
+    "isAdmin": false,
+    "savedOrganizations": [],
+    "orderHistory": [],
+    "image": null,
+    "organizationCount": 0
+  },
+  {
+    "username": "User7",
+    "email": "user7@example.com",
+    "password": "password1!",
+    "isAdmin": false,
+    "savedOrganizations": [],
+    "orderHistory": [],
+    "image": null,
+    "organizationCount": 0
+  }
+]
