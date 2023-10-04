@@ -26,8 +26,8 @@ export const LOGIN_USER = gql`
 `;
 
 export const SAVE_ORGANIZATION = gql`
-  mutation saveOrganization($saveOrganizationInput: saveOrganizationInput!) {
-    saveOrganization(input: $saveOrganizationInput) {
+  mutation saveOrganization($input: saveOrganizationInput!) {
+    saveOrganization(input: $input) {
       _id
       username
       savedOrganizations {
