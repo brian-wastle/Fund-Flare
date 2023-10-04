@@ -71,6 +71,28 @@ const SignupForm = () => {
 
           <form onSubmit={handleFormSubmit} className='form login-form flex flex-col justify-center items-center'>
 
+            { isOrg == true ? 
+              <input
+              className='font-secondary form-input text-center p-2 m-2 focus:outline-none rounded-lg bg-light-1'
+              type='text'
+              placeholder='Your organization'
+              name='username'
+              onChange={handleInputChange}
+              value={userFormData.username}
+              required
+              />
+            :
+              <input
+              className='font-secondary form-input text-center p-2 m-2 focus:outline-none rounded-lg bg-light-1'
+              type='text'
+              placeholder='Your name'
+              name='username'
+              onChange={handleInputChange}
+              value={userFormData.username}
+              required
+              />
+            }
+
             <input
               className='font-secondary form-input text-center p-2 m-2 focus:outline-none rounded-lg bg-light-1'
               type='email'
