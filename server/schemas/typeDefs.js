@@ -5,10 +5,10 @@ const typeDefs = `
     email: String!
     password: String!
     isAdmin: Boolean!
-    savedOrganizations: [Organization]!
+    savedOrganizations: [Organization]
     orderHistory: [Order]
     image: String
-    organizationCount: Int!
+    organizationCount: Int
   }
 
   type Organization {
