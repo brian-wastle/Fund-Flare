@@ -5,7 +5,6 @@ import './index.css'
 import App from './App.jsx'
 import HomePage from './pages/HomePage'
 import SignupPage from './pages/SignupPage'
-import LoginPage from './pages/LoginPage'
 import ProfilePage from './pages/ProfilePage'
 import OrganizationPage from './pages/OrganizationPage'
 import DonatePage from './pages/DonatePage'
@@ -25,10 +24,6 @@ const router = createBrowserRouter([
       {
         path: '/signup',
         element: <SignupPage />,
-      },
-      {
-        path: '/login',
-        element: <LoginPage />,
       },
       {
         path: '/profile/:userId',

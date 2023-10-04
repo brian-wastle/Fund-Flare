@@ -1,17 +1,19 @@
-// see SignupForm.js for comments
 import { useState } from 'react';
-import { Form, Button, Alert } from 'react-bootstrap';
-
+import { Link } from 'react-router-dom';
+import { motion } from "framer-motion"
 import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
 
+
 const LoginForm = () => {
+  // set initial form state
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
+  // set state for form validation
   const [validated] = useState(false);
+  // set state for alert
   const [showAlert, setShowAlert] = useState(false);
   const [login, { error, data }] = useMutation(LOGIN_USER);
-
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -21,29 +23,20 @@ const LoginForm = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    // check if form has everything (as per react-bootstrap docs)
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-
     try {
-      const {data} = await login({
+      const { data } = await addUser({
         variables: { ...userFormData },
       });
-console.log(data);
-      const { token, user } = data.login;
-      console.log(user);
-      console.log(token);
-      Auth.login(token);
+
+      Auth.login(data.login.token);
+
+
     } catch (err) {
       console.error(err);
       setShowAlert(true);
     }
 
     setUserFormData({
-      username: '',
       email: '',
       password: '',
     });
@@ -51,42 +44,50 @@ console.log(data);
 
   return (
     <>
-      <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
-        <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
-          Something went wrong with your login credentials!
-        </Alert>
-        <Form.Group className='mb-3'>
-          <Form.Label htmlFor='email'>Email</Form.Label>
-          <Form.Control
-            type='text'
-            placeholder='Your email'
-            name='email'
-            onChange={handleInputChange}
-            value={userFormData.email}
-            required
-          />
-          <Form.Control.Feedback type='invalid'>Email is required!</Form.Control.Feedback>
-        </Form.Group>
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
 
-        <Form.Group className='mb-3'>
-          <Form.Label htmlFor='password'>Password</Form.Label>
-          <Form.Control
-            type='password'
-            placeholder='Your password'
-            name='password'
-            onChange={handleInputChange}
-            value={userFormData.password}
-            required
-          />
-          <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
-        </Form.Group>
-        <Button
-          disabled={!(userFormData.email && userFormData.password)}
-          type='submit'
-          variant='success'>
-          Submit
-        </Button>
-      </Form>
+        <div className='md:container 2xl:w-1/2 xl:w-3/4 p-8 m-8 mx-auto bg-light-2 drop-shadow-sm md:rounded-lg'>
+
+          <form noValidate validated={validated} onSubmit={handleFormSubmit}>
+
+            <input
+              type='email'
+              placeholder='Your email address'
+              name='email'
+              onChange={handleInputChange}
+              value={userFormData.email}
+              required
+            />
+
+            <input
+              type='password'
+              placeholder='Your password'
+              name='password'
+              onChange={handleInputChange}
+              value={userFormData.password}
+              required
+            />
+
+            <button
+              disabled={!(userFormData.email && userFormData.password)}
+              type='submit'
+              variant='success'>
+              Submit
+            </button>
+
+          </form>
+
+          <Link to="/signup"><h1
+            className='text-lg text-gray-400 text-center pt-2'
+          >Don't have an account?</h1></Link>
+
+        </div>
+
+      </motion.div>
     </>
   );
 };
