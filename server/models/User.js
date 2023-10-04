@@ -28,14 +28,14 @@ const userSchema = new Schema(
     savedOrganizations: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'Organization', 
+        ref: 'Organization',
       },
     ],
     orderHistory: [{
       type: Schema.Types.ObjectId,
-      ref: 'Order', 
+      ref: 'Order',
     },],
-    image: {type: String} 
+    image: { type: String }
   },
   // set this to use virtual below
   {

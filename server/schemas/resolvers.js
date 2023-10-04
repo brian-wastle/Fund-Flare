@@ -1,4 +1,4 @@
-const { User, Organization, Order } = require('../models');
+const { User, Organization, Order, Tag } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
 const stripe = require('stripe')('sk_test_51Nwn2BLNguEaQpKjj5UL5hmKCGRBOwFiBXHiZR8cJCUZk8p7leU093Eg1O4IQj5jDPsfJJcNOKWRpR3xPHZMoxQz00haZlJ6fc'); //NEED TEST API KEY
 
@@ -19,10 +19,10 @@ const resolvers = {
 
     },
     getSingleOrganization: async (parent, { organizationId }) => {
-      return Organization.findOne({ _id: organizationId })
+      return Organization.findOne({ _id: organizationId }).populate('tags')
     },
     getOrganizations: async () => {
-      return Organization.find().sort({ createdAt: -1 });
+      return Organization.find().sort({ createdAt: -1 }).populate('tags');
     },
     getOrdersByUserId: async (parent, args, context) => {
       if (context.user) {
@@ -118,9 +118,11 @@ const resolvers = {
           description: input.description,
           image: input.image,
           link: input.link,
+          tags: input.tags
         });
-
-        return organization
+        const populatedOrganization = await Organization.findById(organization._id).populate('tags');
+        console.log(populatedOrganization);
+        return populatedOrganization
       }
       throw AuthenticationError;
     },

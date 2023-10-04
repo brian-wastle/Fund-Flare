@@ -20,6 +20,12 @@ const organizationSchema = new Schema({
   link: {
     type: String,
   },
+  tags: [
+    {
+    type: Schema.Types.ObjectId,
+    ref: 'Tag',
+  }
+]
 });
 
 const Organization = model('Organization', organizationSchema);
