@@ -6,7 +6,7 @@ import LoginForm from './LoginForm';
 import Auth from '../utils/auth';
 
 const AppNavbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [loginOpen, setLoginOpen] = useState(false);
 
   return (
     <>
@@ -23,9 +23,9 @@ const AppNavbar = () => {
         className='text-2xl text-gray-400 inline p-4'
       >tags</h1></Link>
 
-      <h1 className='text-2xl text-gray-400 inline p-4' onClick={() => setIsOpen(true)}>login</h1>
+      <h1 className='text-2xl text-gray-400 inline p-4' onClick={() => setLoginOpen(true)}>login</h1>
       <AnimatePresence>
-        {isOpen && (
+        {loginOpen && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1, transition: { ease: "easeOut", duration: 0.2 } }}
@@ -33,7 +33,7 @@ const AppNavbar = () => {
             className='absolute top-0 w-full h-full z-10'>
 
 
-            <div onClick={() => setIsOpen(false)}
+            <div onClick={() => setLoginOpen(false)}
               className='absolute top-0 w-full h-full bg-black opacity-50' />
 
             <motion.div
