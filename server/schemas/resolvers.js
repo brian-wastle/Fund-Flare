@@ -60,12 +60,20 @@ const resolvers = {
     },
     saveOrganization: async (parent, { input }, context) => {
       if (context.user) {
+        const newOrganization = {
+          _id: input._id,
+          name: input.name,
+          description: input.description,
+          image: input.image || null,
+          link: input.link || null,
+        }
+        console.log(newOrganization);
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { savedOrganizations: input } },
+          { $addToSet: { savedOrganizations: newOrganization } },
           { new: true, runValidators: true }
-        );
-
+        ).populate('savedOrganizations');
+          console.log(updatedUser);
         return updatedUser;
       }
       throw AuthenticationError;
@@ -110,7 +118,14 @@ const resolvers = {
     },
     addOrder: async (parent, { input }, context) => {
       if (context.user) {
-        const order = await Order.create({ input });
+        const order = await Order.create({ 
+          orderId: input.orderId,
+          userId: context.user._id,
+          orderTotal: input.orderTotal,
+          orderDate: input.orderDate,
+          paymentStatus: input.paymentStatus,
+          organizationName: input.organizationName
+         });
 
         return order
       }

@@ -47,7 +47,6 @@ const typeDefs = `
   }
 
   input addOrganizationInput {
-    userId: String!
     name: String!
     description: String!
     image: String
@@ -56,7 +55,6 @@ const typeDefs = `
 
   input addOrderInput {
     orderId: String!
-    userId: String!
     orderTotal: Int!
     orderDate: String!
     paymentStatus: String!
