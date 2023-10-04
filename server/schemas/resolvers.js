@@ -7,13 +7,15 @@ const resolvers = {
   Query: {
     getSingleUser: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate('savedOrganizations', 'orderHistory');
+        const user = await User.findOne({ _id: context.user._id }).populate('savedOrganizations').populate('orderHistory');
+        console.log(user)
+        return user
       }
       throw AuthenticationError;
     },
     getAllUsers: async (parent, args) => {
 
-        return User.find().populate('savedOrganizations', 'orderHistory');
+        return User.find().populate('savedOrganizations').populate('orderHistory');
 
     },
     getSingleOrganization: async (parent, { organizationId }) => {
@@ -153,8 +155,6 @@ const resolvers = {
           success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
           cancel_url: `${url}/`,
         });
-        console.log(order);
-        console.log(session.id);
 
         const updatedOrder = await Order.findOneAndUpdate(
           { orderId: '' },
@@ -162,6 +162,13 @@ const resolvers = {
           { new: true, runValidators: true }
         );
 
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { orderHistory: order } },
+          { new: true, runValidators: true }
+        ).populate('orderHistory');
+
+        console.log(updatedUser);
         console.log(updatedOrder);
         return updatedOrder
       }
