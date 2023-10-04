@@ -72,15 +72,25 @@ const SignupForm = () => {
 
           <form onSubmit={handleFormSubmit}>
 
-            <input
+            { isOrg == true ? 
+              <input
               type='text'
               placeholder='Your organization'
               name='username'
               onChange={handleInputChange}
               value={userFormData.username}
               required
-            />
-
+              />
+            :
+              <input
+              type='text'
+              placeholder='Your name'
+              name='username'
+              onChange={handleInputChange}
+              value={userFormData.username}
+              required
+              />
+            }
             <input
               type='email'
               placeholder='Your email address'
