@@ -21,8 +21,7 @@ const typeDefs = `
   }
 
   type Order {
-    _id: ID!
-    orderId: String!
+    orderId: String
     userId: String!
     orderTotal: Int!
     orderDate: String!
@@ -54,9 +53,7 @@ const typeDefs = `
   }
 
   input addOrderInput {
-    orderId: String!
     orderTotal: Int!
-    orderDate: String!
     paymentStatus: String!
     organizationName: String!
   }
@@ -72,7 +69,7 @@ const typeDefs = `
     getSingleOrganization(organizationId: String!): Organization
     getOrganizations: [Organization]!
     getSingleOrder(orderId: String!): Order
-    getOrdersByUserId(userId: String!): [Order]
+    getOrdersByUserId: [Order]
   }
 
   type Mutation {

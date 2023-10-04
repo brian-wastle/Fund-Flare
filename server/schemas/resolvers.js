@@ -1,5 +1,7 @@
 const { User, Organization, Order } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
+const stripe = require('stripe')('sk_test_51Nwn2BLNguEaQpKjj5UL5hmKCGRBOwFiBXHiZR8cJCUZk8p7leU093Eg1O4IQj5jDPsfJJcNOKWRpR3xPHZMoxQz00haZlJ6fc'); //NEED TEST API KEY
+
 
 const resolvers = {
   Query: {
@@ -20,15 +22,16 @@ const resolvers = {
     getOrganizations: async () => {
       return Organization.find().sort({ createdAt: -1 });
     },
-    getOrdersByUserId: async () => {
+    getOrdersByUserId: async (parent, args, context) => {
       if (context.user) {
         return Order.find({ userId: context.user._id })
       }
       throw AuthenticationError;
     },
-    getSingleOrder: async (parent, { orderId }) => {
+    getSingleOrder: async (parent, { orderId }, context) => {
       if (context.user) {
-        return Order.findOne({ orderId: orderId })
+        console.log(orderId);
+        return Order.findOne({ _id: orderId })
       }
       throw AuthenticationError;
     }
@@ -72,13 +75,11 @@ const resolvers = {
           image: input.image || null,
           link: input.link || null,
         }
-        console.log(newOrganization);
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
           { $addToSet: { savedOrganizations: newOrganization } },
           { new: true, runValidators: true }
         ).populate('savedOrganizations');
-          console.log(updatedUser);
         return updatedUser;
       }
       throw AuthenticationError;
@@ -123,16 +124,46 @@ const resolvers = {
     },
     addOrder: async (parent, { input }, context) => {
       if (context.user) {
-        const order = await Order.create({ 
+        const url = new URL(context.headers.referer).origin;
+
+        const order = await Order.create({
           orderId: input.orderId,
           userId: context.user._id,
           orderTotal: input.orderTotal,
           orderDate: input.orderDate,
           paymentStatus: input.paymentStatus,
           organizationName: input.organizationName
-         });
+        });
 
-        return order
+        const line_items = []
+        line_items.push({
+          price_data: {
+            currency: 'usd',
+            product_data: {
+              name: order.organizationName,
+            },
+            unit_amount: order.orderTotal * 100,
+          },
+          quantity: 1
+        });
+        const session = await stripe.checkout.sessions.create({
+          payment_method_types: ['card'],
+          line_items,
+          mode: 'payment',
+          success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
+          cancel_url: `${url}/`,
+        });
+        console.log(order);
+        console.log(session.id);
+
+        const updatedOrder = await Order.findOneAndUpdate(
+          { orderId: '' },
+          { $set: { orderId: session.id  } },
+          { new: true, runValidators: true }
+        );
+
+        console.log(updatedOrder);
+        return updatedOrder
       }
       throw AuthenticationError;
     }
