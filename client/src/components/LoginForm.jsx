@@ -9,8 +9,6 @@ import { LOGIN_USER } from '../utils/mutations';
 const LoginForm = () => {
   // set initial form state
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
-  // set state for form validation
-  const [validated] = useState(false);
   // set state for alert
   const [showAlert, setShowAlert] = useState(false);
   const [login, { error, data }] = useMutation(LOGIN_USER);
@@ -46,7 +44,7 @@ const LoginForm = () => {
     <>
         <div className='md:container 2xl:w-1/2 xl:w-3/4 p-8 my-40 mx-auto bg-light-2 drop-shadow-2xl md:rounded-lg'>
 
-          <form noValidate validated={validated} onSubmit={handleFormSubmit}>
+          <form onSubmit={handleFormSubmit}>
 
             <input
               type='email'
