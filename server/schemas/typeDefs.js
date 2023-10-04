@@ -18,6 +18,7 @@ const typeDefs = `
     description: String!
     image: String
     link: String
+    tags: [Tag]
   }
 
   type Order {
@@ -27,6 +28,10 @@ const typeDefs = `
     orderDate: String!
     paymentStatus: String!
     organizationName: String!
+  }
+
+  type Tag {
+    name: String!
   }
 
   input addUserInput {
@@ -50,6 +55,7 @@ const typeDefs = `
     description: String!
     image: String
     link: String
+    tags: [String]
   }
 
   input addOrderInput {
