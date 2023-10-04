@@ -7,14 +7,12 @@ const resolvers = {
   Query: {
     getSingleUser: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate('savedOrganizations', 'orderHistory');
+        return User.findOne({ _id: context.user._id }).populate('savedOrganizations').populate('orderHistory');
       }
       throw AuthenticationError;
     },
     getAllUsers: async (parent, args) => {
-
-        return User.find().populate('savedOrganizations', 'orderHistory');
-
+        return User.find().populate('savedOrganizations').populate('orderHistory');
     },
     getSingleOrganization: async (parent, { organizationId }) => {
       return Organization.findOne({ _id: organizationId })

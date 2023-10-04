@@ -1,23 +1,47 @@
 import { useState, useEffect } from 'react';
-
+import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
 import { useQuery, useMutation } from '@apollo/client';
-
+import { GET_SINGLE_USER } from '../utils/queries';
 
 const ProfilePage = () => {
-
-
+  const {loading, data} = useQuery(GET_SINGLE_USER);
+  const userData = data?.getSingleUser||{};
+  console.log(userData)
+  if (loading) {
+    return <p>Still Loading...</p>
+  }
 
   return (
     <>
-    {/* conditional rendering based on whether profile is an admin or a user */}
-      {token ? (
-        <div>
-          
-        </div>
-      ) : (
-        <div>
+    {/*conditional rendering based on whether profile is an admin or a user */}
+      {userData.isAdmin === false ? (
+        // is user profile
+        <>
+          <p>Saved Organizations</p>
+          {userData.savedOrganizations.map((organization) => {
+            return (
+              <div key={organization.id}>
+                <Link to={`/organization/${organization._id}`}>{organization.name}</Link>
+                <p>{organization.description}</p>
+                <p><img src={organization.image} alt="organization profile image" /></p>
+                <a href={organization.link}>{organization.link}</a>
 
+              </div>
+            );
+          })}
+        <br />
+          Order History
+          {userData.orderHistory.map((order) => {
+            return (
+              <p>test</p>
+            );
+          })}
+        </>
+      ) : (
+        // is admin profile
+        <div>
+          test2
         </div>
       )}
 
