@@ -47,7 +47,7 @@ const LoginForm = () => {
 
   return (
     <>
-      <div className='md:container 2xl:w-1/2 xl:w-3/4 p-8 my-40 mx-auto bg-light-2 drop-shadow-2xl md:rounded-lg'>
+      <div className='md:container 2xl:w-1/4 xl:w-1/3 lg:w-1/2 md:w-2/3 p-8 my-40 mx-auto bg-light-2 drop-shadow-2xl md:rounded-md'>
 
         <form onSubmit={handleFormSubmit} className='form login-form flex flex-col justify-center items-center'>
 

@@ -59,7 +59,7 @@ const SignupForm = () => {
         transition={{ duration: 0.5 }}
       >
 
-        <div className='md:container 2xl:w-1/2 xl:w-3/4 p-8 m-8 mx-auto bg-light-2 drop-shadow-sm md:rounded-lg'>
+        <div className='md:container 2xl:w-1/4 xl:w-1/3 lg:w-1/2 md:w-2/3 p-8 my-40 mx-auto bg-light-2 drop-shadow-sm md:rounded-md'>
           <label>
             Are you an organization?
             <input
