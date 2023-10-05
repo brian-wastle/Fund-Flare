@@ -114,7 +114,7 @@ const SignupForm = () => {
             />
 
             <button
-              className='font-secondary py-2 px-6 m-2 rounded-lg bg-primary hover:bg-secondary text-light-1 transition-all disabled:hidden'
+              className='font-secondary py-2 px-6 m-2 rounded-lg bg-primary hover:bg-secondary text-light-1 transition-all disabled:opacity-30'
               disabled={!(userFormData.username && userFormData.email && userFormData.password)}
               type='submit'
               variant='success'>
