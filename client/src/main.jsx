@@ -6,7 +6,7 @@ import HomePage from './pages/HomePage'
 import SignupPage from './pages/SignupPage'
 import ProfilePage from './pages/ProfilePage'
 import OrganizationPage from './pages/OrganizationPage'
-import DonatePage from './pages/DonatePage'
+import DonateForm from './components/DonateForm'
 import SearchPage from './pages/SearchPage'
 import ForMePage from './pages/ForMePage'
 
@@ -34,7 +34,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/donate',
-        element: <DonatePage />,
+        element: <DonateForm />,
       },
       {
         path: '/search',
