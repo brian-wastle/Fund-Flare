@@ -136,7 +136,6 @@ const resolvers = {
           userId: context.user._id,
           orderTotal: input.orderTotal,
           orderDate: input.orderDate,
-          paymentStatus: input.paymentStatus,
           organizationName: input.organizationName
         });
 

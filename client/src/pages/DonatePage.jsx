@@ -1,22 +1,16 @@
 import { useState, useEffect } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import  {ADD_ORDER} from '../utils/mutations'
-import { GET_SINGLE_ORGANIZATION } from '../utils/queries'
-import OrganizationPage from './OrganizationPage';
 import Auth from '../utils/auth';
 import { useQuery, useMutation } from '@apollo/client';
 
 
-const stripePromise = loadStripe('sk_test_51Nwn2BLNguEaQpKjj5UL5hmKCGRBOwFiBXHiZR8cJCUZk8p7leU093Eg1O4IQj5jDPsfJJcNOKWRpR3xPHZMoxQz00haZlJ6fc');
+const stripePromise = loadStripe('pk_test_51Nwn2BLNguEaQpKjwZL9arEx1hHEo9tc39SLGcs2Jz33CUv8lxEch4RMu9m0UDNF6J40PX5wvblbkeKp5NZwvNtE00pCW4iP66');
 
 
-const DonatePage = () => {
+const DonatePage = ({organizationName}) => {
+  const [orderTotal, setOrderTotal] = useState(0)
   const [addOrder, { data }] = useMutation(ADD_ORDER);
-  const [getSingleOrganization, { data: singleOrganizationData }] = useQuery(GET_SINGLE_ORGANIZATION)
-
-  useEffect(() => {
-    getSingleOrganization();
-  }, []);
 
   useEffect(() => {
     if (data) {
@@ -29,21 +23,39 @@ const DonatePage = () => {
   function submitDonation() {
     addOrder({
       variables: { 
-        addOrderInput: $addOrderInput,
+        addOrderInput: {
+          organizationName: {organizationName},
+          orderTotal: orderTotal
+        },
       },
     });
   }
 
-  return (
-    <div className="cart">
-      <h2>Shopping Cart</h2>
-        <div>
-          {state.cart.map((item) => (
-            <OrganizationPage key={item._id} item={item} />
-          ))}
+  function onChange(event) {
 
+    let inputValue = event.target.value
+
+    if (inputValue < 1) {
+      inputValue = 1
+    }
+
+    let numericValue = parseInt(inputValue)
+
+    setOrderTotal(numericValue)
+  }
+
+  return (
+    <div className="donate">
+        <div>
           <div className="flex-row space-between">
-            <strong>Total: ${calculateTotal()}</strong>
+            <label htmlFor="donation">I would like to donate: 
+            <input 
+            type="number"
+            placeholder= "10"
+            step= "5"
+            onChange={onChange}
+            /> dollars
+            </label>
 
             {Auth.loggedIn() ? (
               <button onClick={submitDonation}>Donate</button>
