@@ -7,7 +7,7 @@ import { GET_SINGLE_USER } from '../utils/queries';
 const ProfilePage = () => {
   const {loading, data} = useQuery(GET_SINGLE_USER);
   const userData = data?.getSingleUser||{};
-  console.log(userData)
+  // console.log(userData)
   if (loading) {
     return <p>Still Loading...</p>
   }
