@@ -30,26 +30,26 @@ const AppNavbar = () => {
 
             <div className='absolute right-0 top-32 z-30 container w-full sm:w-64'>
 
-              <Link to="/signup"><button
-                className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
-              >signup</button></Link>
-
-              <br />
+              {Auth.loggedIn() ? (
+                <>
+                  <Link to={`/profile/${Auth.getProfile().data._id}`}><button
+                    className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
+                  >profile</button></Link>
+                  <button className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
+                    onClick={() => Auth.logout()}>logout</button>
+                </>
+              ) : (
+                <button className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
+                  onClick={() => { setLoginOpen(true), setMenuOpen(false) }}>login</button>
+              )}
 
               <Link to="/search"><button
                 className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
               >search</button></Link>
 
-              <br />
-
               <Link to="/tags"><button
                 className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
               >tags</button></Link>
-
-              <br />
-
-              <button className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
-                onClick={() => { setLoginOpen(true), setMenuOpen(false) }}>login</button>
 
             </div>
           </motion.div>
