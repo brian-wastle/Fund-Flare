@@ -88,7 +88,6 @@ export const ADD_ORGANIZATION = gql`
 export const ADD_ORDER = gql`
   mutation addOrder($addOrderInput: addOrderInput!) {
     addOrder(addOrderInput: $addOrderInput) {
-      _id
       orderId
       userId
       orderTotal
