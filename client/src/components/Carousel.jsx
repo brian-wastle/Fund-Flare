@@ -2,10 +2,8 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from "framer-motion"
 import { useQuery, useMutation } from '@apollo/client';
-import { GET_SINGLE_USER } from '../utils/queries';
-import Auth from '../utils/auth';
 
-const Carousel = () => {
+const Carousel = (props) => {
     const [activeIndex, setActiveIndex] = useState(0);
 
     const organizationData = [
