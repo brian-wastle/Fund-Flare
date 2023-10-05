@@ -9,10 +9,10 @@ export default {
       colors: {
         'primary': '#FF7067',
         'secondary': '#E5554C',
-        'light-1': '#EFEFEF',
-        'light-2': '#ffffff',
+        'light-1': '#ffffff',
+        'light-2': '#EFEFEF',
         'text-light': '#f1f1f1',
-        'text-dark': '#777777',
+        'text-dark': '#999999',
       },
       fontFamily: {
         main: ['Archivo, sans-serif'],

@@ -14,9 +14,8 @@ const AppNavbar = () => {
 
   return (
     <>
-      <Link to="/"><h1
-        className='text-5xl text-gray-400 text-center pt-8'
-      >Home</h1></Link>
+      <h1 className='font-main text-3xl md:text-6xl text-center p-4 text-primary'
+      ><Link to="/">Home</Link></h1>
 
       <button className='absolute top-10 right-10 text-2xl text-text-dark inline'
         onClick={() => setMenuOpen(true)}>menu</button>
@@ -25,8 +24,8 @@ const AppNavbar = () => {
         {menuOpen && (
           <motion.div
             initial={{ opacity: 0, x: 300 }}
-            animate={{ opacity: 1, x: 0, transition: { ease: "easeOut", duration: 0.2 } }}
-            exit={{ opacity: 0, x: 300, transition: { ease: "easeIn", duration: 0.2 } }}
+            animate={{ opacity: 1, x: 0, transition: { ease: "easeOut", duration: 0.4 } }}
+            exit={{ opacity: 0, x: 300, transition: { ease: "easeIn", duration: 0.4 } }}
             className='absolute top-0 right-0 w-full h-full'>
             <div onClick={() => setMenuOpen(false)}
               className='absolute top-0 w-full h-full z-20' />
@@ -37,29 +36,54 @@ const AppNavbar = () => {
                 <>
                   <Link to={`/profile/${Auth.getProfile().data._id}`}><button
                     className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
-                  >profile</button></Link>
+                    onClick={() => setMenuOpen(false)}>profile</button></Link>
 
-                  {userData.isAdmin &&(
-                    <Link to={`/organization`}><button
-                      className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
-                    >organization</button></Link>
+                  {userData.isAdmin && (
+                    <motion.div
+                      initial={{ x: 0 }}
+                      animate={{ x: 0 }}
+                      exit={{ x: 0 }}
+                      transition={{ duration: 0.4 }}>
+                      <Link to={`/organization`}><button
+                        className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
+                        onClick={() => setMenuOpen(false)}>organization</button></Link>
+                    </motion.div>
                   )}
 
-                  <button className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
-                    onClick={() => Auth.logout()}>logout</button>
+                  <motion.div
+                    initial={{ x: 30 }}
+                    animate={{ x: 0 }}
+                    exit={{ x: 30 }}
+                    transition={{ duration: 0.4 }}>
+                    <button className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
+                      onClick={() => { Auth.logout(), setMenuOpen(false) }}>logout</button>
+                  </motion.div>
                 </>
               ) : (
                 <button className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
                   onClick={() => { setLoginOpen(true), setMenuOpen(false) }}>login</button>
               )}
 
-              <Link to="/search"><button
-                className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
-              >search</button></Link>
 
-              <Link to="/tags"><button
-                className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
-              >tags</button></Link>
+              <motion.div
+                initial={{ x: 60 }}
+                animate={{ x: 0 }}
+                exit={{ x: 60 }}
+                transition={{ duration: 0.4 }}>
+                <Link to="/search"><button
+                  className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
+                  onClick={() => setMenuOpen(false)}>search</button></Link>
+              </motion.div>
+
+              <motion.div
+                initial={{ x: 90 }}
+                animate={{ x: 0 }}
+                exit={{ x: 90 }}
+                transition={{ duration: 0.4 }}>
+                <Link to="/tags"><button
+                  className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
+                  onClick={() => setMenuOpen(false)}>tags</button></Link>
+              </motion.div>
 
             </div>
           </motion.div>

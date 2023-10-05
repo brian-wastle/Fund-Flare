@@ -20,7 +20,6 @@ export const GET_SINGLE_USER = gql`
         userId
         orderTotal
         orderDate
-        paymentStatus
         organizationName
       }
       image
@@ -67,7 +66,6 @@ export const GET_SINGLE_ORDER = gql`
       userId
       orderTotal
       orderDate
-      paymentStatus
       organizationName
     }
   }
@@ -81,7 +79,6 @@ export const GET_ORDERS_BY_USER_ID = gql`
       userId
       orderTotal
       orderDate
-      paymentStatus
       organizationName
     }
   }

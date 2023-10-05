@@ -1,6 +1,7 @@
 const { User, Organization, Order, Tag } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
-const stripe = require('stripe')('sk_test_51Nwn2BLNguEaQpKjj5UL5hmKCGRBOwFiBXHiZR8cJCUZk8p7leU093Eg1O4IQj5jDPsfJJcNOKWRpR3xPHZMoxQz00haZlJ6fc'); //NEED TEST API KEY
+require('dotenv').config();
+const stripe = require('stripe')(process.env.STRIPE_TEST_API_KEY); //NEED TEST API KEY
 
 
 const resolvers = {
@@ -151,7 +152,6 @@ const resolvers = {
           userId: context.user._id,
           orderTotal: input.orderTotal,
           orderDate: input.orderDate,
-          paymentStatus: input.paymentStatus,
           organizationName: input.organizationName
         });
 
