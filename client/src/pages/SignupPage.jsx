@@ -6,10 +6,8 @@ import { ADD_USER } from '../utils/mutations';
 
 
 const SignupForm = () => {
-  // set initial form state
   const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
-  // set state for alert
-  const [showAlert, setShowAlert] = useState(false);
+  const [failedSignupOpen, setfailedSignupOpen] = useState(false);
   const [addUser, { error, data }] = useMutation(ADD_USER);
 
   const [isOrg, setIsOrg] = useState(false);
@@ -41,7 +39,12 @@ const SignupForm = () => {
 
     } catch (err) {
       console.error(err);
-      setShowAlert(true);
+
+      setfailedSignupOpen(true)
+
+      setInterval(() => {
+        setfailedSignupOpen(false)
+      }, 4000);
     }
 
     setUserFormData({
@@ -122,6 +125,17 @@ const SignupForm = () => {
             </button>
 
           </form>
+
+          <AnimatePresence>
+            {failedSignupOpen && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1, transition: { ease: "easeOut", duration: 0.4 } }}
+                exit={{ opacity: 0, transition: { ease: "easeIn", duration: 0.4 } }}>
+                <h1 className='text-center text-text-light p-2 my-2 bg-red-400 rounded-xl opacity-75'>failure to create account</h1>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
         </div>
 

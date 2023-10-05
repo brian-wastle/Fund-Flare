@@ -2,13 +2,14 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client';
+import { motion, AnimatePresence } from "framer-motion"
 import { LOGIN_USER } from '../utils/mutations';
 
 
 const LoginForm = () => {
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
+  const [failedLoginOpen, setfailedLoginOpen] = useState(false);
   const [validated] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
   const [login, { error }] = useMutation(LOGIN_USER);
 
   const handleInputChange = (event) => {
@@ -27,7 +28,12 @@ const LoginForm = () => {
       Auth.login(token);
     } catch (err) {
       console.error(err);
-      setShowAlert(true);
+
+      setfailedLoginOpen(true)
+
+      setInterval(() => {
+        setfailedLoginOpen(false)
+      }, 4000);
     }
 
     setUserFormData({
@@ -76,6 +82,17 @@ const LoginForm = () => {
         <Link to="/signup" onClick={() => setLoginOpen(false)}><h1
           className='text-lg text-gray-400 text-center pt-2'
         >Don't have an account?</h1></Link>
+
+        <AnimatePresence>
+          {failedLoginOpen && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1, transition: { ease: "easeOut", duration: 0.4 } }}
+              exit={{ opacity: 0, transition: { ease: "easeIn", duration: 0.4 } }}>
+              <h1 className='text-center text-text-light p-2 my-2 bg-red-400 rounded-xl opacity-75'>incorrect login</h1>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
       </div>
     </>

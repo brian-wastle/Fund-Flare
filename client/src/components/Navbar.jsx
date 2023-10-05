@@ -24,8 +24,8 @@ const AppNavbar = () => {
         {menuOpen && (
           <motion.div
             initial={{ opacity: 0, x: 300 }}
-            animate={{ opacity: 1, x: 0, transition: { ease: "easeOut", duration: 0.2 } }}
-            exit={{ opacity: 0, x: 300, transition: { ease: "easeIn", duration: 0.2 } }}
+            animate={{ opacity: 1, x: 0, transition: { ease: "easeOut", duration: 0.3 } }}
+            exit={{ opacity: 0, x: 300, transition: { ease: "easeIn", duration: 0.3 } }}
             className='absolute top-0 right-0 w-full h-full'>
             <div onClick={() => setMenuOpen(false)}
               className='absolute top-0 w-full h-full z-20' />
@@ -36,16 +36,16 @@ const AppNavbar = () => {
                 <>
                   <Link to={`/profile/${Auth.getProfile().data._id}`}><button
                     className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
-                  >profile</button></Link>
+                    onClick={() => setMenuOpen(false)}>profile</button></Link>
 
-                  {userData.isAdmin &&(
+                  {userData.isAdmin && (
                     <Link to={`/organization`}><button
                       className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
-                    >organization</button></Link>
+                      onClick={() => setMenuOpen(false)}>organization</button></Link>
                   )}
 
                   <button className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
-                    onClick={() => Auth.logout()}>logout</button>
+                    onClick={() => { Auth.logout(), setMenuOpen(false) }}>logout</button>
                 </>
               ) : (
                 <button className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
@@ -54,11 +54,11 @@ const AppNavbar = () => {
 
               <Link to="/search"><button
                 className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
-              >search</button></Link>
+                onClick={() => setMenuOpen(false)}>search</button></Link>
 
               <Link to="/tags"><button
                 className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
-              >tags</button></Link>
+                onClick={() => setMenuOpen(false)}>tags</button></Link>
 
             </div>
           </motion.div>
