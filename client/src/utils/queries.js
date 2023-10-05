@@ -29,7 +29,7 @@ export const GET_SINGLE_USER = gql`
 `;
 
 export const GET_SINGLE_ORGANIZATION = gql`
-  query getSingleOrganization($organizationId: ID!) {
+  query getSingleOrganization($organizationId: String!) {
     getSingleOrganization(organizationId: $organizationId) {
       _id
       userId
@@ -37,6 +37,9 @@ export const GET_SINGLE_ORGANIZATION = gql`
       description
       image
       link
+      tags {
+        name
+      }
     }
   }
 `;
