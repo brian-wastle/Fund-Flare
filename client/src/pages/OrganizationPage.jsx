@@ -2,13 +2,18 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Auth from '../utils/auth';
 import { useQuery, useMutation } from '@apollo/client';
-import { GET_SINGLE_ORGANIZATION } from '../utils/queries';
+import { GET_SINGLE_ORGANIZATION, GET_SINGLE_USER } from '../utils/queries';
 import { SAVE_ORGANIZATION } from '../utils/mutations';
 import { useSavedOrganizations} from '../utils/orgFunctions';
 
 const OrganizationPage = () => {
-
+  console.log(Auth.getProfile())
   const { organizationId } = useParams();
+
+  const {loading:userLoading, data:userData} = useQuery(GET_SINGLE_USER);
+  const currentUser = userData?.getSingleUser||{};
+
+  console.log(currentUser)
 
   const {loading, data} = useQuery(
     GET_SINGLE_ORGANIZATION,
@@ -21,8 +26,8 @@ const OrganizationPage = () => {
 
   const organizationData = data?.getSingleOrganization||{};
   const organizationData2 = data?.getSingleOrganization._id||{};
-  console.log(organizationData2)
-  if (loading) {
+  // console.log(organizationData2)
+  if (loading || userLoading) {
     return <p>Still Loading...</p>
   }
 
@@ -54,11 +59,6 @@ const OrganizationPage = () => {
 
   };
 
-  const testing = savedOrganizations.some(organization => organization._id === organizationData2)
- 
-
-  console.log(testing)
-
   return (
     <>
     <button></button>
@@ -76,15 +76,18 @@ const OrganizationPage = () => {
         <p>{organizationData.description}</p>
         <a href={organizationData.link} target="_blank" rel="noopener noreferrer">{organizationData.link}</a>
       </div>
-
-      <button
-        disabled={savedOrganizations.some(organization => organization._id === organizationData._id)}
-        className='btn-block btn-info'
-        onClick={() => handleSaveOrganization(organizationData)}>
-        {savedOrganizations?.some(organization => organization._id === organizationData._id)
-          ? 'Organization is Saved in your Profile'
-          : 'Save Organization to Profile!'}
-      </button>
+      {currentUser.isAdmin
+            ? 
+            ''
+            : <button
+            disabled={savedOrganizations.some(organization => organization._id === organizationData._id)}
+            className='btn-block btn-info'
+            onClick={() => handleSaveOrganization(organizationData)}>
+            {savedOrganizations?.some(organization => organization._id === organizationData._id)
+              ? 'Organization is Saved in your Profile'
+              : 'Save Organization to Profile!'}
+          </button>}
+      
         
         </>
   );

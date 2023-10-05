@@ -102,12 +102,28 @@ const resolvers = {
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $set: input },
+          { $set: {input} },
           { new: true, runValidators: true }
         );
 
         return updatedUser;
       }
+      throw AuthenticationError;
+    },
+    updateUserOrgId: async (parent, { myOrganizationId }, context) => {
+      if (context.user) {
+        return User.findOneAndUpdate(
+          { _id: context.user._id },
+          {
+            $set: { myOrganizationId: "orgId" },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+      }
+
       throw AuthenticationError;
     },
     addOrganization: async (parent, { input }, context) => {

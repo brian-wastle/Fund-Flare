@@ -3,17 +3,20 @@ import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_SINGLE_USER } from '../utils/queries';
+import  CreateOrgForm  from '../components/CreateOrg'
 
 const ProfilePage = () => {
+  const [show, setShow] = useState(true);
   const {loading, data} = useQuery(GET_SINGLE_USER);
   const userData = data?.getSingleUser||{};
-  // console.log(userData)
+  console.log(userData)
   if (loading) {
-    return <p>Still Loading...</p>
+    return <p>Still Loading...</p> 
   }
 
   return (
     <>
+    <p>{userData.username}'s profile</p>
     {/*conditional rendering based on whether profile is an admin or a user */}
       {userData.isAdmin === false ? (
         // is user profile
@@ -41,7 +44,27 @@ const ProfilePage = () => {
       ) : (
         // is admin profile
         <div>
-          test2
+          <p>My Organization</p>
+
+          {userData.myOrganizationId
+            ? 
+            ''
+            : 
+            <div className="createOrgButton">
+              {   
+                show
+                  ? <button onClick={() => setShow(!show)}>
+                  Set up your Organization
+                </button> 
+                  : <CreateOrgForm /> 
+              }
+              
+
+            </div>
+          }
+
+
+
         </div>
       )}
 

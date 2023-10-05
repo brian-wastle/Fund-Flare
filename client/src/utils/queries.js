@@ -25,6 +25,7 @@ export const GET_SINGLE_USER = gql`
       }
       image
       organizationCount
+      myOrganizationId
     }
   }
 `;
