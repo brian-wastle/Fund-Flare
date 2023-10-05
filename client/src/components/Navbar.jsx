@@ -24,8 +24,8 @@ const AppNavbar = () => {
         {menuOpen && (
           <motion.div
             initial={{ opacity: 0, x: 300 }}
-            animate={{ opacity: 1, x: 0, transition: { ease: "easeOut", duration: 0.3 } }}
-            exit={{ opacity: 0, x: 300, transition: { ease: "easeIn", duration: 0.3 } }}
+            animate={{ opacity: 1, x: 0, transition: { ease: "easeOut", duration: 0.4 } }}
+            exit={{ opacity: 0, x: 300, transition: { ease: "easeIn", duration: 0.4 } }}
             className='absolute top-0 right-0 w-full h-full'>
             <div onClick={() => setMenuOpen(false)}
               className='absolute top-0 w-full h-full z-20' />
@@ -39,26 +39,51 @@ const AppNavbar = () => {
                     onClick={() => setMenuOpen(false)}>profile</button></Link>
 
                   {userData.isAdmin && (
-                    <Link to={`/organization`}><button
-                      className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
-                      onClick={() => setMenuOpen(false)}>organization</button></Link>
+                    <motion.div
+                      initial={{ x: 0 }}
+                      animate={{ x: 0 }}
+                      exit={{ x: 0 }}
+                      transition={{ duration: 0.4 }}>
+                      <Link to={`/organization`}><button
+                        className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
+                        onClick={() => setMenuOpen(false)}>organization</button></Link>
+                    </motion.div>
                   )}
 
-                  <button className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
-                    onClick={() => { Auth.logout(), setMenuOpen(false) }}>logout</button>
+                  <motion.div
+                    initial={{ x: 30 }}
+                    animate={{ x: 0 }}
+                    exit={{ x: 30 }}
+                    transition={{ duration: 0.4 }}>
+                    <button className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
+                      onClick={() => { Auth.logout(), setMenuOpen(false) }}>logout</button>
+                  </motion.div>
                 </>
               ) : (
                 <button className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
                   onClick={() => { setLoginOpen(true), setMenuOpen(false) }}>login</button>
               )}
 
-              <Link to="/search"><button
-                className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
-                onClick={() => setMenuOpen(false)}>search</button></Link>
 
-              <Link to="/tags"><button
-                className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
-                onClick={() => setMenuOpen(false)}>tags</button></Link>
+              <motion.div
+                initial={{ x: 60 }}
+                animate={{ x: 0 }}
+                exit={{ x: 60 }}
+                transition={{ duration: 0.4 }}>
+                <Link to="/search"><button
+                  className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
+                  onClick={() => setMenuOpen(false)}>search</button></Link>
+              </motion.div>
+
+              <motion.div
+                initial={{ x: 90 }}
+                animate={{ x: 0 }}
+                exit={{ x: 90 }}
+                transition={{ duration: 0.4 }}>
+                <Link to="/tags"><button
+                  className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
+                  onClick={() => setMenuOpen(false)}>tags</button></Link>
+              </motion.div>
 
             </div>
           </motion.div>
