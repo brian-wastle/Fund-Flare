@@ -20,10 +20,6 @@ const orderSchema = new Schema({
     default: Date.now,
     get: (timestamp) => dateFormat(timestamp),
   },
-  paymentStatus: {
-    type: String,
-    required: true,
-  },
   organizationName: {
     type: String,
     required: true,

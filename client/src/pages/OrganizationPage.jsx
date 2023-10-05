@@ -5,6 +5,7 @@ import { useQuery, useMutation } from '@apollo/client';
 import { GET_SINGLE_ORGANIZATION } from '../utils/queries';
 import { SAVE_ORGANIZATION } from '../utils/mutations';
 import { useSavedOrganizations} from '../utils/orgFunctions';
+import DonateForm from '../components/DonateForm';
 
 const OrganizationPage = () => {
 
@@ -85,6 +86,8 @@ const OrganizationPage = () => {
           ? 'Organization is Saved in your Profile'
           : 'Save Organization to Profile!'}
       </button>
+
+      <DonateForm organizationName = {organizationData.name}></DonateForm>
         
         </>
   );
