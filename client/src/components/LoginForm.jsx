@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from "framer-motion"
 import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
@@ -19,13 +18,6 @@ const LoginForm = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
-    // check if form has everything (as per react-bootstrap docs)
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
 
     try {
       const mutationResponse = await login({
@@ -72,7 +64,7 @@ const LoginForm = () => {
           />
 
           <button
-            className='font-secondary py-2 px-6 m-2 rounded-lg bg-secondary hover:bg-primary text-light-1 transition-all disabled:bg-black'
+            className='font-secondary py-2 px-6 m-2 rounded-lg bg-primary hover:bg-secondary text-light-1 transition-all disabled:opacity-30'
             disabled={!(userFormData.email && userFormData.password)}
             type='submit'
             variant='success'>
@@ -81,7 +73,7 @@ const LoginForm = () => {
 
         </form>
 
-        <Link to="/signup" onClick={() => setIsOpen(false)}><h1
+        <Link to="/signup" onClick={() => setLoginOpen(false)}><h1
           className='text-lg text-gray-400 text-center pt-2'
         >Don't have an account?</h1></Link>
 
