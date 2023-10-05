@@ -1,12 +1,9 @@
-export const getSavedBookIds = () => {
-  const savedBookIds = localStorage.getItem('saved_books')
-    ? JSON.parse(localStorage.getItem('saved_books'))
-    : [];
+import { GET_SINGLE_USER } from './queries';
+import { useQuery, useMutation } from '@apollo/client';
 
-  return savedBookIds;
-};
 
-export const saveBookIds = (bookIdArr) => {
+
+export const saveOrganizations = (bookIdArr) => {
   if (bookIdArr.length) {
     localStorage.setItem('saved_books', JSON.stringify(bookIdArr));
   } else {

@@ -25,7 +25,7 @@ const ProfilePage = () => {
                 <Link to={`/organization/${organization._id}`}>{organization.name}</Link>
                 <p>{organization.description}</p>
                 <p><img src={organization.image} alt="organization profile image" /></p>
-                <a href={organization.link}>{organization.link}</a>
+                <a href={organization.link} target="_blank" rel="noopener noreferrer">{organization.link}</a>
 
               </div>
             );
