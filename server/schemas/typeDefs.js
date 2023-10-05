@@ -26,7 +26,6 @@ const typeDefs = `
     userId: String!
     orderTotal: Int!
     orderDate: String!
-    paymentStatus: String!
     organizationName: String!
   }
 
@@ -60,7 +59,6 @@ const typeDefs = `
 
   input addOrderInput {
     orderTotal: Int!
-    paymentStatus: String!
     organizationName: String!
   }
 
