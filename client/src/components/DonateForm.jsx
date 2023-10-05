@@ -8,7 +8,7 @@ import { useQuery, useMutation } from '@apollo/client';
 const stripePromise = loadStripe('pk_test_51Nwn2BLNguEaQpKjwZL9arEx1hHEo9tc39SLGcs2Jz33CUv8lxEch4RMu9m0UDNF6J40PX5wvblbkeKp5NZwvNtE00pCW4iP66');
 
 
-const DonatePage = ({organizationName}) => {
+const DonateForm = ({organizationName}) => {
   const [orderTotal, setOrderTotal] = useState(0)
   const [addOrder, { data }] = useMutation(ADD_ORDER);
 
@@ -24,7 +24,7 @@ const DonatePage = ({organizationName}) => {
     addOrder({
       variables: { 
         addOrderInput: {
-          organizationName: {organizationName},
+          organizationName: organizationName,
           orderTotal: orderTotal
         },
       },
@@ -68,4 +68,4 @@ const DonatePage = ({organizationName}) => {
   );
 };
 
-export default DonatePage;
+export default DonateForm;
