@@ -6,8 +6,6 @@ import { GET_SINGLE_USER } from '../utils/queries';
 import LoginForm from './LoginForm';
 import Auth from '../utils/auth';
 
-
-
 const AppNavbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
@@ -37,12 +35,12 @@ const AppNavbar = () => {
 
               {Auth.loggedIn() ? (
                 <>
-                  {!userData.isAdmin ? (
-                    <Link to={`/profile/${Auth.getProfile().data._id}`}><button
-                      className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
-                    >profile</button></Link>
-                  ) : (
-                    <Link to={`/organization/${Auth.getProfile().data._id}`}><button
+                  <Link to={`/profile/${Auth.getProfile().data._id}`}><button
+                    className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
+                  >profile</button></Link>
+
+                  {userData.isAdmin &&(
+                    <Link to={`/organization`}><button
                       className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
                     >organization</button></Link>
                   )}
