@@ -12,7 +12,7 @@ export default {
         'light-1': '#EFEFEF',
         'light-2': '#ffffff',
         'text-light': '#f1f1f1',
-        'text-dark': '#777777',
+        'text-dark': '#999999',
       },
       fontFamily: {
         main: ['Archivo, sans-serif'],
