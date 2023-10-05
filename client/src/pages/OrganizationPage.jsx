@@ -29,7 +29,7 @@ const OrganizationPage = () => {
 
 
 
-  const handleSaveOrganization = async (orgId) => {
+  const handleSaveOrganization = async (orgData) => {
     // get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
     if (!token) {
@@ -37,11 +37,11 @@ const OrganizationPage = () => {
     }
     try {
       const saveOrganizationInput = {
-        _id: organizationData._id,
-        name: organizationData.name,
-        description: organizationData.description ,
-        image: organizationData.image ,
-        link: organizationData.link
+        _id: orgData._id,
+        name: orgData.name,
+        description: orgData.description ,
+        image: orgData.image ,
+        link: orgData.link
       }
       
       const {data} = await saveOrganization({
@@ -80,7 +80,7 @@ const OrganizationPage = () => {
       <button
         disabled={savedOrganizations.some(organization => organization._id === organizationData._id)}
         className='btn-block btn-info'
-        onClick={() => handleSaveBook(book.bookId)}>
+        onClick={() => handleSaveOrganization(organizationData)}>
         {savedOrganizations?.some(organization => organization._id === organizationData._id)
           ? 'Organization is Saved in your Profile'
           : 'Save Organization to Profile!'}
