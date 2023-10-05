@@ -1,13 +1,16 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from "framer-motion"
-
+import { useQuery, useMutation } from '@apollo/client';
+import { GET_SINGLE_USER } from '../utils/queries';
 import LoginForm from './LoginForm';
 import Auth from '../utils/auth';
 
 const AppNavbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
+  const { loading, data } = useQuery(GET_SINGLE_USER);
+  const userData = data?.getSingleUser || {};
 
   return (
     <>
@@ -30,26 +33,33 @@ const AppNavbar = () => {
 
             <div className='absolute right-0 top-32 z-30 container w-full sm:w-64'>
 
-              <Link to="/signup"><button
-                className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
-              >signup</button></Link>
+              {Auth.loggedIn() ? (
+                <>
+                  <Link to={`/profile/${Auth.getProfile().data._id}`}><button
+                    className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
+                  >profile</button></Link>
 
-              <br />
+                  {userData.isAdmin &&(
+                    <Link to={`/organization`}><button
+                      className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
+                    >organization</button></Link>
+                  )}
+
+                  <button className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
+                    onClick={() => Auth.logout()}>logout</button>
+                </>
+              ) : (
+                <button className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
+                  onClick={() => { setLoginOpen(true), setMenuOpen(false) }}>login</button>
+              )}
 
               <Link to="/search"><button
                 className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
               >search</button></Link>
 
-              <br />
-
               <Link to="/tags"><button
                 className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
               >tags</button></Link>
-
-              <br />
-
-              <button className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
-                onClick={() => { setLoginOpen(true), setMenuOpen(false) }}>login</button>
 
             </div>
           </motion.div>
