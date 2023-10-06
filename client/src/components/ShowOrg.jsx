@@ -14,10 +14,16 @@ function ShowOrg(props) {
 
   return (
     <>
-      <p>Organization Name:</p>
       <p>{orgData.name}</p>
       <p>Tag:</p>
+      <img src={orgData.image} style={{ width: '300px'}} alt={orgData.name + "profile image"} />
       <p>{orgData.tag}</p>
+      <p>FundraisingGoal:</p>
+      <p>${orgData.fundraisingAmount}</p> 
+      <p>/ ${orgData.fundraisingGoal}</p>
+      
+      <p></p>
+      
     </>
   );
 }

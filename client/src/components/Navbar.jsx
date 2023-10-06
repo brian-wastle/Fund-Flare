@@ -14,10 +14,10 @@ const AppNavbar = () => {
 
   return (
     <>
-      <h1 className='font-main text-3xl md:text-6xl text-center p-4 text-primary'
-      ><Link to="/">Home</Link></h1>
+      <h1 className='font-main text-4xl md:text-6xl text-center p-4 text-primary'
+      ><Link to="/">FundFlare</Link></h1>
 
-      <button className='absolute top-10 right-10 text-2xl text-text-dark inline'
+      <button className='absolute top-5 right-5 md:top-10 md:right-10 text-2xl text-text-dark inline'
         onClick={() => setMenuOpen(true)}>menu</button>
 
       <AnimatePresence>
@@ -26,7 +26,7 @@ const AppNavbar = () => {
             initial={{ opacity: 0, x: 300 }}
             animate={{ opacity: 1, x: 0, transition: { ease: "easeOut", duration: 0.4 } }}
             exit={{ opacity: 0, x: 300, transition: { ease: "easeIn", duration: 0.4 } }}
-            className='absolute top-0 right-0 w-full h-full'>
+            className='absolute top-0 right-0 w-full h-full z-50'>
             <div onClick={() => setMenuOpen(false)}
               className='absolute top-0 w-full h-full z-20' />
 
