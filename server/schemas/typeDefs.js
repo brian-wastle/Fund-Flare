@@ -19,7 +19,7 @@ const typeDefs = `
     description: String!
     image: String
     link: String
-    tags: [Tag]
+    tag: Tag
   }
 
   type Order {
@@ -56,7 +56,7 @@ const typeDefs = `
     description: String!
     image: String
     link: String
-    tags: [String]
+    tag: String
   }
 
   input addOrderInput {

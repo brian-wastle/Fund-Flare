@@ -2,12 +2,14 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
 import { useQuery, useMutation } from '@apollo/client';
-import { GET_SINGLE_USER } from '../utils/queries';
+import { GET_SINGLE_USER, GET_SINGLE_ORGANIZATION } from '../utils/queries';
 import  CreateOrgForm  from '../components/CreateOrg'
+import  ShowOrg  from '../components/ShowOrg'
 
 const ProfilePage = () => {
   const [show, setShow] = useState(true);
   const {loading, data} = useQuery(GET_SINGLE_USER);
+
   const userData = data?.getSingleUser||{};
   console.log(userData)
   if (loading) {
@@ -48,7 +50,7 @@ const ProfilePage = () => {
 
           {userData.myOrganizationId
             ? 
-            ''
+            <ShowOrg property={userData.myOrganizationId}/>
             : 
             <div className="createOrgButton">
               {   

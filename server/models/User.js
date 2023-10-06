@@ -35,7 +35,8 @@ const userSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: 'Order',
     },],
-    image: { type: String }
+    image: { type: String },
+    myOrganizationId: { type: String }
   },
   // set this to use virtual below
   {

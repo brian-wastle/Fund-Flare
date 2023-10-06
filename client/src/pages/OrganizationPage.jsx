@@ -65,14 +65,7 @@ const OrganizationPage = () => {
     <button></button>
       <div>
         <p>{organizationData.name}</p>
-        <p>
-          {organizationData.tags.length
-            ? 
-            organizationData.tags.map((tag) => {
-            return (tag.name)
-            })
-            : 'Tags:'}
-        </p>
+        <p>{organizationData.tag}</p>
         <p><img src={organizationData.image} alt="organization profile image" /></p>
         <p>{organizationData.description}</p>
         <a href={organizationData.link} target="_blank" rel="noopener noreferrer">{organizationData.link}</a>
