@@ -6,7 +6,7 @@ import Carousel from './Carousel';
 
 
 const ForMe = ({organizations}) => {
-
+  
   const { loading, data } = useQuery(GET_SINGLE_USER);
 
   const userData = data?.getSingleUser || {};
@@ -47,7 +47,29 @@ const ForMe = ({organizations}) => {
     const sortedIds = countedValues.map(item => item._id);
     
     console.log(sortedIds);
-    const forYouOrgs = organizations.filter(value => sortedIds?.includes(value.tag))
+
+    // Sort by tag with most saves
+    const customSort = (a, b) => {
+      const indexesOfA = sortedIds.map((item, index) => (item === a ? index : -1)).filter(index => index !== -1);
+      const indexesOfB = sortedIds.map((item, index) => (item === b ? index : -1)).filter(index => index !== -1);
+    
+      if (indexesOfA.length === 0 && indexesOfB.length === 0) {
+        return 0; // Both elements are not in the referenceArray
+      } else if (indexesOfA.length === 0) {
+        return 1; // 'a' is not in the referenceArray, 'b' comes after
+      } else if (indexesOfB.length === 0) {
+        return -1; // 'b' is not in the referenceArray, 'a' comes before
+      } else {
+        // Compare the minimum index values for 'a' and 'b'
+        const minIndexA = Math.min(...indexesOfA);
+        const minIndexB = Math.min(...indexesOfB);
+        return minIndexA - minIndexB;
+      }
+    };
+
+    forYouOrgs.length = 0; // Clear the existing content
+    forYouOrgs.push(...organizations.filter(value => sortedIds?.includes(value.tag)));
+    forYouOrgs.sort(customSort);
     console.log(organizations);
     console.log(forYouOrgs)
     
@@ -59,7 +81,7 @@ const ForMe = ({organizations}) => {
     
     return (
       <>
-<Carousel orgs={forYouOrgs}/>
+    {forYouOrgs.length > 0 && <Carousel orgs={forYouOrgs}/>}
     </>
   );
 };
