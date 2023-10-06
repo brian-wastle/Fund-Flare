@@ -10,7 +10,7 @@ db.once('open', async () => {
   await User.create(userSeeds);
   await cleanDB('Organization', 'organizations');
   await Organization.create(organizationSeeds);
-  await cleanDB('Tag', 'tags');
+  await cleanDB('Tag', 'tag');
   await Tag.create(tagSeeds);
 
 
