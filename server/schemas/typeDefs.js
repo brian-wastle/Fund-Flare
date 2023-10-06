@@ -19,7 +19,9 @@ const typeDefs = `
     description: String!
     image: String
     link: String
-    tag: Tag
+    tag: ID
+    fundraisingGoal: Int!
+    fundraisingAmount: Int
   }
 
   type Order {
@@ -57,6 +59,7 @@ const typeDefs = `
     image: String
     link: String
     tag: String
+    fundraisingGoal:Int
   }
 
   input addOrderInput {

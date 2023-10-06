@@ -17,6 +17,8 @@
     "concurrently": "^8.2.0"
   },
   "dependencies": {
+    "filestack-js": "^3.27.0",
+    "filestack-react": "^4.0.1",
     "mongodb": "^6.1.0"
   }
 }

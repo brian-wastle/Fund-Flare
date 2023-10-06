@@ -135,7 +135,9 @@ const resolvers = {
           description: input.description,
           image: input.image,
           link: input.link,
-          tag: input.tag
+          tag: input.tag,
+          fundraisingGoal: input.fundraisingGoal,
+          fundraisingAmount:0
         });
 
         const userUpdate = await User.findOneAndUpdate(

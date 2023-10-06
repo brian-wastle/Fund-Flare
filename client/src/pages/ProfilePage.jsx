@@ -15,7 +15,6 @@ const ProfilePage = () => {
   if (loading) {
     return <p>Still Loading...</p> 
   }
-
   return (
     <>
     <p>{userData.username}'s profile</p>
