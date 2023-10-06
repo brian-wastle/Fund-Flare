@@ -4,7 +4,8 @@
     "name": "Fake Organization 1",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     "image": "https://placehold.co/300x200",
-    "link": "https://www.google.com/"
+    "link": "https://www.google.com/",
+    "tags": ["651dab6234839867ebd31846"]
   },
   {
     "userId": "651d7cbc674ea7e9e4dcd4f7",

@@ -34,7 +34,11 @@ const ProfilePage = () => {
           Order History
           {userData.orderHistory.map((order) => {
             return (
-              <p>test</p>
+              <>
+              <p>{order.organizationName}</p>
+              <p>Completed on: {order.orderDate}</p>
+              <p>${order.orderTotal}</p>
+              </>
             );
           })}
         </>
