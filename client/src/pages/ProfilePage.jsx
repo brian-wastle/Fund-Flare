@@ -49,24 +49,10 @@ const ProfilePage = () => {
           <h2 className='text-2xl'
           >My Organization</h2>
 
-          {userData.myOrganizationId
-            ?
-            <ShowOrg property={userData.myOrganizationId} />
-            :
-            <div className="createOrgButton">
-              {
-                show
-                  ? <button onClick={() => setShow(!show)}>
-                    Set up your Organization
-                  </button>
-                  : <CreateOrgForm />
-              }
 
-              <button className='font-secondary py-2 px-6 my-4 rounded-lg bg-primary hover:bg-secondary text-light-1 transition-all'
-                onClick={() => setOrgSetupOpen(true)}>Setup Organization</button>
+          <button className='font-secondary py-2 px-6 my-4 rounded-lg bg-primary hover:bg-secondary text-light-1 transition-all'
+            onClick={() => setOrgSetupOpen(true)}>Setup Organization</button>
 
-            </div>
-          }
 
 
 
