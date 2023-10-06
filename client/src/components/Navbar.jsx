@@ -26,7 +26,7 @@ const AppNavbar = () => {
             initial={{ opacity: 0, x: 300 }}
             animate={{ opacity: 1, x: 0, transition: { ease: "easeOut", duration: 0.4 } }}
             exit={{ opacity: 0, x: 300, transition: { ease: "easeIn", duration: 0.4 } }}
-            className='absolute top-0 right-0 w-full h-full'>
+            className='absolute top-0 right-0 w-full h-full z-50'>
             <div onClick={() => setMenuOpen(false)}
               className='absolute top-0 w-full h-full z-20' />
 

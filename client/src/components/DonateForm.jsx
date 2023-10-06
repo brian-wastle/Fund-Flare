@@ -45,7 +45,7 @@ const DonateForm = ({organizationName}) => {
   }
 
   return (
-    <div className="donate">
+    <div className="donate md:container 2xl:w-1/4 xl:w-1/3 lg:w-1/2 md:w-2/3 p-8 my-40 mx-auto bg-light-2 drop-shadow-2xl md:rounded-md">
         <div>
           <div className="flex-row space-between">
             <label htmlFor="donation">I would like to donate: 
@@ -58,7 +58,8 @@ const DonateForm = ({organizationName}) => {
             </label>
 
             {Auth.loggedIn() ? (
-              <button onClick={submitDonation}>Donate</button>
+              <button className='font-secondary py-2 px-6 my-4 rounded-lg bg-primary hover:bg-secondary text-light-1 transition-all'
+              onClick={submitDonation}>Confirm</button>
             ) : (
               <span>(log in to donate)</span>
             )}
