@@ -53,7 +53,7 @@ export const REMOVE_ORGANIZATION = gql`
 
 export const UPDATE_USER = gql`
   mutation updateUser($input: addUserInput!) {
-    updateUser(addUserInput: $addUserInput) {
+    updateUser(input: $input) {
       _id
       username
       email
@@ -68,13 +68,36 @@ export const UPDATE_USER = gql`
       }
       image
       organizationCount
+      myOrganizationId
+    }
+  }
+`;
+
+export const UPDATE_USERORGID = gql`
+  mutation updateUserOrgId($myOrganizationId: String!) {
+    updateUserOrgId(myOrganizationId: $myOrganizationId) {
+      _id
+      username
+      email
+      isAdmin
+      savedOrganizations {
+        name
+        description
+      }
+      orderHistory {
+        _id
+        orderId
+      }
+      image
+      organizationCount
+      myOrganizationId
     }
   }
 `;
 
 export const ADD_ORGANIZATION = gql`
-  mutation addOrganization($addOrganizationInput: addOrganizationInput!) {
-    addOrganization(addOrganizationInput: $addOrganizationInput) {
+  mutation addOrganization($input: addOrganizationInput!) {
+    addOrganization(input: $input) {
       _id
       userId
       name

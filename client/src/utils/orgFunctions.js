@@ -5,7 +5,7 @@ import Auth from '../utils/auth';
 export const useSavedOrganizations = () => {
   const {loading, data} = useQuery(GET_SINGLE_USER);
   const savedOrganizations = data?.getSingleUser.savedOrganizations||[];
-  console.log(savedOrganizations)
+  // console.log(savedOrganizations)
   return savedOrganizations;
 };
 

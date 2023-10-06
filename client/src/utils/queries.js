@@ -24,6 +24,7 @@ export const GET_SINGLE_USER = gql`
       }
       image
       organizationCount
+      myOrganizationId
     }
   }
 `;
@@ -37,9 +38,7 @@ export const GET_SINGLE_ORGANIZATION = gql`
       description
       image
       link
-      tags {
-        name
-      }
+      tag
     }
   }
 `;
@@ -53,6 +52,7 @@ export const GET_ORGANIZATIONS = gql`
       description
       image
       link
+      tag
     }
   }
 `;

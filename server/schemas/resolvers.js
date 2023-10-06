@@ -1,7 +1,6 @@
 const { User, Organization, Order, Tag } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
-require('dotenv').config();
-const stripe = require('stripe')(process.env.STRIPE_TEST_API_KEY); //NEED TEST API KEY
+const stripe = require('stripe')('sk_test_51Nwn2BLNguEaQpKjj5UL5hmKCGRBOwFiBXHiZR8cJCUZk8p7leU093Eg1O4IQj5jDPsfJJcNOKWRpR3xPHZMoxQz00haZlJ6fc'); //NEED TEST API KEY
 
 
 const resolvers = {
@@ -20,10 +19,10 @@ const resolvers = {
 
     },
     getSingleOrganization: async (parent, { organizationId }) => {
-      return Organization.findOne({ _id: organizationId }).populate('tags')
+      return Organization.findOne({ _id: organizationId })
     },
     getOrganizations: async () => {
-      return Organization.find().sort({ createdAt: -1 }).populate('tags');
+      return Organization.find().sort({ createdAt: -1 });
     },
     getOrdersByUserId: async (parent, args, context) => {
       if (context.user) {
@@ -103,12 +102,29 @@ const resolvers = {
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $set: input },
+          { $set: {input} },
           { new: true, runValidators: true }
         );
 
         return updatedUser;
       }
+      throw AuthenticationError;
+    },
+    updateUserOrgId: async (parent, { myOrganizationId }, context) => {
+      console.log(myOrganizationId)
+      if (context.user) {
+        return User.findOneAndUpdate(
+          { _id: context.user._id },
+          {
+            $set: { myOrganizationId: myOrganizationId },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+      }
+
       throw AuthenticationError;
     },
     addOrganization: async (parent, { input }, context) => {
@@ -119,9 +135,20 @@ const resolvers = {
           description: input.description,
           image: input.image,
           link: input.link,
-          tags: input.tags
+          tag: input.tag
         });
-        const populatedOrganization = await Organization.findById(organization._id).populate('tags');
+
+        const userUpdate = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          {
+            $set: { myOrganizationId: organization._id },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+        const populatedOrganization = await Organization.findById(organization._id);
         console.log(populatedOrganization);
         return populatedOrganization
       }
@@ -136,6 +163,7 @@ const resolvers = {
           userId: context.user._id,
           orderTotal: input.orderTotal,
           orderDate: input.orderDate,
+          paymentStatus: input.paymentStatus,
           organizationName: input.organizationName
         });
 
