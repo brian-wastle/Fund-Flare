@@ -1,15 +1,16 @@
 let tags = [
+    "five",
+    "one",
+    "four",
+    "three",
+    "three",
+    "three",
     "one",
     "one",
     "one",
-    "three",
-    "three",
     "two",
     "two",
     "two",
-    "three",
-    "three",
-    "three",
     "two",
     "two",
     "two",
@@ -21,21 +22,18 @@ let tags = [
     "four",
     "four",
     "four",
-    "four",
-    "four",
-    "four",
-];
+]
 
 function weightTags(tags) {
     const tagWeights = {};
-    let weightSeed = Math.random() * 6
+    let weightSeed = Math.random() * 12
 
     for (let i = 0; i < tags.length; i++) {
         const tag = tags[i];
         if (!tagWeights[tag]) {
             tagWeights[tag] = 0;
         }
-        tagWeights[tag] += 1 / (i + weightSeed);
+        tagWeights[tag] += 1 / (i + (weightSeed * Math.random() * 2));
     }
 
     const weightedTags = Object.keys(tagWeights).map(tag => ({

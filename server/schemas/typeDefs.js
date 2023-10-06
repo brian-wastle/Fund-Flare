@@ -19,7 +19,7 @@ const typeDefs = `
     description: String!
     image: String
     link: String
-    tag: Tag
+    tag: ID
   }
 
   type Order {
