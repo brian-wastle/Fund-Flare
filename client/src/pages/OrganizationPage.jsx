@@ -28,8 +28,6 @@ const OrganizationPage = () => {
   const [saveOrganization, { organizations, orgLoading, error }] = useMutation(SAVE_ORGANIZATION);
  
   const organizationData = data?.getSingleOrganization || {};
-  // const organizationData2 = data?.getSingleOrganization._id || {};
-  // console.log(organizationData2)
   if (loading || userLoading) {
     return <p>Still Loading...</p>
   }

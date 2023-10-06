@@ -11,7 +11,7 @@ const AppNavbar = () => {
   const [loginOpen, setLoginOpen] = useState(false);
   const { loading, data } = useQuery(GET_SINGLE_USER);
   const userData = data?.getSingleUser || {};
-
+console.log(userData)
   return (
     <>
       <h1 className='font-main text-4xl md:text-6xl text-center p-4 text-primary'
@@ -38,13 +38,13 @@ const AppNavbar = () => {
                     className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
                     onClick={() => setMenuOpen(false)}>profile</button></Link>
 
-                  {userData.isAdmin && (
+                  {userData.isAdmin && userData.myOrganizationId &&(
                     <motion.div
                       initial={{ x: 0 }}
                       animate={{ x: 0 }}
                       exit={{ x: 0 }}
                       transition={{ duration: 0.4 }}>
-                      <Link to={`/organization`}><button
+                      <Link to={`/organization/${userData.myOrganizationId}`}><button
                         className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
                         onClick={() => setMenuOpen(false)}>organization</button></Link>
                     </motion.div>
