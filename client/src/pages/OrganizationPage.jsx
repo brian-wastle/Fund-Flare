@@ -26,15 +26,13 @@ const OrganizationPage = () => {
   );
   const savedOrganizations = useSavedOrganizations();
   const [saveOrganization, { organizations, orgLoading, error }] = useMutation(SAVE_ORGANIZATION);
-
+ 
   const organizationData = data?.getSingleOrganization || {};
-  const organizationData2 = data?.getSingleOrganization._id || {};
-  // console.log(organizationData2)
   if (loading || userLoading) {
     return <p>Still Loading...</p>
   }
 
-
+  console.log(organizationData)
 
 
   const handleSaveOrganization = async (orgData) => {
