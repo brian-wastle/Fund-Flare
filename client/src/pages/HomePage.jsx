@@ -33,15 +33,17 @@ const HomePage = () => {
         {firstFewElements.map((organization) => {
           return (
             <div key={organization._id}>
+              <Link to={`/organization/${organization._id}`}>
+                <div className='m-4 md:m-6 w-80 bg-primary rounded-lg'>
 
-              <div className='p-4 m-4 flex flex-col justify-center items-center bg-secondary rounded-lg'>
+                  <img className='w-full rounded-t-lg'
+                    src={organization.image} alt="organization profile image" />
+                    
+                  <h2 className='font-secondary text-text-light text-center p-2'
+                  >{organization.name}</h2>
 
-                <h2><Link to={`/organization/${organization._id}`}>{organization.name}</Link></h2>
-                <p><img src={organization.image} alt="organization profile image" /></p>
-                <h2><a href={organization.link} target="_blank" rel="noopener noreferrer">{organization.link}</a></h2>
-
-              </div>
-
+                </div>
+              </Link>
             </div>
           );
         })}
