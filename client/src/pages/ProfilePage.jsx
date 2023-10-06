@@ -2,24 +2,34 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
 import { useQuery, useMutation } from '@apollo/client';
-import { GET_SINGLE_USER } from '../utils/queries';
+import { GET_SINGLE_USER, GET_SINGLE_ORGANIZATION } from '../utils/queries';
+import  CreateOrgForm  from '../components/CreateOrg'
+import  ShowOrg  from '../components/ShowOrg'
+import Carousel from '../components/Carousel';
 
 const ProfilePage = () => {
+  const [show, setShow] = useState(true);
   const {loading, data} = useQuery(GET_SINGLE_USER);
+
   const userData = data?.getSingleUser||{};
-  // console.log(userData)
+  console.log(userData)
   if (loading) {
-    return <p>Still Loading...</p>
+    return <p>Still Loading...</p> 
   }
 
   return (
     <>
+    <h2 className='text-3xl'
+    >{userData.username}'s profile</h2>
+
     {/*conditional rendering based on whether profile is an admin or a user */}
       {userData.isAdmin === false ? (
         // is user profile
         <>
-          <p>Saved Organizations</p>
-          {userData.savedOrganizations.map((organization) => {
+          <h3 className='text-2xl'
+          >Saved Organizations</h3>
+          <Carousel orgs={userData.savedOrganizations} />
+          {/* {userData.savedOrganizations.map((organization) => {
             return (
               <div key={organization.id}>
                 <Link to={`/organization/${organization._id}`}>{organization.name}</Link>
@@ -29,7 +39,7 @@ const ProfilePage = () => {
 
               </div>
             );
-          })}
+          })} */}
         <br />
           Order History
           {userData.orderHistory.map((order) => {
@@ -45,7 +55,27 @@ const ProfilePage = () => {
       ) : (
         // is admin profile
         <div>
-          test2
+          <p>My Organization</p>
+
+          {userData.myOrganizationId
+            ? 
+            <ShowOrg property={userData.myOrganizationId}/>
+            : 
+            <div className="createOrgButton">
+              {   
+                show
+                  ? <button onClick={() => setShow(!show)}>
+                  Set up your Organization
+                </button> 
+                  : <CreateOrgForm /> 
+              }
+              
+
+            </div>
+          }
+
+
+
         </div>
       )}
 

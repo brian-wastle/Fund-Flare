@@ -9,6 +9,7 @@ const typeDefs = `
     orderHistory: [Order]
     image: String
     organizationCount: Int
+    myOrganizationId: String
   }
 
   type Organization {
@@ -18,7 +19,7 @@ const typeDefs = `
     description: String!
     image: String
     link: String
-    tags: [Tag]
+    tag: ID
   }
 
   type Order {
@@ -34,11 +35,12 @@ const typeDefs = `
   }
 
   input addUserInput {
-    username: String!
-    email: String!
-    password: String!
-    isAdmin: Boolean!
+    username: String
+    email: String
+    password: String
+    isAdmin: Boolean
     image: String
+    myOrganizationId: String
   }
 
   input saveOrganizationInput {
@@ -54,7 +56,7 @@ const typeDefs = `
     description: String!
     image: String
     link: String
-    tags: [String]
+    tag: String
   }
 
   input addOrderInput {
@@ -82,6 +84,7 @@ const typeDefs = `
     saveOrganization(input: saveOrganizationInput!): User
     removeOrganization(organizationId: ID!): User
     updateUser(input: addUserInput!): User
+    updateUserOrgId(myOrganizationId: String): User
     addOrganization(input: addOrganizationInput!): Organization
     addOrder(input: addOrderInput!): Order
   }

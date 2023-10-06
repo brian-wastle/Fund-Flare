@@ -32,7 +32,7 @@ const HomePage = () => {
       <div className='md:container 2xl:w-2/3 mx-auto flex flex-wrap justify-center items-center'>
         {firstFewElements.map((organization) => {
           return (
-            <div key={organization.id}>
+            <div key={organization._id}>
 
               <div className='p-4 m-4 flex flex-col justify-center items-center bg-secondary rounded-lg'>
 

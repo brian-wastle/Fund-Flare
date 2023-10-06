@@ -15,7 +15,7 @@ const AppNavbar = () => {
   return (
     <>
       <h1 className='font-main text-3xl md:text-6xl text-center p-4 text-primary'
-      ><Link to="/">Home</Link></h1>
+      ><Link to="/">FundFlare</Link></h1>
 
       <button className='absolute top-10 right-10 text-2xl text-text-dark inline'
         onClick={() => setMenuOpen(true)}>menu</button>
