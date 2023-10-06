@@ -18,7 +18,6 @@ const ProfilePage = () => {
   if (loading) {
     return <p>Still Loading...</p>
   }
-
   return (
     <>
       <h2 className='text-3xl'

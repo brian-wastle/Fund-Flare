@@ -24,7 +24,13 @@ const organizationSchema = new Schema({
     {
     type: Schema.Types.ObjectId,
     ref: 'Tag',
-    }
+    },
+  fundraisingGoal: {
+    type: Number,
+  },
+  fundraisingAmount: {
+    type: Number,
+  }
 
 });
 

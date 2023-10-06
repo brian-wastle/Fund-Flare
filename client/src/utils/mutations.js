@@ -104,6 +104,9 @@ export const ADD_ORGANIZATION = gql`
       description
       image
       link
+      tag
+      fundraisingGoal
+      fundraisingAmount
     }
   }
 `;
