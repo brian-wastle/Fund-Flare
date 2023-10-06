@@ -1,32 +1,41 @@
 let tags = [
-    "three",
-    "two",
     "one",
     "one",
     "one",
-    "one",
-    "two",
-    "two",
-    "two",
-    "three",
-    "two",
     "three",
     "three",
     "two",
     "two",
+    "two",
     "three",
     "three",
+    "three",
+    "two",
+    "two",
+    "two",
+    "two",
+    "four",
+    "four",
+    "four",
+    "four",
+    "four",
+    "four",
+    "four",
+    "four",
+    "four",
+    "four",
 ];
 
 function weightTags(tags) {
     const tagWeights = {};
+    let weightSeed = Math.random() * 6
 
     for (let i = 0; i < tags.length; i++) {
         const tag = tags[i];
         if (!tagWeights[tag]) {
             tagWeights[tag] = 0;
         }
-        tagWeights[tag] += 1 / (i + 20);
+        tagWeights[tag] += 1 / (i + weightSeed);
     }
 
     const weightedTags = Object.keys(tagWeights).map(tag => ({
@@ -39,5 +48,15 @@ function weightTags(tags) {
     return weightedTags;
 }
 
-console.log(weightTags(tags));
-console.log(`users preferred tag: ${weightTags(tags)[0].tag}`);
+const tagCounts = {};
+for (let i = 0; i < 10000; i++) {
+    const preferredTag = weightTags(tags)[0].tag;
+    if (!tagCounts[preferredTag]) {
+        tagCounts[preferredTag] = 0;
+    }
+    tagCounts[preferredTag]++;
+}
+for (const tag in tagCounts) {
+    const percentage = (tagCounts[tag] / 10000) * 100;
+    console.log(`${tag} - ${percentage.toFixed(2)}%`);
+}
