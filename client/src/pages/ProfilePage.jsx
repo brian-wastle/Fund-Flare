@@ -53,8 +53,6 @@ const ProfilePage = () => {
             onClick={() => setOrgSetupOpen(true)}>Setup Organization</button>
 
 
-
-
         </div>
       )}
 
