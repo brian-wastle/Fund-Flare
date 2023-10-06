@@ -117,8 +117,7 @@ const OrganizationPage = () => {
               exit={{ scale: 0.75, transition: { ease: "easeIn", duration: 0.2 } }}>
               <DonateForm organizationName={organizationData.name}></DonateForm>
             </motion.div>
-
-
+            
           </motion.div>
         )}
       </AnimatePresence>
