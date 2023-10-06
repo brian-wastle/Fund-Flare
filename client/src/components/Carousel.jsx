@@ -4,8 +4,9 @@ import { motion, AnimatePresence } from "framer-motion"
 import { useQuery, useMutation } from '@apollo/client';
 
 const Carousel = ({orgs}) => {
-    const [activeIndex, setActiveIndex] = useState(0);
 
+    const [activeIndex, setActiveIndex] = useState(0);
+    console.log(orgs)
     const organizationData = orgs.map((org) => ({
       id: org._id,
       image: org.image,
