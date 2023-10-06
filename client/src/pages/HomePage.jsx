@@ -22,24 +22,35 @@ const HomePage = () => {
       [array[i], array[j]] = [array[j], array[i]];
     }
   }
-const mutableOrganizations = [...organizations]
-shuffleArray(mutableOrganizations);
-const firstFewElements = mutableOrganizations.slice(0, 5);
-console.log(firstFewElements)
+  const mutableOrganizations = [...organizations]
+  shuffleArray(mutableOrganizations);
+  const firstFewElements = mutableOrganizations.slice(0, 5);
+  console.log(firstFewElements)
 
   return (
     <>
-      {firstFewElements.map((organization) => {
-        return (
-          <div key={organization.id}>
-            <Link to={`/organization/${organization._id}`}>{organization.name}</Link>
-            <p>{organization.description}</p>
-            <p><img src={organization.image} alt="organization profile image" /></p>
-            <a href={organization.link}>{organization.link}</a>
+      {/* for you carousel */}
+      <Carousel orgs={firstFewElements} />
 
-          </div>
-        );
-      })}
+      <div className='md:container 2xl:w-2/3 mx-auto flex flex-wrap justify-center items-center'>
+        {firstFewElements.map((organization) => {
+          return (
+            <div key={organization._id}>
+              <Link to={`/organization/${organization._id}`}>
+                <div className='m-4 md:m-6 w-80 bg-primary rounded-lg hover:scale-105 transition-all duration-300 hover:shadow-2xl'>
+
+                  <img className='w-full rounded-t-lg'
+                    src={organization.image} alt="organization profile image" />
+
+                  <h2 className='font-secondary text-text-light text-center p-2'
+                  >{organization.name}</h2>
+
+                </div>
+              </Link>
+            </div>
+          );
+        })}
+      </div>
     </>
   );
 };
