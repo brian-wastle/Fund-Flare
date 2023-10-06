@@ -21,7 +21,7 @@ const Carousel = ({orgs}) => {
     }, [organizationData.length])
   
     return (
-      <div>
+      <div className='absolute right-0 bottom-0'>
         <AnimatePresence initial={false}>
           {organizationData.map((project, index) => (
             index === activeIndex && (

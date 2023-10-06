@@ -29,16 +29,19 @@ const HomePage = () => {
 
   return (
     <>
+      {/* for you carousel */}
+      <Carousel orgs={firstFewElements} />
+
       <div className='md:container 2xl:w-2/3 mx-auto flex flex-wrap justify-center items-center'>
         {firstFewElements.map((organization) => {
           return (
             <div key={organization._id}>
               <Link to={`/organization/${organization._id}`}>
-                <div className='m-4 md:m-6 w-80 bg-primary rounded-lg'>
+                <div className='m-4 md:m-6 w-80 bg-primary rounded-lg hover:scale-105 transition-all duration-300 hover:shadow-2xl'>
 
                   <img className='w-full rounded-t-lg'
                     src={organization.image} alt="organization profile image" />
-                    
+
                   <h2 className='font-secondary text-text-light text-center p-2'
                   >{organization.name}</h2>
 
