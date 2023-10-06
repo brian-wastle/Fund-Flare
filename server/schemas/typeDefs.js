@@ -19,7 +19,7 @@ const typeDefs = `
     description: String!
     image: String
     link: String
-    tag: Tag
+    tag: ID
   }
 
   type Order {
@@ -31,6 +31,7 @@ const typeDefs = `
   }
 
   type Tag {
+    _id: ID!
     name: String!
   }
 
@@ -76,6 +77,8 @@ const typeDefs = `
     getOrganizations: [Organization]!
     getSingleOrder(orderId: String!): Order
     getOrdersByUserId: [Order]
+    getSingleTag(tagId: String!): Tag
+    getAllTags: [Tag]
   }
 
   type Mutation {

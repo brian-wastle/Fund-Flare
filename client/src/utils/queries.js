@@ -14,6 +14,7 @@ export const GET_SINGLE_USER = gql`
         description
         image
         link
+        tag
       }
       orderHistory {
         orderId
@@ -81,4 +82,22 @@ export const GET_ORDERS_BY_USER_ID = gql`
       organizationName
     }
   }
+`;
+
+export const GET_SINGLE_TAG = gql`
+  query getSingleTag($tagId: String!) {
+    getSingleTag(tagId: $tagId) {
+      name
+    }
+  }
+`;
+
+export const GET_ALL_TAGS = gql`
+query getAllTags {
+  getAllTags {
+    _id
+    name
+
+  }
+}
 `;

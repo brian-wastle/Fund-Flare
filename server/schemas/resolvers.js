@@ -36,7 +36,13 @@ const resolvers = {
         return Order.findOne({ _id: orderId })
       }
       throw AuthenticationError;
-    }
+    },
+    getSingleTag: async (parent, { tagId }) => {
+      return Tag.findOne({ _id: tagId })
+    },
+    getAllTags: async () => {
+      return Tag.find();
+    },
   },
 
   Mutation: {
