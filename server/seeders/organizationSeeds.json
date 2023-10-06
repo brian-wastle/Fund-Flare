@@ -5,34 +5,39 @@
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     "image": "https://placehold.co/300x200",
     "link": "https://www.google.com/",
-    "tag": "651dab6234839867ebd31846"
+    "tag": "651dab6234839867ebd31846",
+    "fundraisingGoal": 1000
   },
   {
     "userId": "651d7cbc674ea7e9e4dcd4f7",
     "name": "Fake Organization 2",
     "description": "Praesent vitae massa nec velit feugiat vulputate.",
     "image": "https://placehold.co/300x200",
-    "link": "https://www.google.com/"
+    "link": "https://www.google.com/",
+    "fundraisingGoal": 1000
   },
   {
     "userId": "651d7cbc674ea7e9e4dcd4fa",
     "name": "Fake Organization 3",
     "description": "Suspendisse potenti. Proin bibendum turpis vitae tincidunt.",
     "image": "https://placehold.co/300x200",
-    "link": "https://www.google.com/"
+    "link": "https://www.google.com/",
+    "fundraisingGoal": 1000
   },
   {
     "userId": "651d7cbc674ea7e9e4dcd4f9",
     "name": "Fake Organization 4",
     "description": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.",
     "image": "https://placehold.co/300x200",
-    "link": "https://www.google.com/"
+    "link": "https://www.google.com/",
+    "fundraisingGoal": 1000
   },
   {
     "userId": "651d7cbc674ea7e9e4dcd4fb",
     "name": "Fake Organization 5",
     "description": "Nulla facilisi. Nullam sed nisl eu quam bibendum varius.",
     "image": "https://placehold.co/300x200",
-    "link": "https://www.google.com/"
+    "link": "https://www.google.com/",
+    "fundraisingGoal": 1000
   }
 ]
