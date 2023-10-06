@@ -24,11 +24,12 @@ const HomePage = () => {
   }
 const mutableOrganizations = [...organizations]
 shuffleArray(mutableOrganizations);
-console.log(mutableOrganizations)
+const firstFewElements = mutableOrganizations.slice(0, 5);
+console.log(firstFewElements)
 
   return (
     <>
-      {mutableOrganizations.map((organization) => {
+      {firstFewElements.map((organization) => {
         return (
           <div key={organization.id}>
             <Link to={`/organization/${organization._id}`}>{organization.name}</Link>
