@@ -22,8 +22,8 @@ function ShowOrg(props) {
       <img src={orgData.image} style={{ width: '300px'}} alt={orgData.name + "profile image"} />
       <p>{orgData.tag}</p>
       <p>FundraisingGoal:</p>
-      <p>${orgData.fundraisingAmount}</p> 
-      <p>/ ${orgData.fundraisingGoal}</p>
+      <p>${orgData.fundraisingAmount} / ${orgData.fundraisingGoal}</p> 
+      <p></p>
       
       <ProgressBar goal={orgData.fundraisingGoal} amount={orgData.fundraisingAmount} />
       
