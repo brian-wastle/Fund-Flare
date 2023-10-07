@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useQuery, useMutation } from "@apollo/client";
 import { GET_SINGLE_ORGANIZATION } from "../utils/queries";
+import ProgressBar from '../components/ProgressBar'
 
 function ShowOrg(props) {
   const {loading:orgLoading, data:organizationData} = useQuery(
@@ -11,6 +12,8 @@ function ShowOrg(props) {
   );
   const orgData = organizationData?.getSingleOrganization||{};
   console.log(orgData)
+  
+  
 
   return (
     <>
@@ -22,7 +25,7 @@ function ShowOrg(props) {
       <p>${orgData.fundraisingAmount}</p> 
       <p>/ ${orgData.fundraisingGoal}</p>
       
-      <p></p>
+      <ProgressBar goal={orgData.fundraisingGoal} amount={orgData.fundraisingAmount} />
       
     </>
   );

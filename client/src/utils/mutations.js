@@ -39,6 +39,21 @@ export const SAVE_ORGANIZATION = gql`
   }
 `;
 
+export const UPDATE_FUNDING = gql`
+  mutation updateFundingAmount($myOrganization: String, $fundraisingAmount: Int) {
+    updateFundingAmount(myOrganization: $myOrganization, fundraisingAmount: $fundraisingAmount) {
+      _id
+      description
+      image
+      name
+      link
+      userId
+      fundraisingAmount
+      fundraisingGoal
+  }
+}
+`;
+
 export const REMOVE_ORGANIZATION = gql`
   mutation removeOrganization($organizationId: ID!) {
     removeOrganization(organizationId: $organizationId) {
