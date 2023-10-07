@@ -90,6 +90,7 @@ const typeDefs = `
     saveOrganization(input: saveOrganizationInput!): User
     removeOrganization(organizationId: ID!): User
     updateUser(input: addUserInput!): User
+    updateFundingAmount(myOrganization: String, fundraisingAmount: Int): Organization
     updateUserOrgId(myOrganizationId: String): User
     addOrganization(input: addOrganizationInput!): Organization
     addOrder(input: addOrderInput!): Order
