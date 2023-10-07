@@ -1,11 +1,62 @@
 [
     {
-        "name": "Charity"
+        "name": "Healthcare"
     },
     {
-        "name": "Nonprofit"
+        "name": "Disaster Relief"
     },
     {
-        "name": "Small Business"
+        "name": "Arts"
+    },
+    {
+        "name": "Education"
+    },
+    {
+        "name": "Environment"
+    },
+    {
+        "name": "Hunger & Poverty"
+    },
+    {
+        "name": "Animal Welfare"
+    },
+    {
+        "name": "Community Development"
+    },
+    {
+        "name": "Youth Programs"
+    },
+    {
+        "name": "Elderly Services"
+    },
+    {
+        "name": "Mental Health"
+    },
+    {
+        "name": "Human Rights"
+    },
+    {
+        "name": "Technology"
+    },
+    {
+        "name": "Cultural Preservation"
+    },
+    {
+        "name": "Emergency Services"
+    },
+    {
+        "name": "Gender Equality"
+    },
+    {
+        "name": "Agriculture"
+    },
+    {
+        "name": "Homelessness"
+    },
+    {
+        "name": "Disability Services"
+    },
+    {
+        "name": "Sports & Recreation"
     }
 ]
