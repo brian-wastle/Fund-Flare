@@ -5,6 +5,7 @@ import { useQuery, useMutation } from '@apollo/client';
 import { GET_ORGANIZATIONS } from '../utils/queries'
 import { Link } from 'react-router-dom';
 import ForMe from '../components/ForMe'
+import ProgressBar from '../components/ProgressBar'
 
 
 
@@ -39,13 +40,14 @@ const HomePage = () => {
             <div key={organization._id}>
               <Link to={`/organization/${organization._id}`}>
                 <div className='m-4 md:m-6 w-80 bg-primary rounded-lg hover:scale-105 transition-all duration-300 hover:shadow-2xl'>
-
                   <img className='w-full rounded-t-lg'
                     src={organization.image} alt="organization profile image" />
-
+                  
                   <h2 className='font-secondary text-text-light text-center p-2'
                   >{organization.name}</h2>
-
+                  <div className="flex justify-center items-center">
+                  <ProgressBar instance={organization._id} goal={organization.fundraisingGoal} amount={organization.fundraisingAmount}/>
+                  </div>
                 </div>
               </Link>
             </div>

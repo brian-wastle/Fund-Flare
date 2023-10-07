@@ -1,8 +1,8 @@
 import {useEffect} from "react";
 
-function ProgressBar({goal, amount}) {
+function ProgressBar({goal, amount, instance}) {
     useEffect(() => {
-    const svg = document.querySelector("svg");
+    const svg = document.getElementById(instance);
     
     // variable for the namespace 
     const svgns = "http://www.w3.org/2000/svg";
@@ -40,8 +40,7 @@ function ProgressBar({goal, amount}) {
     });
   return (
     <>
-      <svg xmlns="http://www.w3.org/2000/svg" width="250" height="30" viewBox="0 0 250 15">
-
+      <svg id={instance} xmlns="http://www.w3.org/2000/svg" width="250" height="30" viewBox="0 0 250 15">
       </svg>
     </>
   );
