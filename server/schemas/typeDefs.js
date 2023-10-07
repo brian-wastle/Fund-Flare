@@ -78,6 +78,7 @@ const typeDefs = `
     getAllUsers: [User]
     getSingleOrganization(organizationId: String!): Organization
     getOrganizations: [Organization]!
+    getFuzzySearch(searchParams: String):[Organization]
     getSingleOrder(orderId: String!): Order
     getOrdersByUserId: [Order]
     getSingleTag(tagId: String!): Tag
