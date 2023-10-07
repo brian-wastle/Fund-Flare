@@ -46,16 +46,6 @@ console.log(userFormData)
 
   const handleImageUpload = (event) => {
     event.preventDefault();
-    // const client = filestack.init('AAAsSWvCQS2kKNL67CmbAz');
-    // const options = {
-    //   accept: ["image/*"],
-    //   onFileSelected: file => {
-    //     if (file.size > 1000 * 1000) {
-    //         throw new Error('File too big, select something smaller than 1MB');
-    //     }
-    //   }
-    // };
-    // client.picker(options).open();
 
         setShowOverlay("show")
 
@@ -99,9 +89,9 @@ console.log(userFormData)
               setShowOverlay("hidden");
             }}
             pickerOptions={{
-              onOpen: () => {
-                console.log("test");
-              },
+              maxSize: 1024 * 1024,
+              imageDim: [300, 200],
+              accept: "image/jpeg" || "image/bmp" || "image/png",
               onCancel: () => {
                 setShowOverlay("hidden");
                 console.log(showOverlay);

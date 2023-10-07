@@ -92,6 +92,16 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
+    updateFundingAmount: async (parent, {myOrganization, fundraisingAmount}) => {
+
+        const updatedOrg = await Organization.findOneAndUpdate(
+          { _id: myOrganization },
+          { $set: { fundraisingAmount: fundraisingAmount } },
+          { new: true, runValidators: true }
+        )
+        return updatedOrg;
+
+    },
     removeOrganization: async (parent, { organizationId }, context) => {
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(

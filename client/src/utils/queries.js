@@ -56,6 +56,8 @@ export const GET_ORGANIZATIONS = gql`
       image
       link
       tag
+      fundraisingGoal
+      fundraisingAmount
     }
   }
 `;
