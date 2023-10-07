@@ -4,6 +4,7 @@ import Auth from '../utils/auth';
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_ORGANIZATIONS } from '../utils/queries'
 import { Link } from 'react-router-dom';
+import ForMe from '../components/ForMe'
 
 
 
@@ -30,7 +31,7 @@ const HomePage = () => {
   return (
     <>
       {/* for you carousel */}
-      <Carousel orgs={firstFewElements} />
+      <ForMe organizations= {organizations}/>
 
       <div className='md:container 2xl:w-2/3 mx-auto flex flex-wrap justify-center items-center'>
         {firstFewElements.map((organization) => {

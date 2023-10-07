@@ -8,7 +8,7 @@ import ProfilePage from './pages/ProfilePage'
 import OrganizationPage from './pages/OrganizationPage'
 import DonateForm from './components/DonateForm'
 import SearchPage from './pages/SearchPage'
-import ForMePage from './pages/ForMePage'
+import ForMe from './components/ForMe'
 
 const router = createBrowserRouter([
   {
@@ -42,7 +42,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/tags',
-        element: <ForMePage />,
+        element: <ForMe />,
       },
     ],
   }

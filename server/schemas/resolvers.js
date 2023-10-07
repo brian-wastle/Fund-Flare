@@ -8,7 +8,7 @@ const resolvers = {
     getSingleUser: async (parent, args, context) => {
       if (context.user) {
         const user = await User.findOne({ _id: context.user._id }).populate('savedOrganizations').populate('orderHistory');
-        // console.log(user)
+        console.log(user)
         return user
       }
       throw AuthenticationError;
@@ -36,7 +36,13 @@ const resolvers = {
         return Order.findOne({ _id: orderId })
       }
       throw AuthenticationError;
-    }
+    },
+    getSingleTag: async (parent, { tagId }) => {
+      return Tag.findOne({ _id: tagId })
+    },
+    getAllTags: async () => {
+      return Tag.find();
+    },
   },
 
   Mutation: {
