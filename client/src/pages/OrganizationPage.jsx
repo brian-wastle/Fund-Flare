@@ -7,6 +7,7 @@ import { GET_SINGLE_ORGANIZATION, GET_SINGLE_USER } from '../utils/queries';
 import { SAVE_ORGANIZATION } from '../utils/mutations';
 import { useSavedOrganizations } from '../utils/orgFunctions';
 import DonateForm from '../components/DonateForm';
+import ProgressBar from '../components/ProgressBar';
 
 const OrganizationPage = () => {
   console.log(Auth.getProfile())
@@ -33,7 +34,10 @@ const OrganizationPage = () => {
   }
 
   console.log(organizationData)
-
+  var currentFunding = 0;
+  if (organizationData.fundraisingAmount) {
+    currentFunding = organizationData.fundraisingAmount;
+  }
 
   const handleSaveOrganization = async (orgData) => {
     // get token
@@ -87,7 +91,8 @@ const OrganizationPage = () => {
                 : 'Save Organization to Profile!'}
             </button>
           )}
-
+          <ProgressBar goal={organizationData.fundraisingGoal} amount={organizationData.fundraisingAmount}/>
+          <p>Currently Raised: ${currentFunding} / Our Goal: ${organizationData.fundraisingGoal}</p>
           <button className='font-secondary py-2 px-6 my-4 rounded-lg bg-primary hover:bg-secondary text-light-1 transition-all'
             onClick={() => setDonateOpen(true)}>Donate</button>
         </div>
