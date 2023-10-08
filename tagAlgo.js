@@ -26,14 +26,13 @@ let tags = [
 
 function weightTags(tags) {
     const tagWeights = {};
-    let weightSeed = Math.random() * 12
 
     for (let i = 0; i < tags.length; i++) {
         const tag = tags[i];
         if (!tagWeights[tag]) {
             tagWeights[tag] = 0;
         }
-        tagWeights[tag] += 1 / (i + (weightSeed * Math.random() * 2));
+        tagWeights[tag] += 1 / (i + ((Math.random() * 12) * (Math.random() * 2)));
     }
 
     const weightedTags = Object.keys(tagWeights).map(tag => ({

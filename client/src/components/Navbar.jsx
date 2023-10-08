@@ -14,7 +14,7 @@ const AppNavbar = () => {
 console.log(userData)
   return (
     <>
-      <h1 className='font-main text-4xl md:text-6xl text-center p-4 text-primary'
+      <h1 className='font-main text-4xl md:text-6xl text-center py-8 text-primary'
       ><Link to="/">FundFlare</Link></h1>
 
       <button className='absolute top-5 right-5 md:top-10 md:right-10 text-2xl text-text-dark inline'
