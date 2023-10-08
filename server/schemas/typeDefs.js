@@ -83,6 +83,7 @@ const typeDefs = `
     getOrdersByUserId: [Order]
     getSingleTag(tagId: String!): Tag
     getAllTags: [Tag]
+    getTagByName(tagName: String!): Tag
   }
 
   type Mutation {

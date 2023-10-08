@@ -7,7 +7,7 @@ import { GET_SEARCH } from '../utils/queries';
 var searchQuery;
 
 const SearchPage = () => {
-const [skip, setSkip] = useState(false)
+const [skip, setSkip] = useState(false);
 var inputRef = useRef(null);
 
 function handleInputEntry(event) {
@@ -21,17 +21,9 @@ const { loading:searchLoading, data:searchData } = useQuery(
   variables: { searchParams: searchQuery }
   }
 )
-console.log("re-render")
-useEffect(() => {
-  // check whether data exists
-  if (!searchLoading && !!searchData) {
-    setSkip(true)
-  }
-}, [searchData, searchLoading])
 
 
 const orgData = searchData?.getSearch||{};
-  console.log(orgData?.length)
 
   return (
     <>

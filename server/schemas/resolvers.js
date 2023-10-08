@@ -49,6 +49,9 @@ const resolvers = {
     getSingleTag: async (parent, { tagId }) => {
       return Tag.findOne({ _id: tagId })
     },
+    getTagByName: async (parent, { tagName }) => {
+      return Tag.findOne({ name: tagName })
+    },
     getAllTags: async () => {
       return Tag.find();
     },

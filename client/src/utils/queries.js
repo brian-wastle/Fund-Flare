@@ -112,6 +112,14 @@ export const GET_SINGLE_TAG = gql`
   }
 `;
 
+export const GET_TAG_BY_NAME = gql`
+  query getTagByName($tagName: String!) {
+    getTagByName(tagName: $tagName) {
+      _id
+    }
+  }
+`;
+
 export const GET_ALL_TAGS = gql`
 query getAllTags {
   getAllTags {
