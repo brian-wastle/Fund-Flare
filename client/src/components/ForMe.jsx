@@ -7,7 +7,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { EffectCoverflow, Autoplay, Mousewheel, Pagination } from 'swiper/modules';
+import { Autoplay, Mousewheel, Pagination } from 'swiper/modules';
 
 const ForMe = ({ organizations }) => {
 
@@ -85,8 +85,44 @@ const ForMe = ({ organizations }) => {
 
   return (
     <>
-      <div className='md:container 2xl:w-2/3 mx-auto flex flex-wrap justify-center items-center bg-gradient-to-r from-[#ffffff00] via-primary/20 to-[#ffffff00]'>
-        <div className='md:w-2/3 lg:w-1/2 2xl:w-1/3 overflow-hidden'>
+      <div className='hidden md:container 2xl:w-2/3 mx-auto md:flex flex-wrap justify-center items-center'>
+        <div className='overflow-hidden shadow-xl'>
+          <Swiper
+            slidesPerView={Math.min(forYouOrgs.length, 3)}
+            spaceBetween={30}
+            loop={true}
+            mousewheel={true}
+            autoplay={{
+              delay: 3000,
+              disableOnInteraction: false,
+            }}
+            pagination={{
+              clickable: true,
+            }}
+            modules={[Autoplay, Mousewheel, Pagination]}
+            className="mySwiper"
+            style={{
+              '--swiper-pagination-color': '#FF7067',
+            }}
+          >
+
+            {forYouOrgs.map((project) => (
+              <SwiperSlide key={project._id}>
+                <div className="w-full h-full">
+                  <Link to={`/organization/${project._id}`}>
+                    <h2 className="absolute">{project.name}</h2>
+                    <img className="block w-full h-full" src={project.image} alt={project.name} />
+                  </Link>
+                </div>
+              </SwiperSlide>
+            ))}
+
+          </Swiper>
+        </div>
+      </div>
+
+      <div className='md:hidden md:container 2xl:w-2/3 mx-auto flex flex-wrap justify-center items-center'>
+        <div className='overflow-hidden shadow-xl'>
           <Swiper
             slidesPerView={1}
             spaceBetween={0}
