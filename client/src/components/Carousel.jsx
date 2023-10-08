@@ -49,7 +49,7 @@ const Carousel = ({ orgs }) => {
           }}
         >
           {organizationData.map((project) => (
-            <SwiperSlide key={project.id} style={{ width: '300px', height: '200px' }}>
+            <SwiperSlide key={project.id} style={{ width: '400px', height: '300px' }}>
               <div className="w-full h-full">
                 <Link to={`/organization/${project.id}`}>
                 <h2 className="absolute">{project.title}</h2>
