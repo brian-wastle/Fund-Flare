@@ -1,7 +1,9 @@
 const { User, Organization, Order, Tag } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
 const stripe = require('stripe')('sk_test_51Nwn2BLNguEaQpKjj5UL5hmKCGRBOwFiBXHiZR8cJCUZk8p7leU093Eg1O4IQj5jDPsfJJcNOKWRpR3xPHZMoxQz00haZlJ6fc'); //NEED TEST API KEY
-
+function escapeRegex(text) {
+  return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+}
 
 const resolvers = {
   Query: {
@@ -24,6 +26,15 @@ const resolvers = {
     getOrganizations: async () => {
       return Organization.find().sort({ createdAt: -1 });
     },
+    getOrgsByTagId: async (parent, {tagId}, context) => {
+        return Organization.find({ tag: tagId })
+    },
+    getSearch: async (parent, {searchParams}) => {
+      if (searchParams) {
+        const regex = new RegExp(escapeRegex(searchParams), "gi");
+        return Organization.find({ name: regex });
+      }
+    },
     getOrdersByUserId: async (parent, args, context) => {
       if (context.user) {
         return Order.find({ userId: context.user._id })
@@ -39,6 +50,9 @@ const resolvers = {
     },
     getSingleTag: async (parent, { tagId }) => {
       return Tag.findOne({ _id: tagId })
+    },
+    getTagByName: async (parent, { tagName }) => {
+      return Tag.findOne({ name: tagName })
     },
     getAllTags: async () => {
       return Tag.find();

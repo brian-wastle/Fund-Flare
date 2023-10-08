@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
-import Carousel from '../components/Carousel';
-import Auth from '../utils/auth';
-import { useQuery, useMutation } from '@apollo/client';
-import { GET_ORGANIZATIONS } from '../utils/queries'
+
 import { Link } from 'react-router-dom';
-import ForMe from '../components/ForMe'
+import Carousel from '../components/Carousel';
 import ProgressBar from '../components/ProgressBar'
+import ForMe from '../components/ForMe'
+import Auth from '../utils/auth';
+import { GET_ORGANIZATIONS } from '../utils/queries'
+import { useQuery } from '@apollo/client';
 
 
 

@@ -78,10 +78,13 @@ const typeDefs = `
     getAllUsers: [User]
     getSingleOrganization(organizationId: String!): Organization
     getOrganizations: [Organization]!
+    getOrgsByTagId(tagId: String!): [Organization]
+    getSearch(searchParams: String):[Organization]
     getSingleOrder(orderId: String!): Order
     getOrdersByUserId: [Order]
     getSingleTag(tagId: String!): Tag
     getAllTags: [Tag]
+    getTagByName(tagName: String!): Tag
   }
 
   type Mutation {

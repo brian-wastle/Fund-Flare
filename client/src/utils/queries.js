@@ -62,6 +62,38 @@ export const GET_ORGANIZATIONS = gql`
   }
 `;
 
+export const GET_ORGS_BY_TAGID = gql`
+  query getOrgsByTagId($tagId: String!) {
+    getOrgsByTagId(tagId: $tagId) {
+      _id
+      userId
+      name
+      description
+      image
+      link
+      tag
+      fundraisingGoal
+      fundraisingAmount
+    }
+  }
+`;
+
+export const GET_SEARCH = gql`
+  query getSearch($searchParams: String!) {
+    getSearch(searchParams: $searchParams) {
+      _id
+      userId
+      name
+      description
+      image
+      link
+      tag
+      fundraisingGoal
+      fundraisingAmount
+    }
+  }
+`;
+
 export const GET_SINGLE_ORDER = gql`
   query getSingleOrder($orderId: String!) {
     getSingleOrder(orderId: $orderId) {
@@ -92,6 +124,14 @@ export const GET_SINGLE_TAG = gql`
   query getSingleTag($tagId: String!) {
     getSingleTag(tagId: $tagId) {
       name
+    }
+  }
+`;
+
+export const GET_TAG_BY_NAME = gql`
+  query getTagByName($tagName: String!) {
+    getTagByName(tagName: $tagName) {
+      _id
     }
   }
 `;

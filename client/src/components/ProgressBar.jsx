@@ -8,7 +8,6 @@ function ProgressBar({goal, amount, instance}) {
     } else {
         var svg = document.querySelector('svg');
         instance = 'svg'
-        console.log(instance)
     }
     
     
