@@ -62,9 +62,9 @@ export const GET_ORGANIZATIONS = gql`
   }
 `;
 
-export const GET_FUZZY_SEARCH = gql`
-  query getFuzzySearch($searchParams: String!) {
-    getFuzzySearch {
+export const GET_SEARCH = gql`
+  query getSearch($searchParams: String!) {
+    getSearch(searchParams: $searchParams) {
       _id
       userId
       name

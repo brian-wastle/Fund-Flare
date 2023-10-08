@@ -26,7 +26,8 @@ const resolvers = {
     getOrganizations: async () => {
       return Organization.find().sort({ createdAt: -1 });
     },
-    getFuzzySearch: async (parent, {searchParams}) => {
+
+    getSearch: async (parent, {searchParams}) => {
       if (searchParams) {
         const regex = new RegExp(escapeRegex(searchParams), "gi");
         return Organization.find({ name: regex });

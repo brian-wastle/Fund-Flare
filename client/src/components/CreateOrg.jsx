@@ -123,8 +123,8 @@ console.log(userFormData)
           step="5"
           name="amount"
           onChange={handleInputChange}
-        />{" "}
-        dollars
+        />${" "}
+        
         <br />
         <button
           disabled={

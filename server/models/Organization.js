@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 
+
 const organizationSchema = new Schema({
   userId: {
     type: String,
@@ -34,6 +35,8 @@ const organizationSchema = new Schema({
 
 });
 
+
 const Organization = model('Organization', organizationSchema);
+
 
 module.exports = Organization;
