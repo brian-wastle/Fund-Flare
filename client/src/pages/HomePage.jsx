@@ -33,13 +33,13 @@ const HomePage = () => {
 
       {Auth.loggedIn() && (
         <>
-        <div className='bg-light-2 pb-14'>
-          <div className='md:container 2xl:w-2/3 mx-auto'>
-            <h2 className='font-main text-primary text-2xl py-4 text-center md:text-start'>Trending for you</h2>
-          </div>
+          <div className='bg-light-2 pb-14'>
+            <div className='md:container 2xl:w-2/3 mx-auto'>
+              <h2 className='font-main text-primary text-3xl py-4 text-center md:text-start'>Trending for you</h2>
+            </div>
 
-          {/* for you carousel */}
-          <ForMe organizations={organizations} />
+            {/* for you carousel */}
+            <ForMe organizations={organizations} />
           </div>
         </>
       )}
@@ -57,11 +57,13 @@ const HomePage = () => {
                   <img className='w-full rounded-t-lg'
                     src={organization.image} alt="organization profile image" />
 
-                  <h2 className='font-secondary text-text-light text-center p-2'
-                  >{organization.name}</h2>
                   <div className="flex justify-center items-center">
                     <ProgressBar instance={organization._id} goal={organization.fundraisingGoal} amount={organization.fundraisingAmount} />
                   </div>
+
+                  <h2 className='font-secondary text-text-light text-center p-2'
+                  >{organization.name}</h2>
+
                 </div>
               </Link>
             </div>
