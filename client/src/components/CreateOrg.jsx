@@ -135,7 +135,7 @@ console.log(userFormData)
             pickerOptions={{
               maxSize: 1024 * 1024,
               imageDim: [300, 200],
-              accept: "image/jpeg" || "image/bmp" || "image/png",
+              accept: "image/*",
               onCancel: () => {
                 setShowOverlay("hidden");
                 console.log(showOverlay);
@@ -161,13 +161,13 @@ console.log(userFormData)
         />
         <br />
         <p>Fundraising Goal:</p>
-        <input
+        <span>$ <input
           type="number"
           placeholder="10"
           step="5"
           name="amount"
           onChange={handleInputChange}
-        />${" "}
+        />{" "}</span>
         
         <br />
         <button
