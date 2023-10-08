@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useQuery, useMutation } from "@apollo/client";
-import { GET_SINGLE_ORGANIZATION } from "../utils/queries";
+import { GET_SINGLE_ORGANIZATION, GET_SINGLE_TAG } from "../utils/queries";
 import ProgressBar from '../components/ProgressBar'
 
 function ShowOrg(props) {
@@ -13,14 +13,18 @@ function ShowOrg(props) {
   const orgData = organizationData?.getSingleOrganization||{};
   console.log(orgData)
   
-  
-
+  const {loading:tagLoading, data:tagData} = useQuery(
+    GET_SINGLE_TAG,
+    {
+      variables: { tagId: orgData.tag },
+    }
+  );
+console.log("tagData: ",tagData)
   return (
     <>
       <p>{orgData.name}</p>
-      <p>Tag:</p>
       <img src={orgData.image} style={{ width: '300px'}} alt={orgData.name + "profile image"} />
-      <p>{orgData.tag}</p>
+      <p>Tag: {tagData?.getSingleTag?.name}</p>
       <p>FundraisingGoal:</p>
       <p>${orgData.fundraisingAmount} / ${orgData.fundraisingGoal}</p> 
       <p></p>

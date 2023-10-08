@@ -34,9 +34,18 @@ console.log(userData)
 
               {Auth.loggedIn() ? (
                 <>
+                  <motion.div
+                    initial={{ x: 30 }}
+                    animate={{ x: 0 }}
+                    exit={{ x: 30 }}
+                    transition={{ duration: 0.4 }}>
+                    <button className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
+                      onClick={() => { Auth.logout(), setMenuOpen(false) }}>logout</button>
+                  </motion.div>
+
                   <Link to={`/profile/${Auth.getProfile().data._id}`}><button
                     className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
-                    onClick={() => setMenuOpen(false)}>profile</button></Link>
+                    onClick={() => setMenuOpen(false)}>my profile</button></Link>
 
                   {userData.isAdmin && userData.myOrganizationId &&(
                     <motion.div
@@ -46,18 +55,9 @@ console.log(userData)
                       transition={{ duration: 0.4 }}>
                       <Link to={`/organization/${userData.myOrganizationId}`}><button
                         className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
-                        onClick={() => setMenuOpen(false)}>organization</button></Link>
+                        onClick={() => setMenuOpen(false)}>my organization</button></Link>
                     </motion.div>
                   )}
-
-                  <motion.div
-                    initial={{ x: 30 }}
-                    animate={{ x: 0 }}
-                    exit={{ x: 30 }}
-                    transition={{ duration: 0.4 }}>
-                    <button className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
-                      onClick={() => { Auth.logout(), setMenuOpen(false) }}>logout</button>
-                  </motion.div>
                 </>
               ) : (
                 <button className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
@@ -82,7 +82,7 @@ console.log(userData)
                 transition={{ duration: 0.4 }}>
                 <Link to="/tags"><button
                   className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
-                  onClick={() => setMenuOpen(false)}>tags</button></Link>
+                  onClick={() => setMenuOpen(false)}>browse</button></Link>
               </motion.div>
 
             </div>

@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import Auth from '../utils/auth';
 import { motion, AnimatePresence } from "framer-motion"
 import { useQuery, useMutation } from '@apollo/client';
-import { GET_SINGLE_ORGANIZATION, GET_SINGLE_USER } from '../utils/queries';
+import { GET_SINGLE_ORGANIZATION, GET_SINGLE_USER, GET_SINGLE_TAG } from '../utils/queries';
 import { SAVE_ORGANIZATION } from '../utils/mutations';
 import { useSavedOrganizations } from '../utils/orgFunctions';
 import DonateForm from '../components/DonateForm';
@@ -17,14 +17,22 @@ const OrganizationPage = () => {
   const { loading: userLoading, data: userData } = useQuery(GET_SINGLE_USER);
   const currentUser = userData?.getSingleUser || {};
 
-  console.log(currentUser)
-
   const { loading, data } = useQuery(
     GET_SINGLE_ORGANIZATION,
     {
       variables: { organizationId: organizationId },
     }
   );
+  const orgData = data?.getSingleOrganization||{};
+  console.log("orgData:", orgData)
+  const {loading:tagLoading, data:tagData} = useQuery(
+    GET_SINGLE_TAG,
+    {
+      variables: { tagId: orgData.tag },
+    }
+  );
+  const orgTag = tagData||{};
+console.log("orgTag",orgTag?.getSingleTag?.name)
   const savedOrganizations = useSavedOrganizations();
   const [saveOrganization, { organizations, orgLoading, error }] = useMutation(SAVE_ORGANIZATION);
  
@@ -71,9 +79,9 @@ const OrganizationPage = () => {
 
           <h2>{organizationData.name}</h2>
 
-          <h4>{organizationData.tag}</h4>
-
           <img src={organizationData.image} alt="organization profile image" />
+
+          <h4>{orgTag?.getSingleTag?.name}</h4>
 
           <p>{organizationData.description}</p>
 

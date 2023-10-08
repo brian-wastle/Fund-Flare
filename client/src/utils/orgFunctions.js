@@ -9,13 +9,6 @@ export const useSavedOrganizations = () => {
   return savedOrganizations;
 };
 
-// export const saveOrganizations = (bookIdArr) => {
-//   if (bookIdArr.length) {
-//     localStorage.setItem('saved_books', JSON.stringify(bookIdArr));
-//   } else {
-//     localStorage.removeItem('saved_books');
-//   }
-// };
 
 // export const removeBookId = (bookId) => {
 //   const savedBookIds = localStorage.getItem('saved_books')

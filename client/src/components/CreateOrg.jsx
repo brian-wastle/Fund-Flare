@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useQuery, useMutation } from "@apollo/client";
 import { ADD_ORGANIZATION, UPDATE_USERORGID } from "../utils/mutations";
+import { GET_TAG_BY_NAME } from "../utils/queries";
 import { PickerOverlay } from 'filestack-react';
+var tagName;
 
-let overlayStatus = 'hidden';
 
 function CreateOrgForm() {
   const [userFormData, setUserFormData] = useState({
@@ -12,12 +13,28 @@ function CreateOrgForm() {
     link: "",
     amount: ""
   });
+  const [skip, setSkip] = useState(false);
   const [imageName, setImageName] = useState("");
   const [urlName, setUrlName] = useState("");
   const [validated] = useState(false);
   const [showOverlay, setShowOverlay] = useState("hidden");
   const [addOrganization, { error: orgError, loading: dataLoading, data: orgData }] = useMutation(ADD_ORGANIZATION);
   const [updateUserOrgId, { error }] = useMutation(UPDATE_USERORGID);
+  var inputRef = useRef(null);
+
+
+  function handleInputEntry(event) {
+    inputRef = event.target.value
+    tagName = inputRef;
+  }
+
+  const { loading:tagLoading, data:tagData } = useQuery(
+    GET_TAG_BY_NAME, 
+    {
+    variables: { tagName: tagName }
+    }
+  )
+console.log("tagData",tagData?.getTagByName._id)
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -32,9 +49,11 @@ console.log(userFormData)
         description: userFormData.description,
         image: urlName,
         link: userFormData.link,
-        fundraisingGoal: parseInt(userFormData.amount)
+        fundraisingGoal: parseInt(userFormData.amount),
+        tag: tagData.getTagByName._id
       };
-
+      console.log("tagName:", tagName)
+      console.log("inputRef:", inputRef)
       const { data: orgData } = await addOrganization({
         variables: { input: { ...addOrganizationInput } },
       });
@@ -66,6 +85,31 @@ console.log(userFormData)
           value={userFormData.name}
           required
         />
+        <br />
+        <p>Organization Tag:</p>
+        <select required name="tags" id="tags" onChange={() => handleInputEntry(event)}>
+          <option value="" defaultValue>Choose a tag...</option>
+          <option value="Healthcare">Healthcare</option>
+          <option value="Disaster Relief">Disaster Relief</option>
+          <option value="Arts">Arts</option>
+          <option value="Education">Education</option>
+          <option value="Environment">Environment</option>
+          <option value="Hunger & Poverty">Hunger & Poverty</option>
+          <option value="Animal Welfare">Animal Welfare</option>
+          <option value="Community Development">Community Development</option>
+          <option value="Youth Programs">Youth Programs</option>
+          <option value="Elderly Services">Elderly Services</option>
+          <option value="Mental Health">Mental Health</option>
+          <option value="Human Rights">Human Rights</option>
+          <option value="Technology">Technology</option>
+          <option value="Cultural Preservation">Cultural Preservation</option>
+          <option value="Emergency Services">Emergency Services</option>
+          <option value="Gender Equality">Gender Equality</option>
+          <option value="Agriculture">Agriculture</option>
+          <option value="Homelessness">Homelessness</option>
+          <option value="Disability Services">Disability Services</option>
+          <option value="Sports & Recreation">Sports & Recreation</option>
+        </select>
         <br />
         <p>Organization Description:</p>
         <textarea
@@ -123,8 +167,8 @@ console.log(userFormData)
           step="5"
           name="amount"
           onChange={handleInputChange}
-        />{" "}
-        dollars
+        />${" "}
+        
         <br />
         <button
           disabled={
