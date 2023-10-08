@@ -1,62 +1,82 @@
 [
     {
-        "name": "Healthcare"
+        "name": "Healthcare",
+        "image": "tagHealthcare"
     },
     {
-        "name": "Disaster Relief"
+        "name": "Disaster Relief",
+        "image": "tagDisasterRelief"
     },
     {
-        "name": "Arts"
+        "name": "Arts",
+        "image": "tagArts"
     },
     {
-        "name": "Education"
+        "name": "Education",
+        "image": "tagEducation"
     },
     {
-        "name": "Environment"
+        "name": "Environment",
+        "image": "tagEnvironment"
     },
     {
-        "name": "Hunger & Poverty"
+        "name": "Hunger & Poverty",
+        "image": "tagHungerAndPoverty"
     },
     {
-        "name": "Animal Welfare"
+        "name": "Animal Welfare",
+        "image": "tagAnimalWelfare"
     },
     {
-        "name": "Community Development"
+        "name": "Community Development",
+        "image": "tagCommunityDevelopment"
     },
     {
-        "name": "Youth Programs"
+        "name": "Youth Programs",
+        "image": "tagYouthPrograms"
     },
     {
-        "name": "Elderly Services"
+        "name": "Elderly Services",
+        "image": "tagElderlyServices"
     },
     {
-        "name": "Mental Health"
+        "name": "Mental Health",
+        "image": "tagMentalHealth"
     },
     {
-        "name": "Human Rights"
+        "name": "Human Rights",
+        "image": "tagHumanRights"
     },
     {
-        "name": "Technology"
+        "name": "Technology",
+        "image": "tagTechnology"
     },
     {
-        "name": "Cultural Preservation"
+        "name": "Cultural Preservation",
+        "image": "tagCulturalPreservation"
     },
     {
-        "name": "Emergency Services"
+        "name": "Emergency Services",
+        "image": "tagEmergencyServices"
     },
     {
-        "name": "Gender Equality"
+        "name": "Gender Equality",
+        "image": "tagGenderEquality"
     },
     {
-        "name": "Agriculture"
+        "name": "Agriculture",
+        "image": "tagAgriculture"
     },
     {
-        "name": "Homelessness"
+        "name": "Homelessness",
+        "image": "tagHomelessness"
     },
     {
-        "name": "Disability Services"
+        "name": "Disability Services",
+        "image": "tagDisabilityServices"
     },
     {
-        "name": "Sports & Recreation"
+        "name": "Sports & Recreation",
+        "image": "tagSportsNRec"
     }
 ]

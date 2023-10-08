@@ -8,6 +8,7 @@ import { SAVE_ORGANIZATION } from '../utils/mutations';
 import { useSavedOrganizations } from '../utils/orgFunctions';
 import DonateForm from '../components/DonateForm';
 import ProgressBar from '../components/ProgressBar';
+import images from '../utils/importPhotos'
 
 const OrganizationPage = () => {
   console.log(Auth.getProfile())
@@ -32,7 +33,7 @@ const OrganizationPage = () => {
     }
   );
   const orgTag = tagData||{};
-console.log("orgTag",orgTag?.getSingleTag?.name)
+
   const savedOrganizations = useSavedOrganizations();
   const [saveOrganization, { organizations, orgLoading, error }] = useMutation(SAVE_ORGANIZATION);
  
@@ -47,6 +48,7 @@ console.log("orgTag",orgTag?.getSingleTag?.name)
     currentFunding = organizationData.fundraisingAmount;
   }
 
+  
   const handleSaveOrganization = async (orgData) => {
     // get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -81,8 +83,8 @@ console.log("orgTag",orgTag?.getSingleTag?.name)
 
           <img src={organizationData.image} alt="organization profile image" />
 
-          <h4>{orgTag?.getSingleTag?.name}</h4>
-
+          <img src={images[orgTag?.getSingleTag?.image]} alt="" />
+          
           <p>{organizationData.description}</p>
 
           <a href={organizationData.link} target="_blank" rel="noopener noreferrer">

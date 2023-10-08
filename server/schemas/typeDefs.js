@@ -35,6 +35,7 @@ const typeDefs = `
   type Tag {
     _id: ID!
     name: String!
+    image: String
   }
 
   input addUserInput {

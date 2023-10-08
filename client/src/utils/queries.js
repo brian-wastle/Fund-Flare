@@ -124,6 +124,7 @@ export const GET_SINGLE_TAG = gql`
   query getSingleTag($tagId: String!) {
     getSingleTag(tagId: $tagId) {
       name
+      image
     }
   }
 `;
@@ -141,7 +142,7 @@ query getAllTags {
   getAllTags {
     _id
     name
-
+    image
   }
 }
 `;
