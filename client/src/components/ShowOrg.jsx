@@ -24,7 +24,7 @@ console.log("tagData: ",tagData)
     <>
       <p>{orgData.name}</p>
       <img src={orgData.image} style={{ width: '300px'}} alt={orgData.name + "profile image"} />
-      <p>Tag: {tagData.getSingleTag.name}</p>
+      <p>Tag: {tagData?.getSingleTag?.name}</p>
       <p>FundraisingGoal:</p>
       <p>${orgData.fundraisingAmount} / ${orgData.fundraisingGoal}</p> 
       <p></p>

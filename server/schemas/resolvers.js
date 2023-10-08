@@ -26,7 +26,9 @@ const resolvers = {
     getOrganizations: async () => {
       return Organization.find().sort({ createdAt: -1 });
     },
-
+    getOrgsByTagId: async (parent, {tagId}, context) => {
+        return Organization.find({ tag: tagId })
+    },
     getSearch: async (parent, {searchParams}) => {
       if (searchParams) {
         const regex = new RegExp(escapeRegex(searchParams), "gi");

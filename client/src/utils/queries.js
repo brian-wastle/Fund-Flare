@@ -62,6 +62,22 @@ export const GET_ORGANIZATIONS = gql`
   }
 `;
 
+export const GET_ORGS_BY_TAGID = gql`
+  query getOrgsByTagId($tagId: String!) {
+    getOrgsByTagId(tagId: $tagId) {
+      _id
+      userId
+      name
+      description
+      image
+      link
+      tag
+      fundraisingGoal
+      fundraisingAmount
+    }
+  }
+`;
+
 export const GET_SEARCH = gql`
   query getSearch($searchParams: String!) {
     getSearch(searchParams: $searchParams) {
