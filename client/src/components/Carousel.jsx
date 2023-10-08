@@ -48,6 +48,7 @@ const Carousel = ({ orgs }) => {
             '--swiper-pagination-color': '#FF7067',
           }}
         >
+          {/* bg-black object-scale-down */}
           {organizationData.map((project) => (
             <SwiperSlide key={project.id} style={{ width: '400px', height: '300px' }}>
               <div className="w-full h-full">

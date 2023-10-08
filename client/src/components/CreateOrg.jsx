@@ -133,6 +133,9 @@ console.log(userFormData)
               setShowOverlay("hidden");
             }}
             pickerOptions={{
+              transformations: {force: true,
+                crop:{aspectRatio: 800/600,
+                force: true}},
               maxSize: 800 * 600,
               imageDim: [800, 600],
               accept: "image/*",
@@ -145,6 +148,7 @@ console.log(userFormData)
                 console.log(showOverlay);
               },
             }}
+
           />
         ) : (
           <button onClick={handleImageUpload}>Choose Image</button>
