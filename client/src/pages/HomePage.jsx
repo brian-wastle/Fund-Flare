@@ -31,8 +31,13 @@ const HomePage = () => {
 
   return (
     <>
+      <div className='md:container 2xl:w-2/3 mx-auto'>
+        <h2 className='font-main text-primary text-2xl py-4 px-16 text-center md:text-start'>Trending for you</h2>
+      </div>
+
       {/* for you carousel */}
-      <ForMe organizations= {organizations}/>
+      <ForMe organizations={organizations} />
+
 
       <div className='md:container 2xl:w-2/3 mx-auto flex flex-wrap justify-center items-center'>
         {firstFewElements.map((organization) => {
@@ -42,11 +47,11 @@ const HomePage = () => {
                 <div className='m-4 md:m-6 w-80 bg-primary rounded-lg hover:scale-105 transition-all duration-300 hover:shadow-2xl'>
                   <img className='w-full rounded-t-lg'
                     src={organization.image} alt="organization profile image" />
-                  
+
                   <h2 className='font-secondary text-text-light text-center p-2'
                   >{organization.name}</h2>
                   <div className="flex justify-center items-center">
-                  <ProgressBar instance={organization._id} goal={organization.fundraisingGoal} amount={organization.fundraisingAmount}/>
+                    <ProgressBar instance={organization._id} goal={organization.fundraisingGoal} amount={organization.fundraisingAmount} />
                   </div>
                 </div>
               </Link>

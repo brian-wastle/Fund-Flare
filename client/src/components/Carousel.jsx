@@ -16,11 +16,11 @@ const Carousel = ({ orgs }) => {
     id: org._id,
     image: org.image,
     title: org.name,
-  }));
+  })).reverse()
 
   return (
     <>
-      <div className='w-full py-8 mx-auto overflow-hidden'>
+      <div className='w-full py-8 mx-auto'>
         <Swiper
           effect={'coverflow'}
           grabCursor={true}
@@ -29,14 +29,14 @@ const Carousel = ({ orgs }) => {
           spaceBetween={0}
           coverflowEffect={{
             rotate: 10,
-            stretch: 40,
+            stretch: 0,
             depth: 200,
             modifier: 1,
             slideShadows: true,
           }}
           mousewheel={true}
           autoplay={{
-            delay: 3000,
+            delay: 5000,
             disableOnInteraction: false,
           }}
           pagination={{
@@ -51,9 +51,11 @@ const Carousel = ({ orgs }) => {
           {organizationData.map((project) => (
             <SwiperSlide key={project.id} style={{ width: '300px', height: '200px' }}>
               <div className="w-full h-full">
-                <h2 className="absolute">{project.title}</h2>
                 <Link to={`/organization/${project.id}`}>
-                  <img className="block w-full h-full" src={project.image} alt={project.title} />
+                <h2 className="absolute">{project.title}</h2>
+                  <div className="block w-full h-full">
+                    <img className="absolute top-0 left-0 w-full h-full z-[-1] object-cover" src={project.image} alt={project.title} />
+                  </div>
                 </Link>
               </div>
             </SwiperSlide>
