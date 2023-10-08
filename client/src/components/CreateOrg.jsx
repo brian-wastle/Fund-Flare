@@ -133,9 +133,12 @@ console.log(userFormData)
               setShowOverlay("hidden");
             }}
             pickerOptions={{
+              transformations: {force: true,
+                crop:{aspectRatio: 800/600,
+                force: true}},
               maxSize: 800 * 600,
               imageDim: [800, 600],
-              accept: "image/jpeg" || "image/bmp" || "image/png",
+              accept: "image/*",
               onCancel: () => {
                 setShowOverlay("hidden");
                 console.log(showOverlay);
@@ -145,6 +148,7 @@ console.log(userFormData)
                 console.log(showOverlay);
               },
             }}
+
           />
         ) : (
           <button onClick={handleImageUpload}>Choose Image</button>
@@ -161,13 +165,13 @@ console.log(userFormData)
         />
         <br />
         <p>Fundraising Goal:</p>
-        <input
+        <span>$ <input
           type="number"
           placeholder="10"
           step="5"
           name="amount"
           onChange={handleInputChange}
-        />${" "}
+        />{" "}</span>
         
         <br />
         <button

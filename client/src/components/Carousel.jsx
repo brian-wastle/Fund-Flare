@@ -48,13 +48,14 @@ const Carousel = ({ orgs }) => {
             '--swiper-pagination-color': '#FF7067',
           }}
         >
+          {/* bg-black object-scale-down */}
           {organizationData.map((project) => (
             <SwiperSlide key={project.id} style={{ width: '400px', height: '300px' }}>
               <div className="w-full h-full">
                 <Link to={`/organization/${project.id}`}>
                 <h2 className="absolute">{project.title}</h2>
                   <div className="block w-full h-full">
-                    <img className="absolute top-0 left-0 w-full h-full z-[-1] object-cover" src={project.image} alt={project.title} />
+                    <img className="absolute top-0 left-0 w-full h-full z-[-1] bg-black object-scale-down" src={project.image} alt={project.title} />
                   </div>
                 </Link>
               </div>
