@@ -7,6 +7,7 @@ import CreateOrgForm from '../components/CreateOrg'
 import ShowOrg from '../components/ShowOrg'
 import Carousel from '../components/Carousel';
 import { motion, AnimatePresence } from "framer-motion"
+import images from '../utils/importPhotos'
 
 const ProfilePage = () => {
   const [orgSetupOpen, setOrgSetupOpen] = useState(false);

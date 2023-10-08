@@ -12,7 +12,6 @@ const Carousel = ({orgs}) => {
       image: org.image,
       title: org.name,
     }));
-  
     useEffect(() => {
       const interval = setInterval(() => {
         setActiveIndex((prevIndex) => (prevIndex + 1) % organizationData.length);
