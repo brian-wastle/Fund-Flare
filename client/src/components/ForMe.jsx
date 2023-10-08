@@ -86,14 +86,14 @@ const ForMe = ({ organizations }) => {
   return (
     <>
       <div className='hidden md:container 2xl:w-2/3 mx-auto md:flex flex-wrap justify-center items-center'>
-        <div className='overflow-hidden shadow-xl'>
+        <div className='overflow-hidden'>
           <Swiper
             slidesPerView={Math.min(forYouOrgs.length, 3)}
             spaceBetween={30}
-            loop={true}
+            centeredSlides={true}
             mousewheel={true}
             autoplay={{
-              delay: 3000,
+              delay: 2000,
               disableOnInteraction: false,
             }}
             pagination={{
@@ -122,7 +122,7 @@ const ForMe = ({ organizations }) => {
       </div>
 
       <div className='md:hidden md:container 2xl:w-2/3 mx-auto flex flex-wrap justify-center items-center'>
-        <div className='overflow-hidden shadow-xl'>
+        <div className='overflow-hidden'>
           <Swiper
             slidesPerView={1}
             spaceBetween={0}

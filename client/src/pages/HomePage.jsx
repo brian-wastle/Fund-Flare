@@ -33,17 +33,19 @@ const HomePage = () => {
 
       {Auth.loggedIn() && (
         <>
+        <div className='bg-light-2 pb-14'>
           <div className='md:container 2xl:w-2/3 mx-auto'>
-            <h2 className='font-main text-primary text-2xl py-4 px-16 text-center md:text-start'>Trending for you</h2>
+            <h2 className='font-main text-primary text-2xl py-4 text-center md:text-start'>Trending for you</h2>
           </div>
 
           {/* for you carousel */}
           <ForMe organizations={organizations} />
+          </div>
         </>
       )}
 
       <div className='md:container 2xl:w-2/3 mx-auto'>
-        <h2 className='font-main text-primary text-2xl py-4 px-16 text-center md:text-start'>More from the community</h2>
+        <h2 className='font-main text-primary text-2xl pt-8 md:pt-12 text-center'>More from the community</h2>
       </div>
 
       <div className='md:container 2xl:w-2/3 mx-auto flex flex-wrap justify-center items-center'>
