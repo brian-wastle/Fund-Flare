@@ -133,8 +133,8 @@ console.log(userFormData)
               setShowOverlay("hidden");
             }}
             pickerOptions={{
-              maxSize: 1024 * 1024,
-              imageDim: [300, 200],
+              maxSize: 800 * 600,
+              imageDim: [800, 600],
               accept: "image/jpeg" || "image/bmp" || "image/png",
               onCancel: () => {
                 setShowOverlay("hidden");

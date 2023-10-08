@@ -1,6 +1,5 @@
 
 import { Link } from 'react-router-dom';
-import Carousel from '../components/Carousel';
 import ProgressBar from '../components/ProgressBar'
 import ForMe from '../components/ForMe'
 import Auth from '../utils/auth';
@@ -38,6 +37,10 @@ const HomePage = () => {
       {/* for you carousel */}
       <ForMe organizations={organizations} />
 
+
+      <div className='md:container 2xl:w-2/3 mx-auto'>
+        <h2 className='font-main text-primary text-2xl py-4 px-16 text-center md:text-start'>More from the community</h2>
+      </div>
 
       <div className='md:container 2xl:w-2/3 mx-auto flex flex-wrap justify-center items-center'>
         {firstFewElements.map((organization) => {
