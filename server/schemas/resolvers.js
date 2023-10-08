@@ -32,7 +32,8 @@ const resolvers = {
     getSearch: async (parent, {searchParams}) => {
       if (searchParams) {
         const regex = new RegExp(escapeRegex(searchParams), "gi");
-        return Organization.find({ name: regex });
+        return orgsByName = Organization.find(
+          {$or:[{name: regex},{description: regex}]});
       }
     },
     getOrdersByUserId: async (parent, args, context) => {

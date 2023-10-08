@@ -24,7 +24,7 @@ const { loading:searchLoading, data:searchData } = useQuery(
 
 
 const orgData = searchData?.getSearch||{};
-
+console.log("orgData: ", orgData)
   return (
     <>
       <input
