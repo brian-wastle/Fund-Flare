@@ -234,52 +234,93 @@ const users =  await User.create([
   await Organization.create([
     {
       "userId": users[0]._id,
-      "name": "Fake Organization 1",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "name": "Hope Haven Disaster Relief",
+      "description": "Providing hope and help in times of crisis.",
       "image": "https://placehold.co/800x600",
-      "link": "https://www.google.com/",
-      "tag": tags[0]._id,
-      "fundraisingGoal": 1000
+      "link": "https://www.hopehavenrelief.org",
+      "tag": tags[1]._id,
+      "fundraisingGoal": 5000
     },
     {
       "userId": users[1]._id,
-      "name": "Fake Organization 2",
-      "description": "Praesent vitae massa nec velit feugiat vulputate.",
+      "name": "Rapid Response Relief Network",
+      "description": "Swift emergency response and relief services.",
       "image": "https://placehold.co/800x600",
-      "link": "https://www.google.com/",
-      "fundraisingGoal": 1000,
+      "link": "https://www.rapidreliefnetwork.org",
       "tag": tags[1]._id,
-
+      "fundraisingGoal": 3000
     },
     {
       "userId": users[2]._id,
-      "name": "Fake Organization 3",
-      "description": "Suspendisse potenti. Proin bibendum turpis vitae tincidunt.",
+      "name": "Resilience United",
+      "description": "Building resilience in disaster-affected communities.",
       "image": "https://placehold.co/800x600",
-      "link": "https://www.google.com/",
-      "fundraisingGoal": 1000,
-      "tag": tags[2]._id,
-
+      "link": "https://www.resilienceunited.org",
+      "tag": tags[1]._id,
+      "fundraisingGoal": 7000
     },
     {
       "userId": users[3]._id,
-      "name": "Fake Organization 4",
-      "description": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.",
+      "name": "Healthy Futures Foundation",
+      "description": "Dedicated to promoting a healthier tomorrow for all.",
       "image": "https://placehold.co/800x600",
-      "link": "https://www.google.com/",
-      "fundraisingGoal": 1000,
-      "tag": tags[3]._id,
-
+      "link": "https://www.healthyfutures.org",
+      "tag": tags[0]._id,
+      "fundraisingGoal": 8000
     },
     {
       "userId": users[4]._id,
-      "name": "Fake Organization 5",
-      "description": "Nulla facilisi. Nullam sed nisl eu quam bibendum varius.",
+      "name": "Healing Hands Medical Relief",
+      "description": "Bringing medical care where it's needed most, in times of need.",
       "image": "https://placehold.co/800x600",
-      "link": "https://www.google.com/",
-      "fundraisingGoal": 1000,
+      "link": "https://www.healinghandsrelief.org",
+      "tag": tags[0]._id,
+      "fundraisingGoal": 6000
+    },
+    {
+      "userId": users[5]._id,
+      "name": "Artistic Expressions Society",
+      "description": "Supporting local artists and promoting creative expression.",
+      "image": "https://placehold.co/800x600",
+      "link": "https://www.artisticexpressions.org",
+      "tag": tags[2]._id,
+      "fundraisingGoal": 5000
+    },
+    {
+      "userId": users[6]._id,
+      "name": "Music and Dance Academy",
+      "description": "Empowering young talents in the world of music and dance.",
+      "image": "https://placehold.co/800x600",
+      "link": "https://www.musicanddanceacademy.org",
+      "tag": tags[2]._id,
+      "fundraisingGoal": 7000
+    },
+    {
+      "userId": users[7]._id,
+      "name": "Theater Arts Foundation",
+      "description": "Fostering the love for theater and performing arts in our community.",
+      "image": "https://placehold.co/800x600",
+      "link": "https://www.theaterartsfoundation.org",
+      "tag": tags[2]._id,
+      "fundraisingGoal": 6000
+    },
+    {
+      "userId": users[8]._id,
+      "name": "Visual Arts Collective",
+      "description": "Celebrating visual arts and supporting emerging artists.",
+      "image": "https://placehold.co/800x600",
+      "link": "https://www.visualartscollective.org",
+      "tag": tags[2]._id,
+      "fundraisingGoal": 5500
+    },
+    {
+      "userId": users[9]._id,
+      "name": "Green Earth Alliance",
+      "description": "Dedicated to preserving and protecting our planet's natural beauty.",
+      "image": "https://placehold.co/800x600",
+      "link": "https://www.greenearthalliance.org",
       "tag": tags[4]._id,
-
+      "fundraisingGoal": 8000
     }
   ]);
 

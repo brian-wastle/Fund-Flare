@@ -14,7 +14,7 @@ const typeDefs = `
 
   type Organization {
     _id: ID!
-    userId: User!
+    userId: User
     name: String!
     description: String!
     image: String

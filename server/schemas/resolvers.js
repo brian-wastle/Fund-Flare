@@ -9,7 +9,13 @@ const resolvers = {
   Query: {
     getSingleUser: async (parent, args, context) => {
       if (context.user) {
-        const user = await User.findOne({ _id: context.user._id }).populate('savedOrganizations').populate('orderHistory');
+        const user = await User.findOne({ _id: context.user._id }).populate({
+          path: 'savedOrganizations',
+          populate: [
+            { path: 'userId' }, // Populate the 'userId' field in each organization
+            { path: 'tag' },     // Populate the 'tag' field in each organization
+          ],
+        }).populate('orderHistory');
         console.log(user)
         return user
       }
@@ -27,13 +33,13 @@ const resolvers = {
       return Organization.find().sort({ createdAt: -1 }).populate('userId').populate('tag');
     },
     getOrgsByTagId: async (parent, {tagId}, context) => {
-        return Organization.find({ tag: tagId })
+        return Organization.find({ tag: { _id: tagId } }).populate('userId').populate('tag');
     },
     getSearch: async (parent, {searchParams}) => {
       if (searchParams) {
         const regex = new RegExp(escapeRegex(searchParams), "gi");
         return orgsByName = Organization.find(
-          {$or:[{name: regex},{description: regex}]});
+          {$or:[{name: regex},{description: regex}]}).populate('userId').populate('tag');
       }
     },
     getOrdersByUserId: async (parent, args, context) => {

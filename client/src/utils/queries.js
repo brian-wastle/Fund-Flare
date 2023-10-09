@@ -9,12 +9,20 @@ export const GET_SINGLE_USER = gql`
       isAdmin
       savedOrganizations {
         _id
-        userId
+        userId {
+      username
+      _id
+      image
+    }
         name
         description
         image
         link
-        tag
+        tag {
+      image
+      name
+      _id
+    }
       }
       orderHistory {
         orderId
@@ -34,12 +42,20 @@ export const GET_SINGLE_ORGANIZATION = gql`
   query getSingleOrganization($organizationId: String!) {
     getSingleOrganization(organizationId: $organizationId) {
       _id
-      userId
+      userId {
+      username
+      _id
+      image
+    }
       name
       description
       image
       link
-      tag
+      tag {
+      image
+      name
+      _id
+    }
       fundraisingGoal
       fundraisingAmount
     }
@@ -50,12 +66,20 @@ export const GET_ORGANIZATIONS = gql`
   query getOrganizations {
     getOrganizations {
       _id
-      userId
+      userId {
+      username
+      _id
+      image
+    }
       name
       description
       image
       link
-      tag
+      tag {
+      image
+      name
+      _id
+    }
       fundraisingGoal
       fundraisingAmount
     }
@@ -66,12 +90,20 @@ export const GET_ORGS_BY_TAGID = gql`
   query getOrgsByTagId($tagId: String!) {
     getOrgsByTagId(tagId: $tagId) {
       _id
-      userId
+      userId {
+      username
+      _id
+      image
+    }
       name
       description
       image
       link
-      tag
+      tag {
+      image
+      name
+      _id
+    }
       fundraisingGoal
       fundraisingAmount
     }
@@ -82,12 +114,20 @@ export const GET_SEARCH = gql`
   query getSearch($searchParams: String!) {
     getSearch(searchParams: $searchParams) {
       _id
-      userId
+      userId {
+      username
+      _id
+      image
+    }
       name
       description
       image
       link
-      tag
+      tag {
+      image
+      name
+      _id
+    }
       fundraisingGoal
       fundraisingAmount
     }
