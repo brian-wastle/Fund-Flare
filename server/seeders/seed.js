@@ -1,31 +1,7 @@
 const db = require('../config/connection.js');
 const { Order, Organization, User, Tag} = require('../models/index.js');
 const cleanDB = require('./cleanDB.js');
-// const tagSeeds = require('./tagSeeds.json');
-// const userSeeds = require('./userSeeds.json');
-// const organizationSeeds = require('./organizationSeeds.json');
-// const {
-//     tagAgriculture,
-//     tagAnimalWelfare,
-//     tagArts,
-//     tagCommunityDevelopment,
-//     tagCulturalPreservation,
-//     tagDisabilityServices,
-//     tagDisasterRelief,
-//     tagEducation,
-//     tagElderlyServices,
-//     tagEmergencyServices,
-//     tagEnvironment,
-//     tagGenderEquality,
-//     tagHealthcare,
-//     tagHomelessness,
-//     tagHumanRights,
-//     tagHungerAndPoverty,
-//     tagMentalHealth,
-//     tagSportsNRec,
-//     tagTechnology,
-//     tagYouthPrograms
-// } = require('../../client/src/utils/importPhotos.js')
+
 
 db.once('open', async () => {
   await cleanDB('User', 'users');
@@ -147,84 +123,84 @@ const users =  await User.create([
   await cleanDB('Tag', 'tags');
  const tags = await Tag.create([
     {
-        name: "Healthcare",
-        // image: tagHealthcare
+        "name": "Healthcare",
+        "image": "tagHealthcare"
     },
     {
-        name: "Disaster Relief",
-        // image: tagDisasterRelief
+        "name": "Disaster Relief",
+        "image": "tagDisasterRelief"
     },
     {
-        name: "Arts",
-        // image: tagArts
+        "name": "Arts",
+        "image": "tagArts"
     },
     {
-        name: "Education",
-        // image: tagEducation
+        "name": "Education",
+        "image": "tagEducation"
     },
     {
-        name: "Environment",
-        // image: tagEnvironment
+        "name": "Environment",
+        "image": "tagEnvironment"
     },
     {
-        name: "Hunger & Poverty",
-        // image: tagHungerAndPoverty
+        "name": "Hunger & Poverty",
+        "image": "tagHungerAndPoverty"
     },
     {
-        name: "Animal Welfare",
-        // image: tagAnimalWelfare
+        "name": "Animal Welfare",
+        "image": "tagAnimalWelfare"
     },
     {
-        name: "Community Development",
-        // image: tagCommunityDevelopment
+        "name": "Community Development",
+        "image": "tagCommunityDevelopment"
     },
     {
-        name: "Youth Programs",
-        // image: tagYouthPrograms
+        "name": "Youth Programs",
+        "image": "tagYouthPrograms"
     },
     {
-        name: "Elderly Services",
-        // image: tagElderlyServices
+        "name": "Elderly Services",
+        "image": "tagElderlyServices"
     },
     {
-        name: "Mental Health",
-        // image: tagMentalHealth
+        "name": "Mental Health",
+        "image": "tagMentalHealth"
     },
     {
-        name: "Human Rights",
-        // image: tagHumanRights
+        "name": "Human Rights",
+        "image": "tagHumanRights"
     },
     {
-        name: "Technology",
-        // image: tagTechnology
+        "name": "Technology",
+        "image": "tagTechnology"
     },
     {
-        name: "Cultural Preservation",
-        // image: tagCulturalPreservation
+        "name": "Cultural Preservation",
+        "image": "tagCulturalPreservation"
     },
     {
-        name: "Emergency Services",
-        // image: tagEmergencyServices
+        "name": "Emergency Services",
+        "image": "tagEmergencyServices"
     },
     {
-        name: "Gender Equality",
-        // image: tagGenderEquality
+        "name": "Gender Equality",
+        "image": "tagGenderEquality"
     },
     {
-        name: "Agriculture",
-        // image: tagAgriculture
+        "name": "Agriculture",
+        "image": "tagAgriculture"
     },
     {
-        name: "Homelessness",
-        // image: tagHomelessness
+        "name": "Homelessness",
+        "image": "tagHomelessness"
     },
     {
-        name: "Disability Services",
-        // image: tagDisabilityServices
+        "name": "Disability Services",
+        "image": "tagDisabilityServices"
     },
     {
-        name: "Sports & Recreation",
-        // image: tagSportsNRec
+        "name": "Sports & Recreation",
+        "image": "tagSportsNRec"
     }
 ]);
 

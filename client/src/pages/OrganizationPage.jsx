@@ -1,17 +1,17 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import Auth from '../utils/auth';
 import { motion, AnimatePresence } from "framer-motion"
 import { useQuery, useMutation } from '@apollo/client';
+import Auth from '../utils/auth';
 import { GET_SINGLE_ORGANIZATION, GET_SINGLE_USER, GET_SINGLE_TAG } from '../utils/queries';
 import { SAVE_ORGANIZATION } from '../utils/mutations';
 import { useSavedOrganizations } from '../utils/orgFunctions';
 import DonateForm from '../components/DonateForm';
 import ProgressBar from '../components/ProgressBar';
 import images from '../utils/importPhotos'
-
+const token = Auth.loggedIn() ? Auth.getToken() : null;
 const OrganizationPage = () => {
-  console.log(Auth.getProfile())
+
   const { organizationId } = useParams();
   const [donateOpen, setDonateOpen] = useState(false);
 
@@ -25,7 +25,7 @@ const OrganizationPage = () => {
     }
   );
   const orgData = data?.getSingleOrganization || {};
-  console.log("orgData:", orgData)
+
   const { loading: tagLoading, data: tagData } = useQuery(
     GET_SINGLE_TAG,
     {
@@ -33,7 +33,7 @@ const OrganizationPage = () => {
     }
   );
   const orgTag = tagData || {};
-
+  console.log("orgTag: ", orgData.tag?.image)
   const savedOrganizations = useSavedOrganizations();
   const [saveOrganization, { organizations, orgLoading, error }] = useMutation(SAVE_ORGANIZATION);
 
@@ -51,7 +51,7 @@ const OrganizationPage = () => {
 
   const handleSaveOrganization = async (orgData) => {
     // get token
-    const token = Auth.loggedIn() ? Auth.getToken() : null;
+    
     if (!token) {
       return false;
     }
@@ -88,7 +88,7 @@ const OrganizationPage = () => {
         >{organizationData.description}</p>
 
         <img className='mx-auto pb-4'
-          src={images[orgTag?.getSingleTag?.image]} alt="" />
+          src={images[orgData.tag?.image]} alt="" />
 
         <div className='bg-light-1 rounded-lg p-4 shadow-2xl'>
 
@@ -99,7 +99,6 @@ const OrganizationPage = () => {
             >${currentFunding}</span> Raised of <span className='font-main text-xl text-secondary'
             >${organizationData.fundraisingGoal}</span> Goal</h3>
 
-            <h3>{organizationData.tag.name}</h3>
 
             <ProgressBar goal={organizationData.fundraisingGoal} amount={organizationData.fundraisingAmount} />
 
@@ -112,14 +111,14 @@ const OrganizationPage = () => {
               <button className='font-secondary py-2 px-6 rounded-lg bg-primary hover:bg-secondary text-light-1 transition-all w-full md:w-auto hover:scale-105 hover:shadow-2xl'
               >Our site</button></a>
 
-            {!currentUser.isAdmin && (
+            {!currentUser.isAdmin && token && (
               <button
                 disabled={savedOrganizations.some(organization => organization._id === organizationData._id)}
                 className='btn-block btn-info font-secondary py-2 px-6 m-2 rounded-lg bg-primary hover:bg-secondary text-light-1 transition-all disabled:opacity-50 w-full md:w-auto hover:scale-105 hover:shadow-2xl'
                 onClick={() => handleSaveOrganization(organizationData)}>
                 {savedOrganizations?.some(organization => organization._id === organizationData._id)
-                  ? 'Organization saved'
-                  : 'Save Organization'}
+                  ? 'Following'
+                  : 'Follow'}
               </button>
             )}
 
