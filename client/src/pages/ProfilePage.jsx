@@ -29,7 +29,7 @@ const ProfilePage = () => {
         // is user profile
         <>
 
-          <div className='bg-light-2/40 mt-4'>
+          <div className='bg-light-2 mt-4'>
 
             <h3 className='font-main text-primary text-2xl py-4 text-center'
             >Saved Organizations</h3>
