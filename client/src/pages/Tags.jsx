@@ -36,9 +36,11 @@ if (orgDisplay) {
 
     return (
       <>
-      <button onClick={()=>setOrgDisplay(false)} className='m-4 md:m-6 w-80 bg-primary rounded-lg hover:scale-105 transition-all duration-300 hover:shadow-2xl'>
-        <h2  className='font-secondary text-text-light text-center p-2'>Back to Tags</h2>
-      </button>
+      <div className='md:container 2xl:w-2/3 mx-auto flex flex-wrap justify-center md:justify-start items-center mb-4'>
+      <button onClick={()=>setOrgDisplay(false)} className='mx-8 py-2 px-6 bg-primary font-secondary text-text-light rounded-lg hover:scale-105 transition-all duration-300 hover:shadow-2xl'
+      >Back to Tags</button>
+      </div>
+
       <OrgByTag property={tagSelection}/>
       </>
 
