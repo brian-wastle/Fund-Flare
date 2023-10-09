@@ -20,7 +20,7 @@ function ProgressBar({goal, amount, instance}) {
     bgRect.setAttribute("x", "0");
     bgRect.setAttribute("y", "0");
     bgRect.setAttribute("width", "250");
-    bgRect.setAttribute("height", "6");
+    bgRect.setAttribute("height", "8");
     bgRect.setAttribute("fill", "#FFEBE9");
 
     svg.appendChild(bgRect);
@@ -39,7 +39,7 @@ function ProgressBar({goal, amount, instance}) {
     fgRect.setAttribute("x", "0");
     fgRect.setAttribute("y", "0");
     fgRect.setAttribute("width", widthVar);
-    fgRect.setAttribute("height", "6");
+    fgRect.setAttribute("height", "8");
     fgRect.setAttribute("fill", "#FF7067");
 
     // append the new rectangle to the svg

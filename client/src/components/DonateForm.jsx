@@ -51,7 +51,7 @@ const DonateForm = ({organizationName}) => {
             <label className='font-main text-center'
             htmlFor="donation"><span className='text-xl'>I would like to donate</span>
             <input 
-            className='font-secondary form-input w-full text-center p-2 my-2 focus:outline-none rounded-lg bg-light-1'
+            className='font-secondary form-input w-full text-center p-2 my-2 focus:outline-none rounded-lg bg-light-1 shadow-xl'
             type="number"
             placeholder= "10"
             step= "5"

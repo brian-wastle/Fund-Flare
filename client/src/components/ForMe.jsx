@@ -118,7 +118,6 @@ const ForMe = ({ organizations }) => {
                     <SwiperSlide key={project._id}>
                       <div className="w-full h-full">
                         <Link to={`/organization/${project._id}`}>
-                          <h2 className="absolute">{project.name}</h2>
                           <img className="block w-full h-full rounded-xl" src={project.image} alt={project.name} />
                         </Link>
                       </div>
@@ -154,7 +153,6 @@ const ForMe = ({ organizations }) => {
                     <SwiperSlide key={project._id}>
                       <div className="w-full h-full">
                         <Link to={`/organization/${project._id}`}>
-                          <h2 className="absolute">{project.name}</h2>
                           <img className="block w-full h-full" src={project.image} alt={project.name} />
                         </Link>
                       </div>
