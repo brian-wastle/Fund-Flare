@@ -80,7 +80,7 @@ console.log(userFormData)
         >Organization Name</h3>
 
         <input
-          className='font-secondary form-input w-full text-center p-2 m-2 focus:outline-none rounded-lg bg-light-1'
+          className='font-secondary form-input w-full text-center p-2 m-2 focus:outline-none rounded-lg bg-light-1 shadow-xl'
           type="name"
           name="name"
           onChange={handleInputChange}
@@ -91,7 +91,7 @@ console.log(userFormData)
         <h3 className="mt-4 font-main"
         >Organization Tag</h3>
 
-        <select className="font-secondary form-input w-full text-center p-2 m-2 focus:outline-none rounded-lg bg-light-1"
+        <select className="font-secondary form-input w-full text-center p-2 m-2 focus:outline-none rounded-lg bg-light-1 shadow-xl"
         required name="tags" id="tags" onChange={() => handleInputEntry(event)}>
           <option value="" defaultValue>Choose a tag...</option>
           <option value="Healthcare">Healthcare</option>
@@ -120,7 +120,7 @@ console.log(userFormData)
         >Organization Description</h3>
 
         <textarea
-        className="resize-none font-secondary form-input w-full h-32 text-center p-2 m-2 focus:outline-none rounded-lg bg-light-1"
+        className="resize-none font-secondary form-input w-full h-32 text-center p-2 m-2 focus:outline-none rounded-lg bg-light-1 shadow-xl"
           type="description"
           name="description"
           onChange={handleInputChange}
@@ -162,7 +162,7 @@ console.log(userFormData)
 
           />
         ) : (
-          <button className="font-secondary py-2 px-6 rounded-lg bg-primary hover:bg-secondary text-light-1 transition-all"
+          <button className="font-secondary py-2 px-6 rounded-lg bg-primary hover:bg-secondary text-light-1 transition-all hover:scale-105 hover:shadow-2xl"
           onClick={handleImageUpload}>Choose Image</button>
         )}
 
@@ -170,7 +170,7 @@ console.log(userFormData)
         >Link</h3>
 
         <input
-        className="font-secondary form-input w-full text-center p-2 m-2 focus:outline-none rounded-lg bg-light-1"
+        className="font-secondary form-input w-full text-center p-2 m-2 focus:outline-none rounded-lg bg-light-1 shadow-xl"
           type="link"
           name="link"
           onChange={handleInputChange}
@@ -182,7 +182,7 @@ console.log(userFormData)
         >Fundraising Goal</h3>
 
         <span><span className="text-xl text-text-dark">$</span><input
-        className="font-secondary form-input p-2 m-2 focus:outline-none rounded-lg bg-light-1"
+        className="font-secondary form-input p-2 m-2 focus:outline-none rounded-lg bg-light-1 shadow-xl"
           type="number"
           placeholder="10"
           step="5"
@@ -191,7 +191,7 @@ console.log(userFormData)
         />{" "}</span>
         
         <button
-        className="font-secondary py-2 px-6 mt-4 rounded-lg bg-primary hover:bg-secondary text-light-1 transition-all disabled:opacity-30"
+        className="font-secondary py-2 px-6 mt-4 rounded-lg bg-primary hover:bg-secondary text-light-1 transition-all disabled:opacity-30 hover:scale-105 hover:shadow-2xl"
           disabled={
             !(
               userFormData.name &&
