@@ -24,19 +24,19 @@ const OrganizationPage = () => {
       variables: { organizationId: organizationId },
     }
   );
-  const orgData = data?.getSingleOrganization||{};
+  const orgData = data?.getSingleOrganization || {};
   console.log("orgData:", orgData)
-  const {loading:tagLoading, data:tagData} = useQuery(
+  const { loading: tagLoading, data: tagData } = useQuery(
     GET_SINGLE_TAG,
     {
       variables: { tagId: orgData.tag },
     }
   );
-  const orgTag = tagData||{};
+  const orgTag = tagData || {};
 
   const savedOrganizations = useSavedOrganizations();
   const [saveOrganization, { organizations, orgLoading, error }] = useMutation(SAVE_ORGANIZATION);
- 
+
   const organizationData = data?.getSingleOrganization || {};
   if (loading || userLoading) {
     return <p>Still Loading...</p>
@@ -48,7 +48,7 @@ const OrganizationPage = () => {
     currentFunding = organizationData.fundraisingAmount;
   }
 
-  
+
   const handleSaveOrganization = async (orgData) => {
     // get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -76,35 +76,53 @@ const OrganizationPage = () => {
 
   return (
     <>
-      <div className='md:container 2xl:w-1/2 p-8 my-8 mx-auto bg-light-2 drop-shadow-sm md:rounded-md'>
-        <div className='flex flex-col justify-center items-center'>
+      <div className='md:container 2xl:w-1/3 mx-auto p-4'>
 
-          <h2>{organizationData.name}</h2>
+        <h2 className='font-main text-text-dark text-2xl md:text-3xl pb-4'
+        >{organizationData.name}</h2>
 
-          <img src={organizationData.image} alt="organization profile image" />
+        <img className='w-full mx-auto'
+          src={organizationData.image} alt="organization profile image" />
 
-          <img src={images[orgTag?.getSingleTag?.image]} alt="" />
-          
-          <p>{organizationData.description}</p>
+        <p className='font-secondary text-center text-text-dark py-4 text-lg'
+        >{organizationData.description}</p>
 
-          <a href={organizationData.link} target="_blank" rel="noopener noreferrer">
-            <button className='font-secondary py-2 px-6 my-4 rounded-lg bg-primary hover:bg-secondary text-light-1 transition-all'
-            >Our site</button></a>
+        <img className='mx-auto pb-4'
+          src={images[orgTag?.getSingleTag?.image]} alt="" />
 
-          {!currentUser.isAdmin && (
-            <button
-              disabled={savedOrganizations.some(organization => organization._id === organizationData._id)}
-              className='btn-block btn-info font-secondary py-2 px-6 my-4 rounded-lg bg-primary hover:bg-secondary text-light-1 transition-all disabled:opacity-50'
-              onClick={() => handleSaveOrganization(organizationData)}>
-              {savedOrganizations?.some(organization => organization._id === organizationData._id)
-                ? 'Organization is Saved in your Profile'
-                : 'Save Organization to Profile!'}
-            </button>
-          )}
-          <ProgressBar goal={organizationData.fundraisingGoal} amount={organizationData.fundraisingAmount}/>
-          <p>Currently Raised: ${currentFunding} / Our Goal: ${organizationData.fundraisingGoal}</p>
-          <button className='font-secondary py-2 px-6 my-4 rounded-lg bg-primary hover:bg-secondary text-light-1 transition-all'
-            onClick={() => setDonateOpen(true)}>Donate</button>
+        <div className='bg-light-1 rounded-lg p-4 shadow-2xl'>
+
+          <div className='flex flex-col justify-center items-center'>
+
+            <p className='pb-2'
+            >Currently Raised: ${currentFunding} / Our Goal: ${organizationData.fundraisingGoal}</p>
+
+            <ProgressBar goal={organizationData.fundraisingGoal} amount={organizationData.fundraisingAmount} />
+
+          </div>
+
+          <div className='flex flex-col md:flex-row justify-center items-center'>
+
+            <a className='w-full md:w-auto m-2'
+            href={organizationData.link} target="_blank" rel="noopener noreferrer">
+              <button className='font-secondary py-2 px-6 rounded-lg bg-primary hover:bg-secondary text-light-1 transition-all w-full md:w-auto hover:scale-105 hover:shadow-2xl'
+              >Our site</button></a>
+
+            {!currentUser.isAdmin && (
+              <button
+                disabled={savedOrganizations.some(organization => organization._id === organizationData._id)}
+                className='btn-block btn-info font-secondary py-2 px-6 m-2 rounded-lg bg-primary hover:bg-secondary text-light-1 transition-all disabled:opacity-50 w-full md:w-auto hover:scale-105 hover:shadow-2xl'
+                onClick={() => handleSaveOrganization(organizationData)}>
+                {savedOrganizations?.some(organization => organization._id === organizationData._id)
+                  ? 'Organization saved'
+                  : 'Save Organization'}
+              </button>
+            )}
+
+            <button className='font-secondary py-2 px-6 m-2 rounded-lg bg-primary hover:bg-secondary text-light-1 transition-all w-full md:w-auto hover:scale-105 hover:shadow-2xl'
+              onClick={() => setDonateOpen(true)}>Donate</button>
+
+          </div>
         </div>
       </div>
 
