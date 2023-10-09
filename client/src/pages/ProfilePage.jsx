@@ -105,6 +105,30 @@ const ProfilePage = () => {
         )}
       </AnimatePresence>
 
+      <h3 className='font-main text-primary text-2xl pt-8 md:pt-12 text-center'
+          >Order History</h3>
+
+      <div className='md:container 2xl:w-2/3 mx-auto flex flex-col justify-center items-center'>
+            {userData.orderHistory.map((order) => {
+              return (
+                <>
+                  <div className='bg-light-2 m-2 p-4 rounded-lg w-2/3'>
+
+                    <h3 className='text-center text-2xl py-1'
+                    >{order.organizationName}</h3>
+
+                    <h3 className='text-center text-xl py-1 text-green-600'
+                    >${order.orderTotal}</h3>
+
+                    <h3 className='text-center py-1'
+                    >Completed on: {order.orderDate}</h3>
+
+                  </div>
+                </>
+              );
+            })}
+          </div>
+
     </>
   );
 };
