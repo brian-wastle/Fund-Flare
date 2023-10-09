@@ -83,79 +83,90 @@ const ForMe = ({ organizations }) => {
     return <p>Still Loading...</p>
   }
 
+  console.log(forYouOrgs.length)
+
   return (
     <>
-      <div className='hidden md:container 2xl:w-2/3 mx-auto md:flex flex-wrap justify-center items-center'>
-        <div className='overflow-hidden'>
-          <Swiper
-            slidesPerView={Math.min(forYouOrgs.length, 3)}
-            spaceBetween={30}
-            centeredSlides={true}
-            mousewheel={true}
-            autoplay={{
-              delay: 2000,
-              disableOnInteraction: false,
-            }}
-            pagination={{
-              clickable: true,
-            }}
-            modules={[Autoplay, Mousewheel, Pagination]}
-            className="mySwiper"
-            style={{
-              '--swiper-pagination-color': '#FF7067',
-            }}
-          >
+      {forYouOrgs.length >= 3 && (
+        <>
+          <div className='bg-light-2 pb-14'>
+            <div className='md:container 2xl:w-2/3 mx-auto'>
+              <h2 className='font-main text-primary text-3xl py-4 text-center md:text-start'>Trending for you</h2>
+            </div>
+            <div className='hidden md:container 2xl:w-2/3 mx-auto md:flex flex-wrap justify-center items-center'>
+              <div className='overflow-hidden'>
+                <Swiper
+                  slidesPerView={3}
+                  spaceBetween={30}
+                  centeredSlides={true}
+                  mousewheel={true}
+                  autoplay={{
+                    delay: 2000,
+                    disableOnInteraction: false,
+                  }}
+                  pagination={{
+                    clickable: true,
+                  }}
+                  modules={[Autoplay, Mousewheel, Pagination]}
+                  className="mySwiper"
+                  style={{
+                    '--swiper-pagination-color': '#FF7067',
+                  }}
+                >
 
-            {forYouOrgs.map((project) => (
-              <SwiperSlide key={project._id}>
-                <div className="w-full h-full">
-                  <Link to={`/organization/${project._id}`}>
-                    <h2 className="absolute">{project.name}</h2>
-                    <img className="block w-full h-full" src={project.image} alt={project.name} />
-                  </Link>
-                </div>
-              </SwiperSlide>
-            ))}
+                  {forYouOrgs.map((project) => (
+                    <SwiperSlide key={project._id}>
+                      <div className="w-full h-full">
+                        <Link to={`/organization/${project._id}`}>
+                          <h2 className="absolute">{project.name}</h2>
+                          <img className="block w-full h-full" src={project.image} alt={project.name} />
+                        </Link>
+                      </div>
+                    </SwiperSlide>
+                  ))}
 
-          </Swiper>
-        </div>
-      </div>
+                </Swiper>
+              </div>
+            </div>
 
-      <div className='md:hidden md:container 2xl:w-2/3 mx-auto flex flex-wrap justify-center items-center'>
-        <div className='overflow-hidden'>
-          <Swiper
-            slidesPerView={1}
-            spaceBetween={0}
-            loop={true}
-            mousewheel={true}
-            autoplay={{
-              delay: 3000,
-              disableOnInteraction: false,
-            }}
-            pagination={{
-              clickable: true,
-            }}
-            modules={[Autoplay, Mousewheel, Pagination]}
-            className="mySwiper"
-            style={{
-              '--swiper-pagination-color': '#FF7067',
-            }}
-          >
+            <div className='md:hidden md:container 2xl:w-2/3 mx-auto flex flex-wrap justify-center items-center'>
+              <div className='overflow-hidden'>
+                <Swiper
+                  slidesPerView={1}
+                  spaceBetween={0}
+                  loop={true}
+                  mousewheel={true}
+                  autoplay={{
+                    delay: 3000,
+                    disableOnInteraction: false,
+                  }}
+                  pagination={{
+                    clickable: true,
+                  }}
+                  modules={[Autoplay, Mousewheel, Pagination]}
+                  className="mySwiper"
+                  style={{
+                    '--swiper-pagination-color': '#FF7067',
+                  }}
+                >
 
-            {forYouOrgs.map((project) => (
-              <SwiperSlide key={project._id}>
-                <div className="w-full h-full">
-                  <Link to={`/organization/${project._id}`}>
-                    <h2 className="absolute">{project.name}</h2>
-                    <img className="block w-full h-full" src={project.image} alt={project.name} />
-                  </Link>
-                </div>
-              </SwiperSlide>
-            ))}
+                  {forYouOrgs.map((project) => (
+                    <SwiperSlide key={project._id}>
+                      <div className="w-full h-full">
+                        <Link to={`/organization/${project._id}`}>
+                          <h2 className="absolute">{project.name}</h2>
+                          <img className="block w-full h-full" src={project.image} alt={project.name} />
+                        </Link>
+                      </div>
+                    </SwiperSlide>
+                  ))}
 
-          </Swiper>
-        </div>
-      </div>
+                </Swiper>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
     </>
   );
 };
