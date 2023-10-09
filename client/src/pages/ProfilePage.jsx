@@ -66,17 +66,27 @@ const ProfilePage = () => {
         // is admin profile
         <div>
 
-          <h2 className='text-2xl'>My Organization</h2>
-
           {userData.myOrganizationId
             ?
-            <ShowOrg property={userData.myOrganizationId} />
+            <div className='bg-light-2 pb-8 mt-4'>
+              <h2 className='font-main text-primary text-3xl py-4 text-center'
+              >My Organization</h2>
+              <ShowOrg property={userData.myOrganizationId} />
+            </div>
             :
-            <div className="createOrgButton">
-              <p>It doesn't look like you've set up an organization yet...</p>
-              <p>Click the button below to get started on your fundraising project!</p>
-              <button className='font-secondary py-2 px-6 my-4 rounded-lg bg-primary hover:bg-secondary text-light-1 transition-all'
-                onClick={() => setOrgSetupOpen(true)}>Setup Organization</button>
+            <div className="createOrgButton mt-8">
+              <div className='md:container 2xl:w-2/3 mx-auto flex flex-col justify-center items-center mb-4'>
+
+                <h3 className='font-secondary text-text-dark text-xl py-1 text-center'
+                >It doesn't look like you've set up an organization yet...</h3>
+
+                <h3 className='font-secondary text-text-dark text-xl py-1 text-center'
+                >Click the button below to get started on your fundraising project!</h3>
+
+                <button className='font-secondary py-2 px-6 my-4 rounded-lg bg-primary hover:bg-secondary text-light-1 transition-all'
+                  onClick={() => setOrgSetupOpen(true)}>Setup Organization</button>
+
+              </div>
             </div>
           }
 
