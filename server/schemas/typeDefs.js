@@ -14,12 +14,12 @@ const typeDefs = `
 
   type Organization {
     _id: ID!
-    userId: String!
+    userId: User!
     name: String!
     description: String!
     image: String
     link: String
-    tag: ID
+    tag: Tag
     fundraisingGoal: Int!
     fundraisingAmount: Int
   }

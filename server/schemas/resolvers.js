@@ -21,10 +21,10 @@ const resolvers = {
 
     },
     getSingleOrganization: async (parent, { organizationId }) => {
-      return Organization.findOne({ _id: organizationId })
+      return Organization.findOne({ _id: organizationId }).populate('userId').populate('tag');
     },
     getOrganizations: async () => {
-      return Organization.find().sort({ createdAt: -1 });
+      return Organization.find().sort({ createdAt: -1 }).populate('userId').populate('tag');
     },
     getOrgsByTagId: async (parent, {tagId}, context) => {
         return Organization.find({ tag: tagId })
