@@ -20,16 +20,16 @@ const Carousel = ({ orgs }) => {
 
   return (
     <>
-      <div className='w-full py-8 mx-auto'>
+      <div className='w-full pb-8 mx-auto'>
         <Swiper
           effect={'coverflow'}
           grabCursor={true}
           centeredSlides={true}
           slidesPerView={"auto"}
-          spaceBetween={0}
+          spaceBetween={60}
           coverflowEffect={{
             rotate: 10,
-            stretch: 0,
+            stretch: 60,
             depth: 200,
             modifier: 1,
             slideShadows: true,

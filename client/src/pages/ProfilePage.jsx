@@ -21,27 +21,46 @@ const ProfilePage = () => {
   }
   return (
     <>
-      <h2 className='text-3xl'
-      >{userData.username}'s profile</h2>
+      <h2 className='font-main text-primary text-3xl text-center'
+      >Welcome back {userData.username}!</h2>
 
       {/*conditional rendering based on whether profile is an admin or a user */}
       {userData.isAdmin === false ? (
         // is user profile
         <>
-          <h3 className='text-2xl'
-          >Saved Organizations</h3>
-          <Carousel orgs={userData.savedOrganizations} />
-          <br />
-          Order History
-          {userData.orderHistory.map((order) => {
-            return (
-              <>
-                <p>{order.organizationName}</p>
-                <p>Completed on: {order.orderDate}</p>
-                <p>${order.orderTotal}</p>
-              </>
-            );
-          })}
+
+          <div className='bg-light-2 mt-4'>
+
+            <h3 className='font-main text-primary text-2xl py-4 text-center'
+            >Saved Organizations</h3>
+
+            <Carousel orgs={userData.savedOrganizations} />
+
+          </div>
+
+          <h3 className='font-main text-primary text-2xl pt-8 md:pt-12 text-center'
+          >Order History</h3>
+
+          <div className='md:container 2xl:w-2/3 mx-auto flex flex-col justify-center items-center'>
+            {userData.orderHistory.map((order) => {
+              return (
+                <>
+                  <div className='bg-light-2 m-2 p-4 rounded-lg w-2/3'>
+
+                    <h3 className='text-center text-2xl py-1'
+                    >{order.organizationName}</h3>
+
+                    <h3 className='text-center text-xl py-1 text-green-600'
+                    >${order.orderTotal}</h3>
+
+                    <h3 className='text-center py-1'
+                    >Completed on: {order.orderDate}</h3>
+
+                  </div>
+                </>
+              );
+            })}
+          </div>
         </>
       ) : (
         // is admin profile
