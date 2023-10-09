@@ -11,13 +11,13 @@ const AppNavbar = () => {
   const [loginOpen, setLoginOpen] = useState(false);
   const { loading, data } = useQuery(GET_SINGLE_USER);
   const userData = data?.getSingleUser || {};
-console.log(userData)
+  console.log(userData)
   return (
     <>
       <h1 className='font-main text-4xl md:text-6xl text-center py-8 text-primary'
       ><Link to="/">FundFlare</Link></h1>
 
-      <button className='absolute top-5 right-5 md:top-10 md:right-10 text-2xl text-text-dark inline'
+      <button className='absolute top-8 right-5 md:top-10 md:right-10 text-2xl text-text-dark transition-all duration-200 hover:scale-110'
         onClick={() => setMenuOpen(true)}>menu</button>
 
       <AnimatePresence>
@@ -35,53 +35,59 @@ console.log(userData)
               {Auth.loggedIn() ? (
                 <>
                   <motion.div
+                    initial={{ x: 0 }}
+                    animate={{ x: 0 }}
+                    exit={{ x: 0 }}
+                    transition={{ duration: 0.4 }}>
+                    <button className='font-main text-2xl text-text-dark hover:text-primary w-full p-4 bg-light-2 border-l-8 border-secondary hover:border-primary transition-all duration-300 hover:md:scale-110'
+                      onClick={() => { Auth.logout(), setMenuOpen(false) }}>logout</button>
+                  </motion.div>
+
+                  <motion.div
                     initial={{ x: 30 }}
                     animate={{ x: 0 }}
                     exit={{ x: 30 }}
                     transition={{ duration: 0.4 }}>
-                    <button className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
-                      onClick={() => { Auth.logout(), setMenuOpen(false) }}>logout</button>
+                    <Link to={`/profile/${Auth.getProfile().data._id}`}><button
+                      className='font-main text-2xl text-text-dark hover:text-primary w-full p-4 bg-light-2 border-l-8 border-secondary hover:border-primary transition-all duration-300 hover:md:scale-110'
+                      onClick={() => setMenuOpen(false)}>profile</button></Link>
                   </motion.div>
 
-                  <Link to={`/profile/${Auth.getProfile().data._id}`}><button
-                    className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
-                    onClick={() => setMenuOpen(false)}>my profile</button></Link>
-
-                  {userData.isAdmin && userData.myOrganizationId &&(
+                  {userData.isAdmin && userData.myOrganizationId && (
                     <motion.div
-                      initial={{ x: 0 }}
+                      initial={{ x: 60 }}
                       animate={{ x: 0 }}
-                      exit={{ x: 0 }}
+                      exit={{ x: 60 }}
                       transition={{ duration: 0.4 }}>
                       <Link to={`/organization/${userData.myOrganizationId}`}><button
-                        className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
+                        className='font-main text-2xl text-text-dark hover:text-primary w-full p-4 bg-light-2 border-l-8 border-secondary hover:border-primary transition-all duration-300 hover:md:scale-110'
                         onClick={() => setMenuOpen(false)}>my organization</button></Link>
                     </motion.div>
                   )}
                 </>
               ) : (
-                <button className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
+                <button className='font-main text-2xl text-text-dark hover:text-primary w-full p-4 bg-light-2 border-l-8 border-secondary hover:border-primary transition-all duration-300 hover:md:scale-110'
                   onClick={() => { setLoginOpen(true), setMenuOpen(false) }}>login</button>
               )}
 
-
-              <motion.div
-                initial={{ x: 60 }}
-                animate={{ x: 0 }}
-                exit={{ x: 60 }}
-                transition={{ duration: 0.4 }}>
-                <Link to="/search"><button
-                  className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
-                  onClick={() => setMenuOpen(false)}>search</button></Link>
-              </motion.div>
 
               <motion.div
                 initial={{ x: 90 }}
                 animate={{ x: 0 }}
                 exit={{ x: 90 }}
                 transition={{ duration: 0.4 }}>
+                <Link to="/search"><button
+                  className='font-main text-2xl text-text-dark hover:text-primary w-full p-4 bg-light-2 border-l-8 border-secondary hover:border-primary transition-all duration-300 hover:md:scale-110'
+                  onClick={() => setMenuOpen(false)}>search</button></Link>
+              </motion.div>
+
+              <motion.div
+                initial={{ x: 120 }}
+                animate={{ x: 0 }}
+                exit={{ x: 120 }}
+                transition={{ duration: 0.4 }}>
                 <Link to="/tags"><button
-                  className='font-secondary text-2xl text-text-dark w-full p-4 bg-light-2 border-l-8 border-primary hover:border-secondary transition-all duration-300'
+                  className='font-main text-2xl text-text-dark hover:text-primary w-full p-4 bg-light-2 border-l-8 border-secondary hover:border-primary transition-all duration-300 hover:md:scale-110'
                   onClick={() => setMenuOpen(false)}>browse</button></Link>
               </motion.div>
 

@@ -50,7 +50,7 @@ const LoginForm = () => {
         <form onSubmit={handleFormSubmit} className='form login-form flex flex-col justify-center items-center'>
 
           <input
-            className='font-secondary form-input text-center p-2 m-2 focus:outline-none rounded-lg bg-light-1'
+            className='font-secondary form-input text-center p-2 m-2 focus:outline-none rounded-lg bg-light-1 shadow-xl'
             type='email'
             placeholder='email'
             name='email'
@@ -60,7 +60,7 @@ const LoginForm = () => {
           />
 
           <input
-            className='font-secondary form-input text-center p-2 m-2 focus:outline-none rounded-lg bg-light-1'
+            className='font-secondary form-input text-center p-2 m-2 focus:outline-none rounded-lg bg-light-1 shadow-xl'
             type='password'
             placeholder='password'
             name='password'
@@ -70,7 +70,7 @@ const LoginForm = () => {
           />
 
           <button
-            className='font-secondary py-2 px-6 m-2 rounded-lg bg-primary hover:bg-secondary text-light-1 transition-all disabled:opacity-30'
+            className='font-secondary py-2 px-6 m-2 rounded-lg bg-primary hover:bg-secondary text-light-1 transition-all disabled:opacity-30 hover:scale-105 hover:shadow-2xl'
             disabled={!(userFormData.email && userFormData.password)}
             type='submit'
             variant='success'>
