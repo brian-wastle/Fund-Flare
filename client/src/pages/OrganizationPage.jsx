@@ -81,7 +81,7 @@ const OrganizationPage = () => {
         <h2 className='font-main text-text-dark text-2xl md:text-3xl pb-4'
         >{organizationData.name}</h2>
 
-        <img className='w-full mx-auto'
+        <img className='w-full mx-auto rounded-xl shadow-lg'
           src={organizationData.image} alt="organization profile image" />
 
         <p className='font-secondary text-center text-text-dark py-4 text-lg'
@@ -94,8 +94,10 @@ const OrganizationPage = () => {
 
           <div className='flex flex-col justify-center items-center'>
 
-            <p className='pb-2'
-            >Currently Raised: ${currentFunding} / Our Goal: ${organizationData.fundraisingGoal}</p>
+            <h3 className='pb-2 font-secondary text-text-dark'
+            ><span className='font-main text-xl text-secondary'
+            >${currentFunding}</span> Raised of <span className='font-main text-xl text-secondary'
+            >${organizationData.fundraisingGoal}</span> Goal</h3>
 
             <ProgressBar goal={organizationData.fundraisingGoal} amount={organizationData.fundraisingAmount} />
 

@@ -21,7 +21,7 @@ const ProfilePage = () => {
   }
   return (
     <>
-      <h2 className='font-main text-primary text-3xl text-center'
+      <h2 className='font-main text-text-dark text-3xl text-center opacity-50'
       >Welcome back {userData.username}!</h2>
 
       {/*conditional rendering based on whether profile is an admin or a user */}
@@ -41,11 +41,11 @@ const ProfilePage = () => {
           <h3 className='font-main text-primary text-2xl pt-8 md:pt-12 text-center'
           >Order History</h3>
 
-          <div className='md:container 2xl:w-2/3 mx-auto flex flex-col justify-center items-center'>
+          <div className='md:container 2xl:w-2/3 mx-auto flex flex-col-reverse justify-center items-center'>
             {userData.orderHistory.map((order) => {
               return (
                 <>
-                  <div className='bg-light-2 m-2 p-4 rounded-lg w-2/3'>
+                  <div className='bg-light-1 m-2 p-4 rounded-lg w-2/3 shadow-2xl'>
 
                     <h3 className='text-center text-2xl py-1'
                     >{order.organizationName}</h3>

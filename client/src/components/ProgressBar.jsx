@@ -21,7 +21,7 @@ function ProgressBar({goal, amount, instance}) {
     bgRect.setAttribute("y", "0");
     bgRect.setAttribute("width", "250");
     bgRect.setAttribute("height", "6");
-    bgRect.setAttribute("fill", "#FFF6F6");
+    bgRect.setAttribute("fill", "#FFEBE9");
 
     svg.appendChild(bgRect);
 
