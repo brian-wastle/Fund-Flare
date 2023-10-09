@@ -99,6 +99,8 @@ const OrganizationPage = () => {
             >${currentFunding}</span> Raised of <span className='font-main text-xl text-secondary'
             >${organizationData.fundraisingGoal}</span> Goal</h3>
 
+            <h3>{organizationData.tag.name}</h3>
+
             <ProgressBar goal={organizationData.fundraisingGoal} amount={organizationData.fundraisingAmount} />
 
           </div>
@@ -106,7 +108,7 @@ const OrganizationPage = () => {
           <div className='flex flex-col md:flex-row justify-center items-center'>
 
             <a className='w-full md:w-auto m-2'
-            href={organizationData.link} target="_blank" rel="noopener noreferrer">
+              href={organizationData.link} target="_blank" rel="noopener noreferrer">
               <button className='font-secondary py-2 px-6 rounded-lg bg-primary hover:bg-secondary text-light-1 transition-all w-full md:w-auto hover:scale-105 hover:shadow-2xl'
               >Our site</button></a>
 
