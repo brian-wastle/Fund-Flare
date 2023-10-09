@@ -27,13 +27,17 @@ const orgData = searchData?.getSearch||{};
 console.log("orgData: ", orgData)
   return (
     <>
-      <input
+    <div className='md:container 2xl:w-2/3 mx-auto flex flex-row justify-center items-center'>
+
+      <input className='font-secondary form-input text-center p-2 m-2 focus:outline-none rounded-lg bg-light-2'
         type="text"
         placeholder="search"
         name="search"
         onChange={() => handleInputEntry(event)}
       />
-      <button onClick={() => setSkip(false)}>Search</button>
+      <button className='font-secondary py-2 px-6 m-2 rounded-lg bg-primary hover:bg-secondary text-light-1 transition-all'
+      onClick={() => setSkip(false)}>Search</button>
+      </div>
 
       {
         (orgData.length) ?
