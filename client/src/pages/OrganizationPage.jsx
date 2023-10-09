@@ -80,6 +80,7 @@ const OrganizationPage = () => {
         <div className='flex flex-col justify-center items-center'>
 
           <h2>{organizationData.name}</h2>
+          <h3>{organizationData.tag.name}</h3>
 
           <img src={organizationData.image} alt="organization profile image" />
 
