@@ -55,7 +55,7 @@ const Carousel = ({ orgs }) => {
                 <Link to={`/organization/${project.id}`}>
                 <h2 className="absolute">{project.title}</h2>
                   <div className="block w-full h-full">
-                    <img className="absolute top-0 left-0 w-full h-full z-[-1] bg-black object-scale-down" src={project.image} alt={project.title} />
+                    <img className="absolute top-0 left-0 w-full h-full z-[-1] bg-black object-scale-down rounded-xl" src={project.image} alt={project.title} />
                   </div>
                 </Link>
               </div>
