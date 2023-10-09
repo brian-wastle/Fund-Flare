@@ -17,8 +17,11 @@ const ForMe = ({ organizations }) => {
   // console.log(userData)
 
   const savedOrgs = userData.savedOrganizations
-  const tagIdsArray = savedOrgs?.map((org) => org.tag).filter(Boolean);
+  const tagObjectsArray = savedOrgs?.map((org) => org.tag).filter(Boolean);
+  console.log(tagObjectsArray);
+  const tagIdsArray = tagObjectsArray?.map((obj) => obj._id);
   console.log(tagIdsArray);
+
 
   const { _, data: tagData } = useQuery(GET_ALL_TAGS);
   const allTagData = tagData?.getAllTags || {};
@@ -72,7 +75,7 @@ const ForMe = ({ organizations }) => {
     };
 
     forYouOrgs.length = 0; // Clear the existing content
-    forYouOrgs.push(...organizations.filter(value => sortedIds?.includes(value.tag)));
+    forYouOrgs.push(...organizations.filter(value => sortedIds?.includes(value.tag._id)));
     forYouOrgs.sort(customSort);
     console.log(organizations);
     console.log(forYouOrgs)
