@@ -215,7 +215,8 @@ const users =  await User.create([
       "image": "https://placehold.co/800x600",
       "link": "https://www.hopehavenrelief.org",
       "tag": tags[1]._id,
-      "fundraisingGoal": 5000
+      "fundraisingGoal": 5000,
+      "fundraisingAmount": 1000
     },
     {
       "userId": users[1]._id,
@@ -224,7 +225,8 @@ const users =  await User.create([
       "image": "https://placehold.co/800x600",
       "link": "https://www.rapidreliefnetwork.org",
       "tag": tags[1]._id,
-      "fundraisingGoal": 3000
+      "fundraisingGoal": 3000,
+      "fundraisingAmount": 500
     },
     {
       "userId": users[2]._id,
@@ -233,7 +235,8 @@ const users =  await User.create([
       "image": "https://placehold.co/800x600",
       "link": "https://www.resilienceunited.org",
       "tag": tags[1]._id,
-      "fundraisingGoal": 7000
+      "fundraisingGoal": 7000,
+      "fundraisingAmount": 2500
     },
     {
       "userId": users[3]._id,
@@ -242,7 +245,8 @@ const users =  await User.create([
       "image": "https://placehold.co/800x600",
       "link": "https://www.healthyfutures.org",
       "tag": tags[0]._id,
-      "fundraisingGoal": 8000
+      "fundraisingGoal": 8000,
+      "fundraisingAmount": 1000
     },
     {
       "userId": users[4]._id,
@@ -251,7 +255,8 @@ const users =  await User.create([
       "image": "https://placehold.co/800x600",
       "link": "https://www.healinghandsrelief.org",
       "tag": tags[0]._id,
-      "fundraisingGoal": 6000
+      "fundraisingGoal": 6000,
+      "fundraisingAmount": 100
     },
     {
       "userId": users[5]._id,
@@ -260,7 +265,8 @@ const users =  await User.create([
       "image": "https://placehold.co/800x600",
       "link": "https://www.artisticexpressions.org",
       "tag": tags[2]._id,
-      "fundraisingGoal": 5000
+      "fundraisingGoal": 5000,
+      "fundraisingAmount": 4000
     },
     {
       "userId": users[6]._id,
@@ -269,7 +275,8 @@ const users =  await User.create([
       "image": "https://placehold.co/800x600",
       "link": "https://www.musicanddanceacademy.org",
       "tag": tags[2]._id,
-      "fundraisingGoal": 7000
+      "fundraisingGoal": 7000,
+      "fundraisingAmount": 6000
     },
     {
       "userId": users[7]._id,
@@ -278,7 +285,8 @@ const users =  await User.create([
       "image": "https://placehold.co/800x600",
       "link": "https://www.theaterartsfoundation.org",
       "tag": tags[2]._id,
-      "fundraisingGoal": 6000
+      "fundraisingGoal": 6000,
+      "fundraisingAmount": 3500
     },
     {
       "userId": users[8]._id,
@@ -287,7 +295,9 @@ const users =  await User.create([
       "image": "https://placehold.co/800x600",
       "link": "https://www.visualartscollective.org",
       "tag": tags[2]._id,
-      "fundraisingGoal": 5500
+      "fundraisingGoal": 5500,
+      "fundraisingAmount": 700
+
     },
     {
       "userId": users[9]._id,
@@ -296,7 +306,8 @@ const users =  await User.create([
       "image": "https://placehold.co/800x600",
       "link": "https://www.greenearthalliance.org",
       "tag": tags[4]._id,
-      "fundraisingGoal": 8000
+      "fundraisingGoal": 8000,
+      "fundraisingAmount": 1000
     }
   ]);
 
