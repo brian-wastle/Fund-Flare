@@ -31,6 +31,7 @@ const organizationSchema = new Schema({
   },
   fundraisingAmount: {
     type: Number,
+    default: 0
   }
 
 });
