@@ -187,7 +187,7 @@ const resolvers = {
             runValidators: true,
           }
         );
-        const populatedOrganization = await Organization.findById(organization._id).populate('userId').populate('tag');
+        const populatedOrganization = await Organization.findById(organization._id);
         console.log(populatedOrganization);
         return populatedOrganization
       }
@@ -228,6 +228,12 @@ const resolvers = {
         const updatedOrder = await Order.findOneAndUpdate(
           { orderId: '' },
           { $set: { orderId: session.id  } },
+          { new: true, runValidators: true }
+        );
+
+        const updatedOrg = await Organization.findOneAndUpdate(
+          { name: order.organizationName },
+          { $inc: { fundraisingAmount: order.orderTotal  } },
           { new: true, runValidators: true }
         );
 
