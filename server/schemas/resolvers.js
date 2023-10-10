@@ -48,6 +48,9 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
+    getOrdersByOrgName: async (parent, {organizationName}) => {
+      return Order.find({ organizationName: organizationName })
+    },
     getSingleOrder: async (parent, { orderId }, context) => {
       if (context.user) {
         console.log(orderId);

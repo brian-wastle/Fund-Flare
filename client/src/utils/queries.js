@@ -160,6 +160,18 @@ export const GET_ORDERS_BY_USER_ID = gql`
   }
 `;
 
+export const GET_ORDERS_BY_ORG_NAME = gql`
+  query getOrdersByOrgName($organizationName: String!) {
+    getOrdersByOrgName(organizationName: $organizationName) {
+      orderId
+      userId
+      orderTotal
+      orderDate
+      organizationName
+    }
+  }
+`;
+
 export const GET_SINGLE_TAG = gql`
   query getSingleTag($tagId: String!) {
     getSingleTag(tagId: $tagId) {

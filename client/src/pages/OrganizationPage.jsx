@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from "framer-motion"
 import { useQuery, useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
-import { GET_SINGLE_ORGANIZATION, GET_SINGLE_USER, GET_SINGLE_TAG } from '../utils/queries';
+import { GET_SINGLE_ORGANIZATION, GET_SINGLE_USER, GET_SINGLE_TAG, GET_ORDERS_BY_ORG_NAME } from '../utils/queries';
 import { SAVE_ORGANIZATION } from '../utils/mutations';
 import { useSavedOrganizations } from '../utils/orgFunctions';
 import DonateForm from '../components/DonateForm';
@@ -24,7 +24,21 @@ const OrganizationPage = () => {
       variables: { organizationId: organizationId },
     }
   );
+
   const orgData = data?.getSingleOrganization || {};
+
+
+
+  const { loading:orderLoading, data:ordData } = useQuery(
+    GET_ORDERS_BY_ORG_NAME,
+    {
+      variables: { organizationName: orgData.name },
+    }
+  );
+  const orderData = ordData?.getOrdersByOrgName || [];
+  console.log("orderData: ", orderData)
+
+  
 
   const { loading: tagLoading, data: tagData } = useQuery(
     GET_SINGLE_TAG,
@@ -132,6 +146,28 @@ const OrganizationPage = () => {
 
             </div>
           </div>
+          <br />
+          <p className="font-bold flex justify-center">Recent Donations</p>
+          {orderData?.map((order) => {
+                return (
+                  <div className="flex justify-center">
+
+                    <div className='bg-light-1 m-2 p-4 rounded-lg w-2/3 shadow-2xl'>
+
+                      <h3 className='text-center text-xl py-1 text-green-600'
+                      >${order.orderTotal}</h3>
+
+                      <h3 className='text-center py-1'
+                      >Completed on: {order.orderDate}</h3>
+                    </div>
+                  </div>
+                );
+              })}
+
+
+
+
+
         </div>
 
         <AnimatePresence>
