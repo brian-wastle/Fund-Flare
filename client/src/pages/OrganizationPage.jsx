@@ -148,7 +148,7 @@ const OrganizationPage = () => {
           </div>
           <br />
           <p className="font-bold flex justify-center">Recent Donations</p>
-          {orderData?.map((order) => {
+          {orderData?.filter((order, idx) => idx < 3).map((order) => {
                 return (
                   <div className="flex justify-center">
 
