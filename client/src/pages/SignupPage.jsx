@@ -58,9 +58,8 @@ const SignupForm = () => {
     <>
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1, transition: { ease: "easeOut", duration: 0.2 } }}
-        exit={{ opacity: 0, transition: { ease: "easeIn", duration: 0.2 } }}
-      >
+        animate={{ opacity: 1, transition: { ease: "easeOut", duration: 0.6 } }}
+        exit={{ opacity: 0, transition: { ease: "easeIn", duration: 0.6 } }}>
 
         <div className='md:container 2xl:w-1/4 xl:w-1/3 lg:w-1/2 md:w-2/3 p-8 my-8 mx-auto bg-light-2 drop-shadow-sm md:rounded-md'>
           <label>
