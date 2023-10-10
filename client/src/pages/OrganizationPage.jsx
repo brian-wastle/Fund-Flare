@@ -51,7 +51,7 @@ const OrganizationPage = () => {
 
   const handleSaveOrganization = async (orgData) => {
     // get token
-    
+
     if (!token) {
       return false;
     }
@@ -76,82 +76,88 @@ const OrganizationPage = () => {
 
   return (
     <>
-      <div className='md:container 2xl:w-1/3 mx-auto p-4'>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, transition: { ease: "easeOut", duration: 0.6 } }}
+        exit={{ opacity: 0, transition: { ease: "easeIn", duration: 0.6 } }}>
 
-        <h2 className='font-main text-text-dark text-2xl md:text-3xl pb-4'
-        >{organizationData.name}</h2>
+        <div className='md:container 2xl:w-1/3 mx-auto p-4'>
 
-        <img className='w-full mx-auto rounded-xl shadow-lg'
-          src={organizationData.image} alt="organization profile image" />
+          <h2 className='font-main text-text-dark text-2xl md:text-3xl pb-4'
+          >{organizationData.name}</h2>
 
-        <p className='font-secondary text-center text-text-dark py-4 text-lg'
-        >{organizationData.description}</p>
+          <img className='w-full mx-auto rounded-xl shadow-lg'
+            src={organizationData.image} alt="organization profile image" />
 
-        <img className='mx-auto pb-4'
-          src={images[orgData.tag?.image]} alt="" />
+          <p className='font-secondary text-center text-text-dark py-4 text-lg'
+          >{organizationData.description}</p>
 
-        <div className='bg-light-1 rounded-lg p-4 shadow-2xl'>
+          <img className='mx-auto pb-4'
+            src={images[orgData.tag?.image]} alt="" />
 
-          <div className='flex flex-col justify-center items-center'>
+          <div className='bg-light-1 rounded-lg p-4 shadow-2xl'>
 
-            <h3 className='pb-2 font-secondary text-text-dark'
-            ><span className='font-main text-xl text-secondary'
-            >${currentFunding}</span> Raised of <span className='font-main text-xl text-secondary'
-            >${organizationData.fundraisingGoal}</span> Goal</h3>
+            <div className='flex flex-col justify-center items-center'>
+
+              <h3 className='pb-2 font-secondary text-text-dark'
+              ><span className='font-main text-xl text-secondary'
+              >${currentFunding}</span> Raised of <span className='font-main text-xl text-secondary'
+              >${organizationData.fundraisingGoal}</span> Goal</h3>
 
 
-            <ProgressBar goal={organizationData.fundraisingGoal} amount={organizationData.fundraisingAmount} />
+              <ProgressBar goal={organizationData.fundraisingGoal} amount={organizationData.fundraisingAmount} />
 
-          </div>
+            </div>
 
-          <div className='flex flex-col md:flex-row justify-center items-center'>
+            <div className='flex flex-col md:flex-row justify-center items-center'>
 
-            <a className='w-full md:w-auto m-2'
-              href={organizationData.link} target="_blank" rel="noopener noreferrer">
-              <button className='font-secondary py-2 px-6 rounded-lg bg-primary hover:bg-secondary text-light-1 transition-all w-full md:w-auto hover:scale-105 hover:shadow-2xl'
-              >Our site</button></a>
+              <a className='w-full md:w-auto m-2'
+                href={organizationData.link} target="_blank" rel="noopener noreferrer">
+                <button className='font-secondary py-2 px-6 rounded-lg bg-primary hover:bg-secondary text-light-1 transition-all w-full md:w-auto hover:scale-105 hover:shadow-2xl'
+                >Our site</button></a>
 
-            {!currentUser.isAdmin && token && (
-              <button
-                disabled={savedOrganizations.some(organization => organization._id === organizationData._id)}
-                className='btn-block btn-info font-secondary py-2 px-6 m-2 rounded-lg bg-primary hover:bg-secondary text-light-1 transition-all disabled:opacity-50 w-full md:w-auto hover:scale-105 hover:shadow-2xl'
-                onClick={() => handleSaveOrganization(organizationData)}>
-                {savedOrganizations?.some(organization => organization._id === organizationData._id)
-                  ? 'Following'
-                  : 'Follow'}
-              </button>
-            )}
+              {!currentUser.isAdmin && token && (
+                <button
+                  disabled={savedOrganizations.some(organization => organization._id === organizationData._id)}
+                  className='btn-block btn-info font-secondary py-2 px-6 m-2 rounded-lg bg-primary hover:bg-secondary text-light-1 transition-all disabled:opacity-50 w-full md:w-auto hover:scale-105 hover:shadow-2xl'
+                  onClick={() => handleSaveOrganization(organizationData)}>
+                  {savedOrganizations?.some(organization => organization._id === organizationData._id)
+                    ? 'Following'
+                    : 'Follow'}
+                </button>
+              )}
 
-            <button className='font-secondary py-2 px-6 m-2 rounded-lg bg-primary hover:bg-secondary text-light-1 transition-all w-full md:w-auto hover:scale-105 hover:shadow-2xl'
-              onClick={() => setDonateOpen(true)}>Donate</button>
+              <button className='font-secondary py-2 px-6 m-2 rounded-lg bg-primary hover:bg-secondary text-light-1 transition-all w-full md:w-auto hover:scale-105 hover:shadow-2xl'
+                onClick={() => setDonateOpen(true)}>Donate</button>
 
+            </div>
           </div>
         </div>
-      </div>
 
-      <AnimatePresence>
-        {donateOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1, transition: { ease: "easeOut", duration: 0.2 } }}
-            exit={{ opacity: 0, transition: { ease: "easeIn", duration: 0.2 } }}
-            className='absolute top-0 w-full h-full z-10'>
-
-
-            <div onClick={() => setDonateOpen(false)}
-              className='absolute top-0 w-full h-full bg-black opacity-50' />
-
+        <AnimatePresence>
+          {donateOpen && (
             <motion.div
-              initial={{ scale: 0.75 }}
-              animate={{ scale: 1, transition: { ease: "easeOut", duration: 0.2 } }}
-              exit={{ scale: 0.75, transition: { ease: "easeIn", duration: 0.2 } }}>
-              <DonateForm organizationName={organizationData.name}></DonateForm>
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1, transition: { ease: "easeOut", duration: 0.2 } }}
+              exit={{ opacity: 0, transition: { ease: "easeIn", duration: 0.2 } }}
+              className='absolute top-0 w-full h-full z-10'>
+
+
+              <div onClick={() => setDonateOpen(false)}
+                className='absolute top-0 w-full h-full bg-black opacity-50' />
+
+              <motion.div
+                initial={{ scale: 0.75 }}
+                animate={{ scale: 1, transition: { ease: "easeOut", duration: 0.2 } }}
+                exit={{ scale: 0.75, transition: { ease: "easeIn", duration: 0.2 } }}>
+                <DonateForm organizationName={organizationData.name}></DonateForm>
+              </motion.div>
+
             </motion.div>
+          )}
+        </AnimatePresence>
 
-          </motion.div>
-        )}
-      </AnimatePresence>
-
+      </motion.div>
     </>
   );
 };
