@@ -114,12 +114,20 @@ export const ADD_ORGANIZATION = gql`
   mutation addOrganization($input: addOrganizationInput!) {
     addOrganization(input: $input) {
       _id
-      userId
+      userId {
+      username
+      _id
+      image
+    }
       name
       description
       image
       link
-      tag
+      tag {
+      image
+      name
+      _id
+    }
       fundraisingGoal
       fundraisingAmount
     }
