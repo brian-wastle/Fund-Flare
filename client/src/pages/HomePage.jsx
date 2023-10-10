@@ -26,7 +26,7 @@ const HomePage = () => {
   }
   const mutableOrganizations = [...organizations]
   shuffleArray(mutableOrganizations);
-  const firstFewElements = mutableOrganizations.slice(0, 5);
+  const firstFewElements = mutableOrganizations.slice(0, 6);
   console.log(firstFewElements)
 
   return (

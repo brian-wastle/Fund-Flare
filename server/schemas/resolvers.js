@@ -187,7 +187,7 @@ const resolvers = {
             runValidators: true,
           }
         );
-        const populatedOrganization = await Organization.findById(organization._id);
+        const populatedOrganization = await Organization.findById(organization._id).populate('userId').populate('tag');
         console.log(populatedOrganization);
         return populatedOrganization
       }
