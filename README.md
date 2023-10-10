@@ -18,6 +18,8 @@ Just sign up and log in!
 
 ## Usage
 
+![Alt text](<client/src/assets/images/Screenshot 2023-10-10 at 11.52.48 AM.png>)
+
 Use this application to make donations to causes that interest you, or create your own page to accept charitable donations from others.
 
 ## License
@@ -27,7 +29,7 @@ To know more about the MIT license please visit https://opensource.org/licenses/
 
 ## Tests
 
-[Check out FundFlare here!]()
+[Check out FundFlare here!](https://fundflare-2851d57e072f.herokuapp.com/)
 
 ## Questions
 
