@@ -15,7 +15,7 @@ const AppNavbar = () => {
   return (
     <>
       <h1 className='font-main text-4xl md:text-6xl text-center py-8 text-primary'
-      ><Link to="/">FundFlare</Link></h1>
+      ><Link to="/">Fund<span className='text-secondary'>Flare</span></Link></h1>
 
       <button className='absolute top-8 right-5 md:top-10 md:right-10 text-2xl text-text-dark transition-all duration-200 hover:scale-110'
         onClick={() => setMenuOpen(true)}>menu</button>
