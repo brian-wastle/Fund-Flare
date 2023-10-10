@@ -3,7 +3,10 @@ import { useQuery, useMutation } from "@apollo/client";
 import { ADD_ORGANIZATION, UPDATE_USERORGID } from "../utils/mutations";
 import { GET_TAG_BY_NAME } from "../utils/queries";
 import { PickerOverlay } from 'filestack-react';
+
 var tagName;
+
+
 
 
 function CreateOrgForm() {
@@ -22,6 +25,7 @@ function CreateOrgForm() {
   const [updateUserOrgId, { error }] = useMutation(UPDATE_USERORGID);
   var inputRef = useRef(null);
 
+  console.log("ENV STUFF", import.meta.env)
 
   function handleInputEntry(event) {
     inputRef = event.target.value
