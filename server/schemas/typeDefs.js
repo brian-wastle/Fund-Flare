@@ -83,6 +83,7 @@ const typeDefs = `
     getSearch(searchParams: String):[Organization]
     getSingleOrder(orderId: String!): Order
     getOrdersByUserId: [Order]
+    getOrdersByOrgName(organizationName: String): [Order]
     getSingleTag(tagId: String!): Tag
     getAllTags: [Tag]
     getTagByName(tagName: String!): Tag
